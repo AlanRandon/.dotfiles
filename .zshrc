@@ -110,6 +110,8 @@ PATH=$PATH:$HOME/.fzf/bin:$HOME/bin:$HOME/.zvm/bin:$HOME/.zvm/self
 alias vim="nvim"
 
 export EDITOR=nvim
+export TERMINAL=alacritty
+export BROWSER=firefox
 
 [ -f $HOME/.cargo/env ] && . "$HOME/.cargo/env"
 

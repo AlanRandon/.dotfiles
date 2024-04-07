@@ -49,12 +49,14 @@
         "",
         ""
       ]
-    }
+    },
+    "on-click": "pavucontrol"
   },
   "pulseaudio#source": {
     "format": "{format_source}",
     "format-source": "{volume}% ",
-    "format-source-muted": "{volume}% "
+    "format-source-muted": "{volume}% ",
+    "on-click": "pavucontrol"
   },
   "mpris": {
     "format": "{player_icon} {dynamic}",

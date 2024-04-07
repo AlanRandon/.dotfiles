@@ -9,7 +9,7 @@ set $right l
 set $term alacritty
 set $browser firefox
 for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 60 ppt 25 ppt
-set $menu exec $term --class launcher -e sway-launcher-desktop
+set $menu exec sh -c "TERMINAL=$term $term --class launcher -e sway-launcher-desktop"
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
@@ -117,6 +117,9 @@ mode "media" {
 # NASA apod for background
 bindsym $mod+n exec ~/scripts/random-apod
 bindsym $mod+Shift+n exec ~/scripts/random-apod reset
+
+bindsym $mod+Alt+n exec alacritty -e nmtui
+bindsym $mod+Alt+v exec pavucontrol
 
 # Switch the current container between different layout styles
 # bindsym $mod+s layout stacking

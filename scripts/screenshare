@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+# systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+# systemctl --user start xdg-desktop-portal
+# systemctl --user start xdg-desktop-portal-wlr
+
+[ -f /usr/lib/xdg-desktop-portal ] && /usr/lib/xdg-desktop-portal -r &
+[ -f /usr/lib/xdg-desktop-portal-wlr ] && /usr/lib/xdg-desktop-portal-wlr -r
