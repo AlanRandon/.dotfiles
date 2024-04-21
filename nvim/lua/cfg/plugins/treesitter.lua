@@ -25,6 +25,8 @@ return {
 					"vim",
 					"zig",
 					"sql",
+					"latex",
+					"nasm",
 				},
 
 				highlight = {

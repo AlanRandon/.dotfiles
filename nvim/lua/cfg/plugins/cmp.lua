@@ -56,21 +56,65 @@ return {
 		version = "v2.*",
 		cond = not vim.g.vscode,
 		config = function()
-			local luasnip = require("luasnip")
+			local ls = require("luasnip")
 			require("luasnip.loaders.from_vscode").lazy_load()
-			luasnip.config.setup()
+			ls.config.setup()
+
+			local s = ls.snippet
+			local sn = ls.snippet_node
+			local t = ls.text_node
+			local i = ls.insert_node
+			-- local f = ls.function_node
+			local c = ls.choice_node
+			-- local d = ls.dynamic_node
+			-- local r = ls.restore_node
+			local rep = require("luasnip.extras").rep
+
+			ls.add_snippets("toml", {
+				s("card", {
+					c(1, {
+						sn("normal", {
+							t({ "[[cards]]", 'term = "' }),
+							i(1, "term"),
+							t({ '"', 'definition = "' }),
+							i(2, "definition"),
+							t({ '"', "" }),
+						}),
+						sn("latin", {
+							t({ "[[cards]]", "term = '''", "L. " }),
+							i(1, "lines"),
+							t(' "'),
+							i(2, "quote"),
+							t({ '"', "'''", "definition = '''", "L. " }),
+							rep(1),
+							t(' "'),
+							i(3, "translation"),
+							t({ '"', "" }),
+							i(4, "explanation"),
+							t({ "", "'''", "" }),
+						}),
+						sn("tex", {
+							t({ "[[cards]]", 'term = "' }),
+							i(1, "term"),
+							t({ '"', "definition = { text = '''", "" }),
+							i(2, "definition"),
+							t({ "", "''', format = \"tex\" }", "" }),
+						}),
+					}),
+				}),
+			})
 
 			vim.keymap.set({ "i", "s" }, "<C-L>", function()
-				luasnip.jump(1)
+				ls.jump(1)
 			end, { silent = true })
 
 			vim.keymap.set({ "i", "s" }, "<C-H>", function()
-				luasnip.jump(-1)
+				ls.jump(-1)
 			end, { silent = true })
 
 			vim.keymap.set({ "i", "s" }, "<C-E>", function()
-				if luasnip.choice_active() then
-					luasnip.change_choice(1)
+				if ls.choice_active() then
+					ls.change_choice(1)
 				end
 			end, { silent = true })
 		end,

@@ -68,6 +68,13 @@ return {
 							on_attach = on_attach,
 						})
 					end,
+					asm_lsp = function()
+						require("lspconfig")["asm_lsp"].setup({
+							capabilities = capabilities,
+							on_attach = on_attach,
+							filetypes = { "asm", "vmasm", "nasm" },
+						})
+					end,
 					-- rustaceanvim handles this
 					rust_analyzer = function() end,
 				},
