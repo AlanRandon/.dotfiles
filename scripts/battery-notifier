@@ -1,3 +1,4 @@
+pkill -O 1 -f battery-notifier
 while :; do
 	capacity=$(cat /sys/class/power_supply/BAT1/capacity)
 	status=$(cat /sys/class/power_supply/BAT1/status)

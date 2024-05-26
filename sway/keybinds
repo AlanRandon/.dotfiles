@@ -14,11 +14,15 @@ set $menu exec sh -c "TERMINAL=$term $term --class launcher -e sway-launcher-des
 # Reload the configuration file
 bindsym $mod+Shift+c reload
 
-bindsym $mod+Shift+e exec swaynag \
-	-t warning \
-	-m 'Exit or shutdown?' \
-	-B 'Exit' 'swaymsg exit' \
-	-B 'Shutdown' 'shutdown -h now'
+set $exit "Exit (Q)uit Sway/(S)hutdown"
+bindsym $mod+Shift+e mode $exit
+mode $exit {
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+
+    bindsym Q exec swaymsg exit
+    bindsym S exec shutdown -h now
+}
 
 bindsym $mod+Shift+q kill
 
@@ -76,8 +80,9 @@ floating_modifier $mod normal
 
 bindsym $mod+a focus parent
 
-bindsym $mod+r mode "resize"
-mode "resize" {
+set $resize "Resize"
+bindsym $mod+r mode $resize
+mode $resize {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 
@@ -87,8 +92,9 @@ mode "resize" {
     bindsym $right resize grow width 10px
 }
 
-bindsym $mod+v mode "source-volume"
-mode "source-volume" {
+set $source_volume "Source Volume"
+bindsym $mod+v mode $source_volume
+mode $source_volume {
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 
@@ -101,17 +107,23 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
 bindsym Print exec grim -t png - | wl-copy -t image/png
 bindsym Shift+Print exec grim -t png -g "$(slurp)" - | wl-copy -t image/png
 
-bindsym $mod+m mode "media"
-mode "media" {
+set $media "Media"
+bindsym $mod+m mode $media
+mode $media {
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 
 	bindsym space exec playerctl play-pause
 	bindsym $left exec playerctl position 5-
 	bindsym $right exec playerctl position 5+
+	bindsym $up exec playerctl previous
+	bindsym $down exec playerctl next
 }
 
 # NASA apod for background

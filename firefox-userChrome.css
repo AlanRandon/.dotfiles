@@ -3,6 +3,6 @@
 }
 
 #navigator-toolbox:not(:focus-within, :hover) {
-  --toolbar-height: 120px;
+  --toolbar-height: 82px;
   margin-top: calc(-1 * var(--toolbar-height));
 }

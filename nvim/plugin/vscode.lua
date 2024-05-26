@@ -1,3 +1,7 @@
+if not vim.g.vscode then
+	return
+end
+
 local function call_vscode_cmd(cmd)
 	vim.api.nvim_call_function("VSCodeNotify", { cmd })
 end
@@ -19,7 +23,12 @@ vim.keymap.set("n", "<leader>ca", get_vscode_cmd("editor.action.refactor"), { de
 vim.keymap.set("n", "[d", get_vscode_cmd("editor.action.marker.next"), { desc = "Goto Next [D]iagnostic" })
 vim.keymap.set("n", "]d", get_vscode_cmd("editor.action.marker.prev"), { desc = "Goto Previous [D]iagnostic" })
 
-vim.keymap.set("n", "<leader>ds", get_vscode_cmd("editor.action.accessibleViewGoToSymbol"), { desc = "[D]ocument [S]ymbols" })
+vim.keymap.set(
+	"n",
+	"<leader>ds",
+	get_vscode_cmd("editor.action.accessibleViewGoToSymbol"),
+	{ desc = "[D]ocument [S]ymbols" }
+)
 vim.keymap.set("n", "<leader>ws", get_vscode_cmd("workbench.action.showAllSymbols"), { desc = "[W]orkspace [S]ymbols" })
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 

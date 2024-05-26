@@ -7,9 +7,8 @@ return {
 			flavour = "frappe",
 			integrations = {
 				telescope = true,
-				neotree = true,
 				cmp = true,
-				fidget = true,
+				notify = true,
 				mason = true,
 			},
 			transparent_background = true,

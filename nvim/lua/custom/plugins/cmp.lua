@@ -21,10 +21,10 @@ return {
 					end,
 				},
 				sources = {
-					{ name = "path" },
-					{ name = "nvim_lsp" },
-					{ name = "buffer", keyword_length = 3 },
 					{ name = "luasnip", keyword_length = 2 },
+					{ name = "nvim_lsp" },
+					{ name = "path" },
+					{ name = "buffer", keyword_length = 3 },
 				},
 				window = {
 					completion = cmp.config.window.bordered(),
@@ -32,7 +32,13 @@ return {
 				},
 				mapping = {
 					["<C-Space>"] = cmp.mapping.complete(),
-					["<Tab>"] = cmp.mapping.confirm({ select = true }),
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.confirm({ select = true })
+						else
+							fallback()
+						end
+					end),
 					["<C-n>"] = cmp.mapping.select_next_item(),
 					["<C-p>"] = cmp.mapping.select_prev_item(),
 				},
@@ -69,52 +75,78 @@ return {
 			-- local d = ls.dynamic_node
 			-- local r = ls.restore_node
 			local rep = require("luasnip.extras").rep
+			local fmt = require("luasnip.extras.fmt").fmt
+
+			---@param key string
+			---@param pos integer
+			local function card_pair(pos, key)
+				return c(pos, {
+					sn(nil, {
+						t(key),
+						t({ ' = "' }),
+						i(1, key),
+						t({ '"', "" }),
+					}),
+					sn(nil, {
+						t(key),
+						t({ ' = """', "" }),
+						i(1, key),
+						t({ "", '"""', "" }),
+					}),
+					sn(nil, {
+						t(key),
+						t({ " = { text = '''", "" }),
+						i(1, key),
+						t({ "", "''', format = \"tex\" }", "" }),
+					}),
+					sn(nil, {
+						t(key),
+						t({ " = '''", "" }),
+						i(1, key),
+						t({ "", "'''", "" }),
+					}),
+				})
+			end
 
 			ls.add_snippets("toml", {
 				s("card", {
-					c(1, {
-						sn("normal", {
-							t({ "[[cards]]", 'term = "' }),
-							i(1, "term"),
-							t({ '"', 'definition = "' }),
-							i(2, "definition"),
-							t({ '"', "" }),
-						}),
-						sn("latin", {
-							t({ "[[cards]]", "term = '''", "L. " }),
-							i(1, "lines"),
-							t(' "'),
-							i(2, "quote"),
-							t({ '"', "'''", "definition = '''", "L. " }),
-							rep(1),
-							t(' "'),
-							i(3, "translation"),
-							t({ '"', "" }),
-							i(4, "explanation"),
-							t({ "", "'''", "" }),
-						}),
-						sn("tex", {
-							t({ "[[cards]]", 'term = "' }),
-							i(1, "term"),
-							t({ '"', "definition = { text = '''", "" }),
-							i(2, "definition"),
-							t({ "", "''', format = \"tex\" }", "" }),
-						}),
-					}),
+					t({ "[[cards]]", "" }),
+					card_pair(1, "term"),
+					card_pair(2, "definition"),
+				}),
+				s("lcard", {
+					t({ "[[cards]]", "" }),
+					t({ "term = '''", "L. " }),
+					i(1, "lines"),
+					t(' "'),
+					i(2, "quote"),
+					t({ '"', "'''", "definition = '''", "L. " }),
+					rep(1),
+					t(' "'),
+					i(3, "translation"),
+					t({ '"', "" }),
+					i(4, "explanation"),
+					t({ "", "'''", "" }),
 				}),
 			})
 
-			vim.keymap.set({ "i", "s" }, "<C-L>", function()
+			vim.keymap.set({ "i", "s" }, "<C-j>", function()
 				ls.jump(1)
 			end, { silent = true })
 
-			vim.keymap.set({ "i", "s" }, "<C-H>", function()
+			vim.keymap.set({ "i", "s" }, "<C-k>", function()
 				ls.jump(-1)
 			end, { silent = true })
 
-			vim.keymap.set({ "i", "s" }, "<C-E>", function()
+			vim.keymap.set({ "i", "s" }, "<C-n>", function()
 				if ls.choice_active() then
 					ls.change_choice(1)
+				end
+			end, { silent = true })
+
+			vim.keymap.set({ "i", "s" }, "<C-p>", function()
+				if ls.choice_active() then
+					ls.change_choice(-1)
 				end
 			end, { silent = true })
 		end,

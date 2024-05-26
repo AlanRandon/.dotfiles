@@ -4,5 +4,7 @@
 # systemctl --user start xdg-desktop-portal
 # systemctl --user start xdg-desktop-portal-wlr
 
+pkill -O 1 -f screenshare
+
 [ -f /usr/lib/xdg-desktop-portal ] && /usr/lib/xdg-desktop-portal -r &
 [ -f /usr/lib/xdg-desktop-portal-wlr ] && /usr/lib/xdg-desktop-portal-wlr -r
