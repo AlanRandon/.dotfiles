@@ -22,16 +22,7 @@ return {
 			---@diagnostic disable-next-line missig-fields
 			notify.setup({
 				render = "wrapped-compact",
-			})
-		end,
-		cond = not vim.g.vscode,
-	},
-	{
-		"mrded/nvim-lsp-notify",
-		dependencies = { "rcarriga/nvim-notify" },
-		config = function()
-			require("lsp-notify").setup({
-				icons = false,
+				stages = "slide",
 			})
 		end,
 		cond = not vim.g.vscode,
