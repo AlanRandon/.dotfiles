@@ -1,3 +1,7 @@
+/*
+ * mkdir -p  ~/.mozilla/firefox/$PROFILE/chrome
+ * ln -s $(realpath firefox-userChrome.css)  ~/.mozilla/firefox/$PROFILE/chrome/userChrome.css */
+
 #navigator-toolbox {
   transition: margin-top 200ms !important;
 }

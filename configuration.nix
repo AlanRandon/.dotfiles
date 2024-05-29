@@ -18,7 +18,6 @@ in
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
-      <home-manager/nixos>
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -89,55 +88,83 @@ in
   system.stateVersion = "23.11";
 
   environment.systemPackages = with pkgs; [
-	neovim
-	firefox
-	tmux
-	wget
 	git
+	github-cli
+	neovim
+	tmux
+	unstable.fzf
+	ripgrep
+	unstable.alacritty
+	bc
+	htop
+	xwayland
+	sway
+	waybar
+	brightnessctl
+	wl-clipboard
+	grim
+	slurp
+	sway-launcher-desktop
+	mako
+	firefox
+	mpv
+	wget
 	pulseaudio
 	zsh
-	sway
-	unstable.alacritty
-	brightnessctl
-	waybar
 	pavucontrol
-	wl-clipboard
 	jq
-	unstable.fzf
 	clang
-	mako
+	strace
 	libnotify
 	playerctl
 	gnumake
-	ripgrep
 	unzip
 	nodejs
 	gtk3
 	catppuccin-gtk
-	github-cli
+	glib
+	gimp
+	poppler_utils
+	xdg-utils
+	rustup
+	pkg-config
+	nasm
   ];
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraMono" ]; })
+    pkgs.noto-fonts-color-emoji
   ];
 
   hardware.opengl.enable = true;
   programs.sway.enable = true;
   programs.zsh.enable = true;
   programs.nix-ld.enable = true;
-
-  programs.nix-ld.libraries = with pkgs; [];
-
-  users.defaultUserShell = pkgs.zsh;
+  services.dbus.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
+  programs.nix-ld.libraries = with pkgs; [
+    zlib
+    openssl.dev
+  ];
+
+  users.defaultUserShell = pkgs.zsh;
+
+  # TODO: green is used elsewhere, but only blue is installed by `catppuccin-gtk`
+
   environment.etc."xdg/gtk-2.0/gtkrc".text = ''
-    gtk-theme-name = "Catppuccin-Frappe-Standard-Green-Dark"
+    gtk-theme-name = "Catppuccin-Frappe-Standard-Blue-Dark"
+    gtk-application-prefer-dark-theme = true
   '';
 
   environment.etc."xdg/gtk-3.0/settings.ini".text = ''
     [Settings]
-    gtk-theme-name = Catppuccin-Frappe-Standard-Green-Dark
+    gtk-theme-name = Catppuccin-Frappe-Standard-Blue-Dark
+    gtk-application-prefer-dark-theme = true
   '';
+
+  environment.etc."xdg/gtk-4.0/assets".source = "${pkgs.catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Blue-Dark/gtk-4.0/assets";
+  environment.etc."xdg/gtk-4.0/gtk.css".source = "${pkgs.catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Blue-Dark/gtk-4.0/gtk.css";
+  environment.etc."xdg/gtk-4.0/gtk-dark.css".source = "${pkgs.catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Blue-Dark/gtk-4.0/gtk-dark.css";
 }
 
