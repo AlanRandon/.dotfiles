@@ -7,8 +7,4 @@ pkill -O 1 -f screenshare
 [ -f /usr/lib/xdg-desktop-portal ] && /usr/lib/xdg-desktop-portal -r &
 [ -f /usr/lib/xdg-desktop-portal-wlr ] && /usr/lib/xdg-desktop-portal-wlr -r
 
-PORTAL_PREFIX=/nix/store/hnc0dzqn1q49cpa80783i6c3ybcn7658-xdg-desktop-portal-1.18.4/libexec/xdg-desktop-portal
-PORTAL_PREFIX_WLR=/nix/store/xrpwzd0jhy4vkykpg5lhvsvlrdjnz5vm-xdg-desktop-portal-wlr-0.7.0/libexec/xdg-desktop-portal-wlr
-pipewire &
-[ -f $PORTAL_PREFIX ] && $PORTAL_PREFIX -r &
-[ -f $PORTAL_PREFIX_WLR ] && $PORTAL_PREFIX_WLR -r
+command -v dbus-sway-environment &> /dev/null && dbus-sway-environment

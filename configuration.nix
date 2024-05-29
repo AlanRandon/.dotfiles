@@ -1,11 +1,5 @@
 # sudo nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
-# sudo nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-# sudo nix-channel --add https://github.com/catppuccin/nix/archive/main.tar.gz catppuccin
 # sudo nix-channel --update
-
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 { config, lib, pkgs, ... }:
 
@@ -13,10 +7,25 @@ let
   unstable = import <nixpkgs-unstable> {
     config = { allowUnfree = true; };
   };
+
+  catppuccin-gtk = (pkgs.catppuccin-gtk.override { accents = [ "blue" "green" ]; });
+
+  dbus-sway-environment = pkgs.writeTextFile {
+    name = "dbus-sway-environment";
+    destination = "/bin/dbus-sway-environment";
+    executable = true;
+
+    text = ''
+      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+      systemctl --user stop pipewire wireplumber pipewire-pulse xdg-desktop-portal xdg-desktop-portal-wlr
+      systemctl --user start pipewire wireplumber pipewire-pulse xdg-desktop-portal xdg-desktop-portal-wlr
+    '';
+  };
 in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
     ];
 
@@ -40,7 +49,7 @@ in
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-  
+
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -48,19 +57,14 @@ in
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alan = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" "networkmanager" "%wheel" ]; # Enable ‘sudo’ for the user.
-     packages = with pkgs; [];
-     useDefaultShell = true;
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "%wheel" ]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [ ];
+    useDefaultShell = true;
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -88,47 +92,70 @@ in
   system.stateVersion = "23.11";
 
   environment.systemPackages = with pkgs; [
-	git
-	github-cli
-	neovim
-	tmux
-	unstable.fzf
-	ripgrep
-	unstable.alacritty
-	bc
-	htop
-	xwayland
-	sway
-	waybar
-	brightnessctl
-	wl-clipboard
-	grim
-	slurp
-	sway-launcher-desktop
-	mako
-	firefox
-	mpv
-	wget
-	pulseaudio
-	zsh
-	pavucontrol
-	jq
-	clang
-	strace
-	libnotify
-	playerctl
-	gnumake
-	unzip
-	nodejs
-	gtk3
-	catppuccin-gtk
-	glib
-	gimp
-	poppler_utils
-	xdg-utils
-	rustup
-	pkg-config
-	nasm
+    git
+    github-cli
+    tmux
+    unstable.fzf
+    ripgrep
+    bc
+    htop
+    wget
+    zsh
+    jq
+    clang
+    strace
+    gnumake
+    unzip
+    nodejs
+    xdg-utils
+    rustup
+    pkg-config
+    nasm
+
+    # Window manager
+    xwayland
+    sway
+    waybar
+    brightnessctl
+    sway-launcher-desktop
+    wl-clipboard
+    grim
+    slurp
+    catppuccin-gtk
+    gtk3
+    glib
+
+    # Browser
+    firefox
+
+    # Terminal
+    unstable.alacritty
+
+    # Text editor
+    neovim
+
+    # Image editor
+    gimp
+
+    # Notifications
+    mako
+    libnotify
+
+    # Sound
+    playerctl
+    pulseaudio
+    mpv
+    pavucontrol
+
+    # Screen recording
+    dbus-sway-environment
+    pipewire
+    wireplumber
+
+    # LaTeX
+    unstable.tectonic
+    zathura
+    poppler_utils
   ];
 
   fonts.packages = with pkgs; [
@@ -140,7 +167,7 @@ in
   programs.sway.enable = true;
   programs.zsh.enable = true;
   programs.nix-ld.enable = true;
-  services.dbus.enable = true;
+
   services.gnome.gnome-keyring.enable = true;
 
   programs.nix-ld.libraries = with pkgs; [
@@ -150,21 +177,36 @@ in
 
   users.defaultUserShell = pkgs.zsh;
 
-  # TODO: green is used elsewhere, but only blue is installed by `catppuccin-gtk`
-
   environment.etc."xdg/gtk-2.0/gtkrc".text = ''
-    gtk-theme-name = "Catppuccin-Frappe-Standard-Blue-Dark"
+    gtk-theme-name = "Catppuccin-Frappe-Standard-Green-Dark"
     gtk-application-prefer-dark-theme = true
   '';
 
   environment.etc."xdg/gtk-3.0/settings.ini".text = ''
     [Settings]
-    gtk-theme-name = Catppuccin-Frappe-Standard-Blue-Dark
+    gtk-theme-name = Catppuccin-Frappe-Standard-Green-Dark
     gtk-application-prefer-dark-theme = true
   '';
 
-  environment.etc."xdg/gtk-4.0/assets".source = "${pkgs.catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Blue-Dark/gtk-4.0/assets";
-  environment.etc."xdg/gtk-4.0/gtk.css".source = "${pkgs.catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Blue-Dark/gtk-4.0/gtk.css";
-  environment.etc."xdg/gtk-4.0/gtk-dark.css".source = "${pkgs.catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Blue-Dark/gtk-4.0/gtk-dark.css";
-}
+  environment.etc."xdg/gtk-4.0/assets".source = "${catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Green-Dark/gtk-4.0/assets";
+  environment.etc."xdg/gtk-4.0/gtk.css".source = "${catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Green-Dark/gtk-4.0/gtk.css";
+  environment.etc."xdg/gtk-4.0/gtk-dark.css".source = "${catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Green-Dark/gtk-4.0/gtk-dark.css";
 
+  services.dbus.enable = true;
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+  };
+
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+  services.pipewire = {
+    alsa.enable = true;
+    pulse.enable = true;
+  };
+
+  xdg.mime.defaultApplications = {
+    "application/pdf" = "org.pwmt.zathura.desktop";
+    "image/png" = "gimp.desktop";
+  };
+}
