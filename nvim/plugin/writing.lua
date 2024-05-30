@@ -1,3 +1,7 @@
+if vim.g.vscode then
+	return
+end
+
 local null_ls = require("null-ls")
 
 vim.opt.spelllang = "en"

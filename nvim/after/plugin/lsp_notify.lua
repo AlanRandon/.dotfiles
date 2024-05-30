@@ -1,3 +1,7 @@
+if vim.g.vscode then
+	return
+end
+
 ---@class LspNotification
 ---@field title string
 ---@field message string

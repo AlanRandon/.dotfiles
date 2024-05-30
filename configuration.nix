@@ -91,6 +91,7 @@ in
 
   system.stateVersion = "23.11";
 
+  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     git
     github-cli
@@ -135,6 +136,7 @@ in
 
     # Text editor
     neovim
+    vscode # for liveshare
 
     # Image editor
     gimp
