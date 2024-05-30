@@ -111,10 +111,12 @@ in
     rustup
     pkg-config
     nasm
+    ffmpeg
 
     # Window manager
     xwayland
     sway
+    swaybg
     waybar
     brightnessctl
     sway-launcher-desktop
