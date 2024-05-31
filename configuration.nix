@@ -92,91 +92,102 @@ in
   system.stateVersion = "23.11";
 
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [
-    git
-    github-cli
-    tmux
+  environment.systemPackages = [
+    pkgs.unzip
+    pkgs.xdg-utils
+
+    # Git
+    pkgs.git
+    pkgs.github-cli
+
+    # Development tools
+    pkgs.rustup
+    pkgs.pkg-config
+    pkgs.strace
+    pkgs.nasm
+    pkgs.nodejs
+    pkgs.gnumake
+    pkgs.clang
+
+    # Command line utilities
     unstable.fzf
-    ripgrep
-    bc
-    htop
-    wget
-    zsh
-    jq
-    clang
-    strace
-    gnumake
-    unzip
-    nodejs
-    xdg-utils
-    rustup
-    pkg-config
-    nasm
-    ffmpeg
+    pkgs.ffmpeg
+    pkgs.figlet
+    pkgs.lolcat
+    pkgs.bat
+    pkgs.bc
+    pkgs.wget
+    pkgs.ripgrep
+    pkgs.jq
+    pkgs.htop
 
     # Window manager
-    xwayland
-    sway
-    swaybg
-    waybar
-    brightnessctl
-    sway-launcher-desktop
-    wl-clipboard
-    grim
-    slurp
     catppuccin-gtk
-    gtk3
-    glib
+    pkgs.xwayland
+    pkgs.sway
+    pkgs.swaybg
+    pkgs.waybar
+    pkgs.brightnessctl
+    pkgs.sway-launcher-desktop
+    pkgs.wl-clipboard
+    pkgs.grim
+    pkgs.slurp
+    pkgs.gtk3
+    pkgs.glib
 
     # Browser
-    firefox
+    pkgs.firefox
+
+    # Shell
+    pkgs.zsh
 
     # Terminal
-    unstable.alacritty
+    unstable.alacritty # Emulator
+    pkgs.tmux # Multiplexer
 
     # Text editor
-    neovim
-    vscode # for liveshare
+    unstable.neovim
+    pkgs.vscode # for liveshare
 
     # Image editor
-    gimp
+    pkgs.gimp
 
     # Notifications
-    mako
-    libnotify
+    pkgs.mako
+    pkgs.libnotify
 
     # Sound
-    playerctl
-    pulseaudio
-    mpv
-    pavucontrol
+    pkgs.playerctl
+    pkgs.pulseaudio
+    pkgs.mpv
+    pkgs.pavucontrol
 
     # Screen recording
     dbus-sway-environment
-    pipewire
-    wireplumber
+    pkgs.pipewire
+    pkgs.wireplumber
 
     # LaTeX
     unstable.tectonic
-    zathura
-    poppler_utils
+    pkgs.zathura
+    pkgs.poppler_utils
   ];
 
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraMono" ]; })
+  fonts.packages = [
+    (pkgs.nerdfonts.override { fonts = [ "FiraMono" ]; })
     pkgs.noto-fonts-color-emoji
   ];
 
   hardware.opengl.enable = true;
   programs.sway.enable = true;
   programs.zsh.enable = true;
-  programs.nix-ld.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
 
-  programs.nix-ld.libraries = with pkgs; [
-    zlib
-    openssl.dev
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = [
+    pkgs.zlib
+    pkgs.openssl.dev
   ];
 
   users.defaultUserShell = pkgs.zsh;
