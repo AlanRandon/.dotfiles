@@ -11,3 +11,4 @@ cd "$(dirname $0)/.."
 [ ! -d ~/scripts ] && ln -st ~ "$(realpath ./scripts)"
 [ ! -f ~/.zshrc ] && ln -s "$(realpath .zshrc)" ~/.zshrc 
 [ ! -f ~/.tmux.conf ] && ln -s "$(realpath .tmux.conf)" ~/.tmux.conf  
+[ ! -f ~/.config/starship.toml ] && ln -s "$(realpath starship.toml)" ~/.config/starship.toml
