@@ -57,7 +57,7 @@ in
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alan = {
@@ -151,6 +151,9 @@ in
 
     # Image editor
     pkgs.gimp
+
+    # Sound editor
+    pkgs.audacity
 
     # Notifications
     pkgs.mako

@@ -4,7 +4,7 @@ end
 
 local null_ls = require("null-ls")
 
-vim.opt.spelllang = "en"
+vim.opt.spelllang = "en_gb"
 vim.opt.wrap = false
 
 vim.api.nvim_create_user_command("WritingOn", function()

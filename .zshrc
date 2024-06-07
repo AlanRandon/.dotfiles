@@ -1,6 +1,12 @@
-if [[ $TERM_PROGRAM != "vscode" ]]; then
-	ZSH_TMUX_AUTOQUIT=false
-	ZSH_TMUX_AUTOSTART=true
+PATH=$PATH:$HOME/.fzf/bin:$HOME/bin:$HOME/.zvm/bin:$HOME/.zvm/self:$HOME/.npm-global/bin
+
+if [[ $TERM_PROGRAM != "vscode" ]] && [ -z $TMUX ]; then
+	session=$(tmux list-sessions -F "#{session_id}" | head -1)
+	if [ -z $session ]; then
+		exec tmux new-session
+	else
+		exec tmux attach-session -t $session
+	fi
 fi
 
 # Set the directory we want to store zinit and plugins
@@ -25,7 +31,6 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 
 zinit snippet OMZP::git
-zinit snippet OMZP::tmux
 
 # Load completions
 autoload -Uz compinit
@@ -50,12 +55,11 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
+setopt autocd
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-
-PATH=$PATH:$HOME/.fzf/bin:$HOME/bin:$HOME/.zvm/bin:$HOME/.zvm/self:$HOME/.npm-global/bin
 
 alias vim="nvim"
 

@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+usage() {
+	echo "Usage: $0 [DURATION]"
+}
+
+[ -z $1 ] && usage && exit 1
+monitor=$(pactl list sinks | grep $(pactl get-default-sink).monitor | cut -d : -f 2)
+echo Recording...
+ffmpeg -y -t $1 -f pulse -i $monitor ~/Documents/recording.wav
