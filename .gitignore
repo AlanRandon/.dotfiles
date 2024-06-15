@@ -2,3 +2,4 @@
 **/out
 **/.luarc.json
 scripts/apod-api-key
+local.nix

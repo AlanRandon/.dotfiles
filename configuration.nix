@@ -27,6 +27,7 @@ in
     [
       # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
+      ./local.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -100,14 +101,17 @@ in
     pkgs.git
     pkgs.github-cli
 
-    # Development tools
+    # Languages
+    pkgs.zig
     pkgs.rustup
+    pkgs.nodejs
+    pkgs.clang
+    pkgs.nasm
+
+    # Development tools
     pkgs.pkg-config
     pkgs.strace
-    pkgs.nasm
-    pkgs.nodejs
     pkgs.gnumake
-    pkgs.clang
 
     # Command line utilities
     unstable.fzf

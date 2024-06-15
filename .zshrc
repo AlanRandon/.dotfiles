@@ -29,6 +29,7 @@ zinit light starship/starship
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+zinit light chisui/zsh-nix-shell
 
 zinit snippet OMZP::git
 
