@@ -198,6 +198,16 @@ in
 
   users.defaultUserShell = pkgs.zsh;
 
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --user-menu --time --cmd sway";
+        user = "greeter";
+      };
+    };
+  };
+
   environment.etc."xdg/gtk-2.0/gtkrc".text = ''
     gtk-theme-name = "Catppuccin-Frappe-Standard-Green-Dark"
     gtk-application-prefer-dark-theme = true
