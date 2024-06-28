@@ -18,15 +18,19 @@ return {
 					"html",
 					"json",
 					"markdown",
-					"query",
 					"rust",
 					"toml",
 					"typescript",
-					"vim",
 					"zig",
 					"sql",
 					"latex",
 					"nasm",
+					-- required
+					"c",
+					"lua",
+					"vim",
+					"vimdoc",
+					"query",
 				},
 
 				highlight = {

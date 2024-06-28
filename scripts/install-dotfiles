@@ -8,6 +8,7 @@ cd "$(dirname $0)/.."
 [ ! -d ~/.config/mako ] && ln -st ~/.config "$(realpath ./mako)"
 [ ! -d ~/.config/alacritty ] && ln -st ~/.config "$(realpath ./alacritty)"
 [ ! -d ~/.config/zathura ] && ln -st ~/.config "$(realpath ./zathura)"
+[ ! -d ~/.config/btop ] && ln -st ~/.config "$(realpath ./btop)"
 [ ! -d ~/scripts ] && ln -st ~ "$(realpath ./scripts)"
 [ ! -f ~/.zshrc ] && ln -s "$(realpath .zshrc)" ~/.zshrc 
 [ ! -f ~/.tmux.conf ] && ln -s "$(realpath .tmux.conf)" ~/.tmux.conf  

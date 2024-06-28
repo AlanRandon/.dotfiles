@@ -13,13 +13,13 @@ end, {})
 
 local function on_attach(client, bufnr)
 	local function nmap(key, action, desc)
-		vim.keymap.set("n", key, action, { buffer = bufnr, desc = desc })
+		vim.keymap.set("n", key, action, { buffer = bufnr, desc = ("LSP: %s"):format(desc) })
 	end
 
 	nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
 	nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 	nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-	nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
+	nmap("gt", vim.lsp.buf.type_definition, "[G]oto [T]ype Definition")
 
 	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 	nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
@@ -31,6 +31,13 @@ local function on_attach(client, bufnr)
 	nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
 	nmap("<leader>ih", ":InlayHintsToggle<CR>", "Toggle [I]nlay [H]ints")
+
+	vim.keymap.set(
+		{ "i", "n" },
+		"<C-s>",
+		vim.lsp.buf.signature_help,
+		{ buffer = bufnr, desc = "LSP: [S]ignature Help" }
+	)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -76,13 +83,12 @@ null_ls.setup({
 	sources = {
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.prettier,
+		null_ls.builtins.formatting.ocamlformat,
 		null_ls.builtins.formatting.nixpkgs_fmt,
 		null_ls.builtins.completion.spell.with(writing_mode_source),
 		null_ls.builtins.hover.dictionary.with(writing_mode_source),
 	},
 })
-
-require("neodev").setup()
 
 require("mason").setup()
 require("mason-lspconfig").setup({
@@ -110,5 +116,14 @@ require("mason-lspconfig").setup({
 		end,
 		-- rustaceanvim handles this
 		rust_analyzer = function() end,
+	},
+})
+
+require("lspconfig").ocamllsp.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	settings = {
+		codelens = { enable = true },
+		inlayHints = { enable = true },
 	},
 })

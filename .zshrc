@@ -40,7 +40,8 @@ compinit
 zinit cdreplay -q
 
 # Keybindings
-bindkey -e
+bindkey -v
+bindkey '^f' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
@@ -69,6 +70,7 @@ export TERMINAL=alacritty
 export BROWSER=firefox
 
 [ -f $HOME/.cargo/env ] && . "$HOME/.cargo/env"
+[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"

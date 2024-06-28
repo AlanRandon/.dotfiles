@@ -102,8 +102,8 @@ in
     pkgs.github-cli
 
     # Languages
-    pkgs.zig
     pkgs.rustup
+    pkgs.opam
     pkgs.nodejs
     pkgs.clang
     pkgs.nasm
@@ -123,7 +123,7 @@ in
     pkgs.wget
     pkgs.ripgrep
     pkgs.jq
-    pkgs.htop
+    pkgs.btop
 
     # Window manager
     catppuccin-gtk
@@ -186,7 +186,6 @@ in
   ];
 
   hardware.opengl.enable = true;
-  programs.sway.enable = true;
   programs.zsh.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
@@ -231,4 +230,6 @@ in
     "application/pdf" = "org.pwmt.zathura.desktop";
     "image/png" = "gimp.desktop";
   };
+
+  programs.sway.enable = true;
 }

@@ -21,6 +21,7 @@ return {
 					end,
 				},
 				sources = {
+					{ name = "lazydev", group_index = 0 },
 					{ name = "luasnip", keyword_length = 2 },
 					{ name = "nvim_lsp" },
 					{ name = "path" },
