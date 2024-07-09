@@ -63,7 +63,7 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alan = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "%wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "%wheel" "dialout" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [ ];
     useDefaultShell = true;
   };
@@ -112,6 +112,7 @@ in
     pkgs.pkg-config
     pkgs.strace
     pkgs.gnumake
+    pkgs.autoconf
 
     # Command line utilities
     unstable.fzf
@@ -189,6 +190,8 @@ in
   programs.zsh.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
+
+  services.envfs.enable = true;
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = [
