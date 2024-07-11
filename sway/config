@@ -26,4 +26,6 @@ exec_always ~/scripts/screenshare
 exec_always brightnessctl set 50%
 exec_always pactl set-sink-volume @DEFAULT_SINK@ 75%
 
+bindswitch --reload --locked lid:on exec swaylock -i ~/projects/.dotfiles/sway/wallpaper.jpg
+
 include @sysconfdir@/sway/config.d/*

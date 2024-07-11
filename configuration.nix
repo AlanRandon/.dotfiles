@@ -131,6 +131,7 @@ in
     pkgs.xwayland
     pkgs.sway
     pkgs.swaybg
+    pkgs.swaylock-effects
     pkgs.waybar
     pkgs.brightnessctl
     pkgs.sway-launcher-desktop
