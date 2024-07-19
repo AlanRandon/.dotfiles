@@ -1,15 +1,7 @@
-# sudo nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
-# sudo nix-channel --update
-
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
-  unstable = import <nixpkgs-unstable> {
-    config = { allowUnfree = true; };
-  };
-
-  catppuccin-gtk = (pkgs.catppuccin-gtk.override { accents = [ "blue" "green" ]; });
-
+  unstable = pkgs.unstable;
   dbus-sway-environment = pkgs.writeTextFile {
     name = "dbus-sway-environment";
     destination = "/bin/dbus-sway-environment";
@@ -23,12 +15,12 @@ let
   };
 in
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
-      ./local.nix
-    ];
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -48,47 +40,15 @@ in
     useXkbConfig = true; # use xkb.options in tty.
   };
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
   services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alan = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "%wheel" "dialout" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [ ];
+    packages = [ ];
     useDefaultShell = true;
   };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
 
   system.stateVersion = "23.11";
 
@@ -96,6 +56,7 @@ in
   environment.systemPackages = [
     pkgs.unzip
     pkgs.xdg-utils
+    pkgs.bashmount
 
     # Git
     pkgs.git
@@ -127,7 +88,6 @@ in
     pkgs.btop
 
     # Window manager
-    catppuccin-gtk
     pkgs.xwayland
     pkgs.sway
     pkgs.swaybg
@@ -138,8 +98,6 @@ in
     pkgs.wl-clipboard
     pkgs.grim
     pkgs.slurp
-    pkgs.gtk3
-    pkgs.glib
 
     # Browser
     pkgs.firefox
@@ -212,26 +170,13 @@ in
     };
   };
 
-  environment.etc."xdg/gtk-2.0/gtkrc".text = ''
-    gtk-theme-name = "Catppuccin-Frappe-Standard-Green-Dark"
-    gtk-application-prefer-dark-theme = true
-  '';
-
-  environment.etc."xdg/gtk-3.0/settings.ini".text = ''
-    [Settings]
-    gtk-theme-name = Catppuccin-Frappe-Standard-Green-Dark
-    gtk-application-prefer-dark-theme = true
-  '';
-
-  environment.etc."xdg/gtk-4.0/assets".source = "${catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Green-Dark/gtk-4.0/assets";
-  environment.etc."xdg/gtk-4.0/gtk.css".source = "${catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Green-Dark/gtk-4.0/gtk.css";
-  environment.etc."xdg/gtk-4.0/gtk-dark.css".source = "${catppuccin-gtk}/share/themes/Catppuccin-Frappe-Standard-Green-Dark/gtk-4.0/gtk-dark.css";
-
   services.dbus.enable = true;
   xdg.portal = {
     enable = true;
     wlr.enable = true;
   };
+
+  services.udisks2.enable = true;
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
