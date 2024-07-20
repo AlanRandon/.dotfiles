@@ -24,6 +24,8 @@ set $base      #303446
 set $mantle    #292c3c
 set $crust     #232634
 
+set $clear #ffffff00
+
 set {
     $col_urgent                    $red
     $col_focused                   $green
@@ -33,8 +35,8 @@ set {
     $col_text_light                $text
     $col_urgent_border             $col_urgent
     $col_focused_border            $col_focused
-    $col_unfocused_border          $col_unfocused
-    $col_focused_inactive_border   $col_focused_inactive
+    $col_unfocused_border          $clear
+    $col_focused_inactive_border   $clear
 }
 
 # class                 border                       background             text           indicator             child_border
@@ -44,5 +46,6 @@ client.unfocused        $col_unfocused_border        $col_unfocused         $col
 client.urgent           $col_urgent_border           $col_urgent            $col_text_dark $col_urgent           $col_urgent_border
 
 for_window [class="^.*"] border pixel 2
+for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
 
 output * bg wallpaper.jpg fill
