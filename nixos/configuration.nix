@@ -92,6 +92,7 @@ in
     pkgs.sway
     pkgs.swaybg
     pkgs.swaylock-effects
+    pkgs.catppuccin-cursors.frappeLight
     pkgs.waybar
     pkgs.brightnessctl
     pkgs.sway-launcher-desktop
@@ -195,11 +196,27 @@ in
   environment.etc = {
     "xdg/gtk-2.0/gtkrc".text = ''
       gtk-application-prefer-dark-theme = true
+      gtk-cursor-theme-name="catppuccin-frappe-light-cursors"
     '';
 
     "xdg/gtk-3.0/settings.ini".text = ''
       [Settings]
       gtk-application-prefer-dark-theme = true
+      gtk-cursor-theme-name = catppuccin-frappe-light-cursors
     '';
+  };
+
+  programs.dconf = {
+    enable = true;
+    profiles.user.databases = [
+      {
+        settings = {
+          "org/gnome/desktop/interface" = {
+            cursor-theme = "catppuccin-frappe-light-cursors";
+          };
+        };
+        lockAll = true;
+      }
+    ];
   };
 }

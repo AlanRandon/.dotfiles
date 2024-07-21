@@ -48,4 +48,6 @@ client.urgent           $col_urgent_border           $col_urgent            $col
 for_window [class="^.*"] border pixel 2
 for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
 
+seat seat0 xcursor_theme catppuccin-frappe-light-cursors
+
 output * bg wallpaper.jpg fill
