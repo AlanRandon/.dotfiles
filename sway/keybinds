@@ -8,7 +8,7 @@ set $right l
 
 set $term alacritty
 set $browser firefox
-set $menu exec sh -c "swaymsg fullscreen disable && TERMINAL=$term $term --class launcher -e sway-launcher-desktop"
+set $menu exec sh -c "swaymsg fullscreen disable && TERMINAL=$term $term -o window.opacity=1 --class launcher -e sway-launcher-desktop"
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
