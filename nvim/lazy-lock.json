@@ -9,6 +9,7 @@
   "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
   "co-author.nvim": { "branch": "main", "commit": "3beddbbd5fdf3121921fc7b28fd731cffc70f952" },
   "crates.nvim": { "branch": "main", "commit": "c3fd47391de6999f4c939af89494d08443f71916" },
+  "duckytype.nvim": { "branch": "main", "commit": "fa59fbd7cf8407337bfe07d01b361a3449f34743" },
   "friendly-snippets": { "branch": "main", "commit": "45a1b96e46efe5fce8af325d4bed45feb9d29d0f" },
   "harpoon": { "branch": "harpoon2", "commit": "0378a6c428a0bed6a2781d459d7943843f374bce" },
   "lazy.nvim": { "branch": "main", "commit": "1870238cf9c579c5d7eb8ea8b296f10b81978d34" },

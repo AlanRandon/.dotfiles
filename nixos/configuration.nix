@@ -44,7 +44,7 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alan = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "%wheel" "dialout" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "%wheel" "dialout" "uinput" ]; # Enable ‘sudo’ for the user.
     packages = [ ];
     useDefaultShell = true;
   };
@@ -218,5 +218,16 @@ in
         lockAll = true;
       }
     ];
+  };
+
+  services.kanata = {
+    enable = true;
+    keyboards.default.config = ''
+      (defsrc
+      	caps)
+  
+      (deflayermap (default-layer)
+          caps (tap-hold 200 200 esc lmet))
+    '';
   };
 }
