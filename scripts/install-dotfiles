@@ -14,5 +14,6 @@ cd "$(dirname $0)/.."
 [ ! -d ~/.config/btop ] && ln -st ~/.config "$(realpath ./btop)"
 [ ! -d ~/scripts ] && ln -st ~ "$(realpath ./scripts)"
 [ ! -f ~/.zshrc ] && ln -s "$(realpath .zshrc)" ~/.zshrc 
+[ ! -f ~/.gitconfig ] && ln -s "$(realpath .gitconfig)" ~/.gitconfig
 [ ! -f ~/.tmux.conf ] && ln -s "$(realpath .tmux.conf)" ~/.tmux.conf  
 [ ! -f ~/.config/starship.toml ] && ln -s "$(realpath starship.toml)" ~/.config/starship.toml
