@@ -188,7 +188,8 @@ in
 
   xdg.mime.defaultApplications = {
     "application/pdf" = "org.pwmt.zathura.desktop";
-    "image/png" = "gimp.desktop";
+    "image/png" = "mpv.desktop";
+    "video/vnd.avi" = "mpv.desktop";
   };
 
   programs.sway.enable = true;

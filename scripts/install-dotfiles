@@ -3,6 +3,7 @@
 cd "$(dirname $0)/.."
 
 [ ! -d ~/.config/nvim ] && ln -st ~/.config "$(realpath ./nvim)"
+[ ! -d ~/.config/mpv ] && ln -st ~/.config "$(realpath ./mpv)"
 [ ! -d ~/.config/bashmount ] && ln -st ~/.config "$(realpath ./bashmount)"
 [ ! -d ~/.config/sway ] && ln -st ~/.config "$(realpath ./sway)"
 [ ! -d ~/.config/swaylock ] && ln -st ~/.config "$(realpath ./swaylock)"

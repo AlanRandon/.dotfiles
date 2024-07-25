@@ -11,6 +11,7 @@ return {
 	{ "alec-gibson/nvim-tetris", cmd = "Tetris", cond = not vim.g.vscode },
 	{ "tpope/vim-fugitive", cmd = "Git", cond = not vim.g.vscode },
 	{ "mbbill/undotree", cmd = "UndotreeToggle", cond = not vim.g.vscode },
+	{ "prichrd/netrw.nvim", cond = not vim.g.vscode },
 	{ "2kabhishek/co-author.nvim", cmd = "CoAuthor" },
 	"tpope/vim-commentary",
 	{
