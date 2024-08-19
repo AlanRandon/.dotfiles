@@ -12,6 +12,7 @@
   "duckytype.nvim": { "branch": "main", "commit": "fa59fbd7cf8407337bfe07d01b361a3449f34743" },
   "friendly-snippets": { "branch": "main", "commit": "45a1b96e46efe5fce8af325d4bed45feb9d29d0f" },
   "harpoon": { "branch": "harpoon2", "commit": "0378a6c428a0bed6a2781d459d7943843f374bce" },
+  "haskell-tools.nvim": { "branch": "master", "commit": "8d345979303bc08c6689f2b903a7a8fe2a4dd9cd" },
   "lazy.nvim": { "branch": "main", "commit": "1870238cf9c579c5d7eb8ea8b296f10b81978d34" },
   "lazydev.nvim": { "branch": "main", "commit": "cea5d0fb556cdc35122d9cae772e7e0ed65b4505" },
   "lualine.nvim": { "branch": "master", "commit": "6a40b530539d2209f7dc0492f3681c8c126647ad" },

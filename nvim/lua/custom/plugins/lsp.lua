@@ -27,6 +27,13 @@ return {
 		ft = { "rust" },
 	},
 	{
+		"mrcjkb/haskell-tools.nvim",
+		version = "^4",
+		dependencies = {},
+		lazy = false,
+		cond = not vim.g.vscode,
+	},
+	{
 		"nvimtools/none-ls.nvim",
 		cond = not vim.g.vscode,
 		config = function() end,
