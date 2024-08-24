@@ -23,6 +23,7 @@
         modules = [
           ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
           ./configuration.nix
+          ./sway.nix
           ./laptop/hardware-configuration.nix
           ./laptop/file-system.nix
         ];

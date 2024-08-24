@@ -1,13 +1,6 @@
 return {
 	{ "ThePrimeagen/vim-be-good", cmd = "VimBeGood", cond = not vim.g.vscode },
-	{
-		"kwakzalver/duckytype.nvim",
-		cmd = "DuckyType",
-		cond = not vim.g.vscode,
-		config = function()
-			require("duckytype").setup({})
-		end,
-	},
+	{ "NStefan002/speedtyper.nvim", cmd = "Speedtyper", opts = {}, cond = not vim.g.vscode },
 	{ "alec-gibson/nvim-tetris", cmd = "Tetris", cond = not vim.g.vscode },
 	{ "tpope/vim-fugitive", cmd = "Git", cond = not vim.g.vscode },
 	{ "mbbill/undotree", cmd = "UndotreeToggle", cond = not vim.g.vscode },

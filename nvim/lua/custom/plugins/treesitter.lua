@@ -35,6 +35,7 @@ return {
 
 				highlight = {
 					enable = true,
+					disable = { "latex" },
 				},
 
 				incremental_selection = {
