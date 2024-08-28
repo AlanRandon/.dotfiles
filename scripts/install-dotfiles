@@ -1,19 +1,42 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
-cd "$(dirname $0)/.."
+verbose=false
 
-[ ! -d ~/.config/nvim ] && ln -st ~/.config "$(realpath ./nvim)"
-[ ! -d ~/.config/mpv ] && ln -st ~/.config "$(realpath ./mpv)"
-[ ! -d ~/.config/bashmount ] && ln -st ~/.config "$(realpath ./bashmount)"
-[ ! -d ~/.config/sway ] && ln -st ~/.config "$(realpath ./sway)"
-[ ! -d ~/.config/swaylock ] && ln -st ~/.config "$(realpath ./swaylock)"
-[ ! -d ~/.config/waybar ] && ln -st ~/.config "$(realpath ./waybar)"
-[ ! -d ~/.config/mako ] && ln -st ~/.config "$(realpath ./mako)"
-[ ! -d ~/.config/alacritty ] && ln -st ~/.config "$(realpath ./alacritty)"
-[ ! -d ~/.config/zathura ] && ln -st ~/.config "$(realpath ./zathura)"
-[ ! -d ~/.config/btop ] && ln -st ~/.config "$(realpath ./btop)"
-[ ! -d ~/scripts ] && ln -st ~ "$(realpath ./scripts)"
-[ ! -f ~/.zshrc ] && ln -s "$(realpath .zshrc)" ~/.zshrc 
-[ ! -f ~/.gitconfig ] && ln -s "$(realpath .gitconfig)" ~/.gitconfig
-[ ! -f ~/.tmux.conf ] && ln -s "$(realpath .tmux.conf)" ~/.tmux.conf  
-[ ! -f ~/.config/starship.toml ] && ln -s "$(realpath starship.toml)" ~/.config/starship.toml
+while getopts ':v' flag; do
+  case "${flag}" in
+    v) verbose='true' ;;
+    *) echo "Usage: install-dotfiles [-v]"
+       exit 1 ;;
+  esac
+done
+
+cd "$(dirname $(realpath $0))/.."
+
+xdg_cfgs=(nvim nom mpv bashmount sway swaylock waybar mako alacritty zathura btop starship.toml)
+home_cfgs=(.zshrc .gitconfig .tmux.conf scripts)
+
+for cfg in $xdg_cfgs
+do
+	if [ -L ~/.config/$cfg ]; then
+		$verbose && echo Already linked: ~/.config/$cfg
+	elif [ -e ~/.config/$cfg ]; then
+		echo Error (already exists): ~/.config/$cfg
+	else
+		echo Linking: ~/.config/$cfg
+		[ -d $cfg ] && ln -st ~/.config "$(realpath $cfg)"
+		[ -f $cfg ] && ln -s "$(realpath $cfg)" ~/.config
+	fi
+done
+
+for cfg in $home_cfgs
+do
+	if [ -L ~/$cfg ]; then
+		$verbose && echo Already linked: ~/$cfg
+	elif [ -e ~/$cfg ]; then
+		echo Error (already exists): ~/$cfg
+	else
+		echo Linking: ~/$cfg
+		[ -d $cfg ] && ln -st ~ "$(realpath $cfg)"
+		[ -f $cfg ] && ln -s "$(realpath $cfg)" ~/$cfg
+	fi
+done

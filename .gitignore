@@ -3,3 +3,4 @@
 **/.luarc.json
 scripts/apod-api-key
 btop/btop.log
+nom/nom.db

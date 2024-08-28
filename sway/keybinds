@@ -97,14 +97,18 @@ mode $source_volume {
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 
-	bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-source-volume @DEFAULT_SOURCE@ +5%
-	bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-source-volume @DEFAULT_SOURCE@ -5%
-	bindsym XF86AudioMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+	set $round_sink pactl get-sink-volume @DEFAULT_SINK@ | awk 'NR==1{print(sprintf("%.0f",$5/5)*5)"%"}' | xargs pactl set-sink-volume @DEFAULT_SINK@
+	set $round_source pactl get-source-volume @DEFAULT_SOURCE@ | awk 'NR==1{print(sprintf("%.0f",$5/5)*5)"%"}' | xargs pactl set-source-volume @DEFAULT_SOURCE@
+	bindsym r exec $round_sink && $round_source
+
+	bindsym XF86AudioRaiseVolume exec pactl set-source-volume @DEFAULT_SOURCE@ +5%
+	bindsym XF86AudioLowerVolume exec pactl set-source-volume @DEFAULT_SOURCE@ -5%
+	bindsym XF86AudioMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 }
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-

@@ -14,6 +14,7 @@
     unzip
     xdg-utils
     bashmount
+    unstable.nom
 
     # Git
     github-cli

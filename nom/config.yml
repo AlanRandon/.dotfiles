@@ -1,0 +1,21 @@
+feeds:
+  - url: https://feeds.bbci.co.uk/news/rss.xml
+    name: bbc
+  - url: http://feeds.bbci.co.uk/news/world/rss.xml
+    name: bbc-world
+  - url: https://www.theguardian.com/uk/rss
+    name: the-guardian
+  - url: https://www.theguardian.com/world/rss
+    name: the-guardian-world
+  - url: https://blog.rust-lang.org/feed.xml
+    name: rust-blog
+  - url: https://blog.rust-lang.org/inside-rust/feed.xml
+    name: inside-rust-blog
+  - url: https://ziglang.org/news/index.xml
+    name: zig
+  - url: https://neovim.io/news.xml
+    name: neovim
+  - url: https://dotfyle.com/this-week-in-neovim/rss.xml
+    name: this-week-in-neovim
+  - url: https://weekly.nixos.org/feeds/all.rss.xml
+    name: nixos-weekly
