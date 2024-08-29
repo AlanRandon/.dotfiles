@@ -1,9 +1,14 @@
 include keybinds
 include catppuccin-frappe
 
-gaps inner 10
-
 font pango:"FiraMono Nerd Font" Regular 11
+
+default_border none
+for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
+
+seat seat0 xcursor_theme catppuccin-frappe-light-cursors
+
+output * bg wallpaper.jpg fill
 
 input * {
 	xkb_layout "gb"
@@ -11,7 +16,6 @@ input * {
 	tap enabled
 	natural_scroll enabled
 	middle_emulation enabled
-	# xkb_options caps:swapescape
 }
 
 seat * hide_cursor when-typing enable

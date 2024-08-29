@@ -1,68 +1,57 @@
+@define-color base #303446;
+@define-color base-translucent rgba(48, 52, 70, 0.9);
+@define-color text #c6d0f5;
+@define-color green #a6d189;
+@define-color red #e78284;
+@define-color blue #8caaee;
+
 * {
-	font-family: "FiraMono Nerd Font";
+  font-family: "FiraMono Nerd Font";
 }
 
 window#waybar {
-	background: transparent;
-	color: #c6d0f5;
+  color: @text;
+  background: @base-translucent;
 }
 
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#wireplumber,
-#custom-media,
-#custom-touchpad,
-#tray,
-#mode,
-#idle_inhibitor,
-#scratchpad,
-#mpd,
-#mpris,
-#image {
-	background: #303446;
-	margin: 4px;
-	padding: 0.2em 1em;
-	border-radius: 1000px;
+window#waybar label.module {
+  padding: 0.2em 1em;
 }
 
-@keyframes battery-pulse {
-	0% {
-		background: #303446;
-	}
-
-	100% {
-		background: #d33;
-	}
+window#waybar label.module#network {
+  padding: 0 1em;
 }
 
-#battery.critical {
-	animation: battery-pulse 1s ease-in-out alternate infinite;
+#workspaces,
+window#waybar label.module {
+  margin: 0.5em 0;
+}
+
+#window {
+  margin: 0.5em 0;
 }
 
 #workspaces {
-	background: #303446;
-	margin: 4px;
-	border-radius: 1000px;
+  margin-left: 0.5em;
+}
+
+#battery.critical {
+  color: @base;
+  background: @red;
 }
 
 #workspaces button {
-	background: #303446;
-	color: #c6d0f5;
-	border: none;
-	box-shadow: none;
-	text-shadow: none;
-	padding: 0.3em 0.6em;
-	border-radius: 1000px;
+  color: @text;
+  border: none;
+  box-shadow: none;
+  text-shadow: none;
+  padding: 0.3em 0.6em;
+  transition: none;
+  border-radius: 0;
 }
 
-#workspaces button.focused {
-	background-color: #a6d189;
-	color: #303446;
+#workspaces button.focused,
+#workspaces button:hover {
+  background: @green;
+  color: @base;
 }

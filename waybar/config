@@ -5,16 +5,22 @@
     "sway/workspaces",
     "custom/touchpad",
     "sway/mode",
+    "sway/window"
   ],
   "modules-center": [
-    "mpris",
+    "mpris"
   ],
   "modules-right": [
     "pulseaudio",
     "network",
     "battery",
-    "clock",
+    "clock"
   ],
+  "sway/window": {
+    "icon": true,
+    "format": "{app_id}",
+    "icon-size": 16
+  },
   "clock": {
     "format": "{:%H:%M}  "
   },
@@ -43,7 +49,7 @@
     "format": "{volume}% {icon}  {format_source}",
     "format-muted": "{volume}% 󰝟  {format_source}",
     "format-source": "{volume}%  ",
-    "format-source-muted": "{volume}%  ",
+    "format-source-muted": "{volume}% ",
     "format-icons": {
       "headphone": " ",
       "default": [

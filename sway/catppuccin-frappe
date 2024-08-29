@@ -44,10 +44,3 @@ client.focused          $col_focused_border          $col_focused           $col
 client.focused_inactive $col_focused_inactive_border $col_focused_inactive  $col_text_dark $col_focused_inactive $col_focused_inactive_border
 client.unfocused        $col_unfocused_border        $col_unfocused         $col_text_dark $col_unfocused        $col_unfocused_border
 client.urgent           $col_urgent_border           $col_urgent            $col_text_dark $col_urgent           $col_urgent_border
-
-for_window [class="^.*"] border pixel 2
-for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
-
-seat seat0 xcursor_theme catppuccin-frappe-light-cursors
-
-output * bg wallpaper.jpg fill
