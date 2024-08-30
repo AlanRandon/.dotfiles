@@ -3,8 +3,9 @@ include catppuccin-frappe
 
 font pango:"FiraMono Nerd Font" Regular 11
 
-default_border none
+default_border pixel 10
 for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
+smart_borders true
 
 seat seat0 xcursor_theme catppuccin-frappe-light-cursors
 
@@ -21,15 +22,16 @@ input * {
 seat * hide_cursor when-typing enable
 seat * hide_cursor 8000
 input type:touchpad events disabled
+mouse_warping container
+focus_follows_mouse no
 
 bar swaybar_command waybar
 
 exec mako
+exec ~/scripts/autotiling
 exec_always ~/scripts/battery-notifier
 exec_always ~/scripts/screenshare 
 exec_always brightnessctl set 50%
-exec_always pactl set-sink-volume @DEFAULT_SINK@ 75%
-
-bindswitch --reload --locked lid:on exec swaylock -i ~/projects/.dotfiles/sway/wallpaper.jpg
+exec pactl set-sink-volume @DEFAULT_SINK@ 75%
 
 include @sysconfdir@/sway/config.d/*

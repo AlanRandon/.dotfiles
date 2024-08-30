@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+if [[ $1 = "select" ]]; then
+	rect=$(slurp)
+	[ -z $rect ] && exit 1
+	grim -t png -g "$rect" - | wl-copy -t image/png
+elif [[ $1 = "screen" ]]; then
+	grim -t png - | wl-copy -t image/png
+elif [[ $1 = "window" ]]; then
+	grim -t png -g "$(swaymsg -t get_tree | jq -r '.. | (.nodes? // empty)[] | select(.focused) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" - | wl-copy -t image/png 
+else
+	exit 1
+fi
+
+wl-paste > /tmp/screenshot && notify-send -i /tmp/screenshot "Copied to clipboard!"

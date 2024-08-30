@@ -1,5 +1,5 @@
 @define-color base #303446;
-@define-color base-translucent rgba(48, 52, 70, 0.9);
+@define-color base-translucent rgba(48, 52, 70, 0.8);
 @define-color text #c6d0f5;
 @define-color green #a6d189;
 @define-color red #e78284;
@@ -28,7 +28,7 @@ window#waybar label.module {
 }
 
 #window {
-  margin: 0.5em 0;
+  margin: 0.5em;
 }
 
 #workspaces {

@@ -18,7 +18,7 @@
   ],
   "sway/window": {
     "icon": true,
-    "format": "{app_id}",
+    "format": "",
     "icon-size": 16
   },
   "clock": {

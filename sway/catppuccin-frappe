@@ -26,6 +26,8 @@ set $crust     #232634
 
 set $clear #ffffff00
 
+set $base_translucent #303446cc
+
 set {
     $col_urgent                    $red
     $col_focused                   $green
@@ -34,9 +36,9 @@ set {
     $col_text_dark                 $base
     $col_text_light                $text
     $col_urgent_border             $col_urgent
-    $col_focused_border            $col_focused
-    $col_unfocused_border          $clear
-    $col_focused_inactive_border   $clear
+    $col_focused_border            $green
+    $col_unfocused_border          $base_translucent
+    $col_focused_inactive_border   $base_translucent
 }
 
 # class                 border                       background             text           indicator             child_border
@@ -44,3 +46,4 @@ client.focused          $col_focused_border          $col_focused           $col
 client.focused_inactive $col_focused_inactive_border $col_focused_inactive  $col_text_dark $col_focused_inactive $col_focused_inactive_border
 client.unfocused        $col_unfocused_border        $col_unfocused         $col_text_dark $col_unfocused        $col_unfocused_border
 client.urgent           $col_urgent_border           $col_urgent            $col_text_dark $col_urgent           $col_urgent_border
+

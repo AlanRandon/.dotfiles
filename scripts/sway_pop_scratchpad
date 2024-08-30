@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+swaymsg -t get_tree | jq '.nodes.[].nodes.[] | select(.name=="__i3_scratch").floating_nodes | last.id | if (.) then . else empty end' | xargs -I{} swaymsg '[con_id={}]' scratchpad show, floating disable
+

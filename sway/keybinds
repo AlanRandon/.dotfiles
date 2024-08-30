@@ -13,6 +13,8 @@ set $menu exec sh -c "swaymsg fullscreen disable && TERMINAL=$term $term -o wind
 # Reload the configuration file
 bindsym $mod+Shift+c reload
 
+bindsym $mod+Ctrl+l exec swaylock -i ~/projects/.dotfiles/sway/wallpaper.jpg --grace 0
+
 set $exit "Exit (Q)uit Sway/(S)hutdown"
 bindsym $mod+Shift+e mode $exit
 mode $exit {
@@ -44,9 +46,6 @@ bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 
-bindsym $mod+Ctrl+h split h
-bindsym $mod+Ctrl+v split v
-
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
 bindsym $mod+3 workspace number 3
@@ -58,16 +57,16 @@ bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
 
-bindsym $mod+Shift+1 move container to workspace number 1
-bindsym $mod+Shift+2 move container to workspace number 2
-bindsym $mod+Shift+3 move container to workspace number 3
-bindsym $mod+Shift+4 move container to workspace number 4
-bindsym $mod+Shift+5 move container to workspace number 5
-bindsym $mod+Shift+6 move container to workspace number 6
-bindsym $mod+Shift+7 move container to workspace number 7
-bindsym $mod+Shift+8 move container to workspace number 8
-bindsym $mod+Shift+9 move container to workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 10
+bindsym $mod+Shift+1 move container to scratchpad, workspace number 1, focus next, exec ~/scripts/sway_pop_scratchpad
+bindsym $mod+Shift+2 move container to scratchpad, workspace number 2, focus next, exec ~/scripts/sway_pop_scratchpad
+bindsym $mod+Shift+3 move container to scratchpad, workspace number 3, focus next, exec ~/scripts/sway_pop_scratchpad
+bindsym $mod+Shift+4 move container to scratchpad, workspace number 4, focus next, exec ~/scripts/sway_pop_scratchpad
+bindsym $mod+Shift+5 move container to scratchpad, workspace number 5, focus next, exec ~/scripts/sway_pop_scratchpad
+bindsym $mod+Shift+6 move container to scratchpad, workspace number 6, focus next, exec ~/scripts/sway_pop_scratchpad
+bindsym $mod+Shift+7 move container to scratchpad, workspace number 7, focus next, exec ~/scripts/sway_pop_scratchpad
+bindsym $mod+Shift+8 move container to scratchpad, workspace number 8, focus next, exec ~/scripts/sway_pop_scratchpad
+bindsym $mod+Shift+9 move container to scratchpad, workspace number 9, focus next, exec ~/scripts/sway_pop_scratchpad
+bindsym $mod+Shift+0 move container to scratchpad, workspace number 10, focus next, exec ~/scripts/sway_pop_scratchpad
 
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
@@ -113,8 +112,9 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
-bindsym Print exec grim -t png - | wl-copy -t image/png
-bindsym Shift+Print exec grim -t png -g "$(slurp)" - | wl-copy -t image/png
+bindsym Print exec ~/scripts/screenshot screen
+bindsym $mod+Print exec ~/scripts/screenshot window
+bindsym $mod+Shift+Print exec ~/scripts/screenshot select
 
 set $media "Media"
 bindsym $mod+m mode $media
@@ -130,11 +130,11 @@ mode $media {
 }
 
 # NASA apod for background
-bindsym $mod+n exec ~/scripts/random-apod
-bindsym $mod+Shift+n exec ~/scripts/random-apod reset
+bindsym $mod+Alt+n exec ~/scripts/random-apod
+bindsym $mod+Alt+Shift+n exec ~/scripts/random-apod reset
 
-bindsym $mod+Alt+n exec alacritty -e nmtui
-bindsym $mod+Alt+v exec pavucontrol
+bindsym $mod+Shift+n exec alacritty -e nmtui
+bindsym $mod+Shift+v exec pavucontrol
 
 # Switch the current container between different layout styles
 # bindsym $mod+s layout stacking

@@ -7,4 +7,4 @@ TERM = "xterm-256color"
 family = "FiraMono Nerd Font"
 
 [window]
-opacity = 0.9
+opacity = 0.8
