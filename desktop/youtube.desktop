@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Youtube
+Comment=Launch Youtube
+Exec=firefox --new-tab "https://www.youtube.com/feed/subscriptions" %U
+Terminal=false

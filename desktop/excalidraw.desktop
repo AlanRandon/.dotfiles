@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Excalidraw
+Comment=Launch Excalidraw
+Exec=firefox --new-tab "https://excalidraw.com" %U
+Terminal=false

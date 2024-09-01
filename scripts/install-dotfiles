@@ -12,8 +12,9 @@ done
 
 cd "$(dirname $(realpath $0))/.."
 
-xdg_cfgs=(nvim nom mpv bashmount sway swaylock waybar mako alacritty zathura btop starship.toml)
+xdg_cfgs=(nvim nom mpv bashmount sway swaylock waybar mako alacritty zathura btop fuzzel starship.toml)
 home_cfgs=(.zshrc .gitconfig .tmux.conf scripts)
+desktop_cfgs=($(ls desktop/*.desktop))
 
 for cfg in $xdg_cfgs
 do
@@ -38,5 +39,20 @@ do
 		echo Linking: ~/$cfg
 		[ -d $cfg ] && ln -st ~ "$(realpath $cfg)"
 		[ -f $cfg ] && ln -s "$(realpath $cfg)" ~/$cfg
+	fi
+done
+
+mkdir -p ~/.local/share/applications
+for cfg in $desktop_cfgs
+do
+	loc=~/.local/share/applications/$(basename $cfg)
+	if [ -L $loc ]; then
+		$verbose && echo Already linked: $loc
+	elif [ -e $loc ]; then
+		echo Error (already exists): $loc
+	else
+		echo Linking: $loc
+		[ -d $cfg ] && ln -st ~/.local/share/applications "$(realpath $cfg)"
+		[ -f $cfg ] && ln -s "$(realpath $cfg)" ~/.local/share/applications
 	fi
 done
