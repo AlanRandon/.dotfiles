@@ -19,7 +19,7 @@ feeds:
     name: this-week-in-neovim
   - url: https://weekly.nixos.org/feeds/all.rss.xml
     name: nixos-weekly
-  - url: https://www.reddit.com/r/ThePrimeagenReact/.rss
+  - url: https://www.reddit.com/r/theprimeagen/.rss
     name: primeagen
   - url: https://fasterthanli.me/index.xml
     name: fasterthanlime

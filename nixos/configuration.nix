@@ -21,6 +21,7 @@
 
     # Languages
     rustup
+    unstable.cargo-shuttle
     opam
     nodejs
     clang

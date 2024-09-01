@@ -33,7 +33,7 @@
 
       swaybg
       swaylock-effects
-      sway-launcher-desktop
+      fuzzel
       waybar
       brightnessctl
       wl-clipboard

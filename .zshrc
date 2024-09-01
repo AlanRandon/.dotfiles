@@ -65,6 +65,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 
 alias vim="nvim"
+alias nd="nix develop"
 
 export EDITOR=nvim
 export TERMINAL=alacritty
