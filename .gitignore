@@ -4,3 +4,7 @@
 scripts/apod-api-key
 btop/btop.log
 nom/nom.db
+newsboat/cache.db
+newsboat/history.search
+newsboat/history.cmdline
+newsboat/queue

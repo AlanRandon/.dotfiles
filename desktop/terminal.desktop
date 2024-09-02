@@ -1,0 +1,25 @@
+[Desktop Entry]
+Actions=glow;newsboat;bashmount
+Terminal=true
+Exec=zsh
+Name=Terminal
+Icon=Alacritty
+
+[Desktop Action glow]
+Exec=glow
+Terminal=true
+Icon=Alacritty
+Name=glow
+
+[Desktop Action newsboat]
+Exec=newsboat
+Terminal=true
+Icon=Alacritty
+Name=newsboat
+
+[Desktop Action bashmount]
+Exec=bashmount
+Terminal=true
+Icon=Alacritty
+Name=bashmount
+

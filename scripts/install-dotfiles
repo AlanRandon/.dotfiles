@@ -12,7 +12,7 @@ done
 
 cd "$(dirname $(realpath $0))/.."
 
-xdg_cfgs=(nvim nom mpv bashmount sway swaylock waybar mako alacritty zathura btop fuzzel starship.toml)
+xdg_cfgs=(nvim mpv bashmount sway swaylock waybar mako alacritty zathura btop fuzzel newsboat starship.toml)
 home_cfgs=(.zshrc .gitconfig .tmux.conf scripts)
 desktop_cfgs=($(ls desktop/*.desktop))
 
@@ -43,6 +43,7 @@ do
 done
 
 mkdir -p ~/.local/share/applications
+ls /home/alan/.local/share/applications/*.desktop | xargs -I{} -n1 sh -c '[ ! -e {} ] && rm {} && echo Cleaned dead symlink: {}'
 for cfg in $desktop_cfgs
 do
 	loc=~/.local/share/applications/$(basename $cfg)

@@ -14,7 +14,7 @@
     unzip
     xdg-utils
     bashmount
-    unstable.nom
+    unstable.newsboat
 
     # Git
     github-cli
