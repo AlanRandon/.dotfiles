@@ -22,7 +22,6 @@
     # Languages
     rustup
     unstable.cargo-shuttle
-    opam
     nodejs
     clang
     nasm
@@ -164,6 +163,12 @@
     gnome.gnome-keyring.enable = true;
     envfs.enable = true;
     udisks2.enable = true;
+    openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+      };
+    };
   };
 
   hardware = {
