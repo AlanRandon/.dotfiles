@@ -15,6 +15,7 @@ return {
 			---@diagnostic disable-next-line: missing-fields
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
+					"haskell",
 					"html",
 					"json",
 					"markdown",
@@ -117,4 +118,5 @@ return {
 	},
 	{ "nvim-treesitter/nvim-treesitter-context" },
 	{ "nvim-treesitter/nvim-treesitter-textobjects" },
+	{ "HiPhish/rainbow-delimiters.nvim" },
 }

@@ -28,7 +28,7 @@ focus_follows_mouse no
 bar swaybar_command waybar
 
 exec mako
-exec ~/scripts/autotiling
+exec ~/scripts/sway_utils autotiling
 exec_always ~/scripts/battery-notifier
 exec_always ~/scripts/screenshare 
 exec_always brightnessctl set 50%

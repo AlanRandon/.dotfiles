@@ -8,29 +8,44 @@ set $right l
 
 set $term alacritty
 set $browser firefox
-# TERMINAL=$term $term -o window.opacity=1 --class launcher -e sway-launcher-desktop
-set $menu exec sh -c "swaymsg fullscreen disable && fuzzel"
-
-# Reload the configuration file
-bindsym $mod+Shift+c reload
-
-bindsym $mod+Ctrl+l exec swaylock -i ~/projects/.dotfiles/sway/wallpaper.jpg --grace 0
-
-set $exit "Exit (Q)uit Sway/(S)hutdown"
-bindsym $mod+Shift+e mode $exit
-mode $exit {
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-
-    bindsym Q exec swaymsg exit
-    bindsym S exec shutdown -h now
-}
-
-bindsym $mod+Shift+q kill
+set $menu fuzzel
 
 bindsym $mod+Return exec $term
 bindsym $mod+b exec $browser
 bindsym $mod+d exec $menu
+
+bindsym $mod+Shift+f exec ~/scripts/sway_utils find_window
+bindsym $mod+Shift+t exec ~/scripts/sway_utils retile
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+set $swap "Swap"
+bindsym $mod+s mode $swap, mark swap
+mode $swap {
+    bindsym $left focus left
+    bindsym $down focus down
+    bindsym $up focus up
+    bindsym $right focus right
+
+    bindsym Return swap container with mark swap, mode "default"
+    bindsym Escape mode "default"
+}
+
+set $exit "Exit (q)uit/(s)hutdown/(l)ock/(h)ibernate"
+bindsym $mod+Shift+e mode $exit
+mode $exit {
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+	
+    set $lock exec swaylock -i ~/projects/.dotfiles/sway/wallpaper.jpg
+    bindsym q exec swaymsg exit
+    bindsym s exec shutdown -h now
+    bindsym l mode "default", exec $lock
+    bindsym h mode "default", exec $lock, exec sleep 1 && systemctl suspend-then-hibernate
+}
+
+bindsym $mod+Shift+q kill
 
 bindsym $mod+f fullscreen
 
@@ -41,11 +56,6 @@ bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
-
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
 
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
@@ -58,16 +68,16 @@ bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
 
-bindsym $mod+Shift+1 move container to scratchpad, workspace number 1, focus next, exec ~/scripts/sway_pop_scratchpad
-bindsym $mod+Shift+2 move container to scratchpad, workspace number 2, focus next, exec ~/scripts/sway_pop_scratchpad
-bindsym $mod+Shift+3 move container to scratchpad, workspace number 3, focus next, exec ~/scripts/sway_pop_scratchpad
-bindsym $mod+Shift+4 move container to scratchpad, workspace number 4, focus next, exec ~/scripts/sway_pop_scratchpad
-bindsym $mod+Shift+5 move container to scratchpad, workspace number 5, focus next, exec ~/scripts/sway_pop_scratchpad
-bindsym $mod+Shift+6 move container to scratchpad, workspace number 6, focus next, exec ~/scripts/sway_pop_scratchpad
-bindsym $mod+Shift+7 move container to scratchpad, workspace number 7, focus next, exec ~/scripts/sway_pop_scratchpad
-bindsym $mod+Shift+8 move container to scratchpad, workspace number 8, focus next, exec ~/scripts/sway_pop_scratchpad
-bindsym $mod+Shift+9 move container to scratchpad, workspace number 9, focus next, exec ~/scripts/sway_pop_scratchpad
-bindsym $mod+Shift+0 move container to scratchpad, workspace number 10, focus next, exec ~/scripts/sway_pop_scratchpad
+bindsym $mod+Shift+1 [con_id=__focused__] workspace number 1, move to workspace number 1, focus
+bindsym $mod+Shift+2 [con_id=__focused__] workspace number 2, move to workspace number 2, focus
+bindsym $mod+Shift+3 [con_id=__focused__] workspace number 3, move to workspace number 3, focus
+bindsym $mod+Shift+4 [con_id=__focused__] workspace number 4, move to workspace number 4, focus
+bindsym $mod+Shift+5 [con_id=__focused__] workspace number 5, move to workspace number 5, focus
+bindsym $mod+Shift+6 [con_id=__focused__] workspace number 6, move to workspace number 6, focus
+bindsym $mod+Shift+7 [con_id=__focused__] workspace number 7, move to workspace number 7, focus
+bindsym $mod+Shift+8 [con_id=__focused__] workspace number 8, move to workspace number 8, focus
+bindsym $mod+Shift+9 [con_id=__focused__] workspace number 9, move to workspace number 9, focus
+bindsym $mod+Shift+0 [con_id=__focused__] workspace number 10, move to workspace number 10, focus
 
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show

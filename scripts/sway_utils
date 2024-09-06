@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+
+if [[ $1 = "find_window" ]]; then
+	window=$(swaymsg -t get_tree | jq -r 'recurse(.nodes[]?) | select(.pid) | "\(.id): \(.name)"' | fuzzel --dmenu | cut -d: -f1)
+	swaymsg "[con_id=$window]" focus
+elif [[ $1 = "autotiling" ]]; then
+	swaymsg -mt subscribe '["window"]' |
+		jq -rc --unbuffered 'select(.change=="focus")' |
+		while read; do
+			if $(swaymsg -t get_tree |
+				jq '.. | (.nodes? // empty)[] | select(.focused) | .rect.height > .rect.width'); then
+				swaymsg splitv
+			else
+				swaymsg splith
+			fi
+		done
+elif [[ $1 = "retile" ]]; then
+	swaymsg fullscreen disable
+	swaymsg "[workspace=__focused__]" move to workspace tmp
+	workspace=$(swaymsg -t get_workspaces | jq '.[] | select(.focused) | .name')
+	swaymsg -t get_tree \
+		| jq -r 'recurse(.nodes[]?) | select(.type=="workspace" and .name=="tmp") | recurse(.nodes[]?) | select(.pid) | .id' \
+		| while read id; do
+			if $(swaymsg -t get_tree |
+				jq '.. | (.nodes? // empty)[] | select(.focused) | .rect.height > .rect.width'); then
+				swaymsg splitv
+			else
+				swaymsg splith
+			fi
+			swaymsg "[con_id=$id]" move to workspace current, focus
+		done
+fi
