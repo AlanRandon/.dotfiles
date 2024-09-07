@@ -1,32 +1,44 @@
 #!/usr/bin/env sh
 
+retile() {
+	workspace=$(swaymsg -t get_workspaces | jq -rc '.[] | select(.focused) | .id')
+	workspace_name=$(swaymsg -t get_workspaces | jq -rc '.[] | select(.focused) | .name')
+	ids=$(swaymsg -t get_tree | \
+		jq -r "recurse(.nodes[]?) | select(.type==\"workspace\" and .id==$workspace) | recurse(.nodes[]?) | select(.pid)" | \
+		jq -s 'sort_by(.id) | .[] | .id | @sh')
+
+	if $(swaymsg -t get_tree | jq "recurse(.nodes[]?) | select(.type==\"workspace\" and .id==$workspace) | .nodes == []"); then
+		exit 1
+	fi
+
+	swaymsg fullscreen disable
+	swaymsg "[workspace=__focused__]" move to workspace Pending...
+
+	for id in $ids
+	do
+		largest_window=$(swaymsg -t get_tree | \
+			jq "recurse(.nodes[]?) | select(.type==\"workspace\" and .id==$workspace) | recurse(.nodes[]?) | select(.pid)" | \
+			jq -s "sort_by(.rect.width * .rect.height) | (last.id // empty)")
+
+		typeset -p largest_window 2> /dev/null | grep -q '^' && swaymsg "[con_id=$largest_window]" focus
+
+		if $(swaymsg -t get_tree |
+			jq '.. | (.nodes? // empty)[] | select(.focused) | .rect.height > .rect.width'); then
+			swaymsg splitv
+		else
+			swaymsg splith
+		fi
+
+		swaymsg "[con_id=$id]" move to workspace $workspace_name
+	done
+}
+
 if [[ $1 = "find_window" ]]; then
 	window=$(swaymsg -t get_tree | jq -r 'recurse(.nodes[]?) | select(.pid) | "\(.id): \(.name)"' | fuzzel --dmenu | cut -d: -f1)
 	swaymsg "[con_id=$window]" focus
-elif [[ $1 = "autotiling" ]]; then
-	swaymsg -mt subscribe '["window"]' |
-		jq -rc --unbuffered 'select(.change=="focus")' |
-		while read; do
-			if $(swaymsg -t get_tree |
-				jq '.. | (.nodes? // empty)[] | select(.focused) | .rect.height > .rect.width'); then
-				swaymsg splitv
-			else
-				swaymsg splith
-			fi
-		done
 elif [[ $1 = "retile" ]]; then
-	swaymsg fullscreen disable
-	swaymsg "[workspace=__focused__]" move to workspace tmp
-	workspace=$(swaymsg -t get_workspaces | jq '.[] | select(.focused) | .name')
-	swaymsg -t get_tree \
-		| jq -r 'recurse(.nodes[]?) | select(.type=="workspace" and .name=="tmp") | recurse(.nodes[]?) | select(.pid) | .id' \
-		| while read id; do
-			if $(swaymsg -t get_tree |
-				jq '.. | (.nodes? // empty)[] | select(.focused) | .rect.height > .rect.width'); then
-				swaymsg splitv
-			else
-				swaymsg splith
-			fi
-			swaymsg "[con_id=$id]" move to workspace current, focus
-		done
+	(
+     		flock -n 9 || exit 1
+     		retile
+   	) 9>/tmp/swayretile.lock
 fi

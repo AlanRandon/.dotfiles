@@ -14,8 +14,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+b exec $browser
 bindsym $mod+d exec $menu
 
-bindsym $mod+Shift+f exec ~/scripts/sway_utils find_window
-bindsym $mod+Shift+t exec ~/scripts/sway_utils retile
+bindsym $mod+g exec ~/scripts/sway_utils retile
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
@@ -29,6 +28,12 @@ mode $swap {
     bindsym $right focus right
 
     bindsym Return swap container with mark swap, mode "default"
+    bindsym Escape mode "default"
+}
+
+set $pending "Pending..."
+mode $pending {
+    bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
