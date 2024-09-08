@@ -33,3 +33,7 @@ bind-key k up
 bind-key l open
 
 browser "firefox %u"
+auto-reload yes
+prepopulate-query-feeds yes
+show-keymap-hint no
+

@@ -1,3 +1,6 @@
+"query:Today:age < 1"
+"query:This week:age < 7"
+
 "query:Programming:tags # \"programming\""
 
 "query:News:tags # \"news\""
@@ -26,3 +29,4 @@ https://www.theguardian.com/uk/rss ! news uk-news the-guardian
 https://www.theguardian.com/world/rss ! news world-news the-guardian
 "query:The Guardian:tags # \"the-guardian\""
 
+"query:Old:(age > 7 and tags # \"news\")"
