@@ -31,11 +31,19 @@
       pipewire
       wireplumber
 
+      # Wallpaper
       swaybg
-      swaylock-effects
+
+      # Launcher
       fuzzel
+
+      # Statusbar
       waybar
+
+      # Brightness	
       brightnessctl
+
+      # Clipboard
       wl-clipboard
 
       # Cursor theme
@@ -44,6 +52,7 @@
 
   programs = {
     sway.enable = true;
+    hyprlock.enable = true;
     dconf = {
       enable = true;
       profiles.user.databases = [

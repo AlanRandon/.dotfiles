@@ -111,45 +111,6 @@
   programs = {
     zsh.enable = true;
     git.enable = true;
-    firefox = {
-      enable = true;
-      languagePacks = [ "en-GB" "en-US" ];
-      policies =
-        {
-          DisablePocket = true;
-          ExtensionSettings = {
-            # uBlock Origin
-            "uBlock0@raymondhill.net" = {
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-              installation_mode = "force_installed";
-            };
-            # Vimium
-            "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
-              installation_mode = "force_installed";
-            };
-            # Firefox Color
-            "FirefoxColor@mozilla.com" = {
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/firefox-color/latest.xpi";
-              installation_mode = "force_installed";
-            };
-            # Stylus
-            "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = {
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/styl-us/latest.xpi";
-              installation_mode = "force_installed";
-            };
-          };
-          Preferences =
-            let
-              value = val: { Value = val; Status = "locked"; };
-            in
-            {
-              "browser.startup.homepage" = value "https://github.com";
-              "browser.newtabpage.enabled" = value false;
-              "toolkit.legacyUserProfileCustomizations.stylesheets" = value true;
-            };
-        };
-    };
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
