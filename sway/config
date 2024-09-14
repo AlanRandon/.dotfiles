@@ -30,7 +30,7 @@ bar swaybar_command waybar
 exec mako
 exec_always ~/scripts/battery-notifier
 exec_always ~/scripts/screenshare 
-exec_always brightnessctl set 50%
+exec_always brightnessctl set 30%
 exec pactl set-sink-volume @DEFAULT_SINK@ 75%
 
 include @sysconfdir@/sway/config.d/*

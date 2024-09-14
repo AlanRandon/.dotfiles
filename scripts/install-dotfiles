@@ -18,10 +18,10 @@ desktop_cfgs=($(ls desktop/*.desktop))
 
 for cfg in $xdg_cfgs
 do
-	if [ -L ~/.config/$cfg ]; then
+	if [ -L ~/.config/$cfg ] && [ "$(realpath ~/.config/$cfg)" = $(realpath $cfg) ]; then
 		$verbose && echo Already linked: ~/.config/$cfg
 	elif [ -e ~/.config/$cfg ]; then
-		echo Error (already exists): ~/.config/$cfg
+		echo "Error (already exists): ~/.config/$cfg"
 	else
 		echo Linking: ~/.config/$cfg
 		[ -d $cfg ] && ln -st ~/.config "$(realpath $cfg)"
@@ -31,10 +31,10 @@ done
 
 for cfg in $home_cfgs
 do
-	if [ -L ~/$cfg ]; then
+	if [ -L ~/$cfg ] && [ "$(realpath ~/$cfg)" = $(realpath $cfg) ]; then
 		$verbose && echo Already linked: ~/$cfg
 	elif [ -e ~/$cfg ]; then
-		echo Error (already exists): ~/$cfg
+		echo "Error (already exists): ~/$cfg"
 	else
 		echo Linking: ~/$cfg
 		[ -d $cfg ] && ln -st ~ "$(realpath $cfg)"
@@ -47,13 +47,28 @@ ls /home/alan/.local/share/applications/*.desktop | xargs -I{} -n1 sh -c '[ ! -e
 for cfg in $desktop_cfgs
 do
 	loc=~/.local/share/applications/$(basename $cfg)
-	if [ -L $loc ]; then
+	if [ -L $loc ] && [ "$(realpath "$loc")" = $(realpath $cfg) ]; then
 		$verbose && echo Already linked: $loc
 	elif [ -e $loc ]; then
-		echo Error (already exists): $loc
+		echo "Error (already exists): $loc"
 	else
 		echo Linking: $loc
 		[ -d $cfg ] && ln -st ~/.local/share/applications "$(realpath $cfg)"
 		[ -f $cfg ] && ln -s "$(realpath $cfg)" ~/.local/share/applications
+	fi
+done
+
+rg Path= <~/.mozilla/firefox/profiles.ini | cut -f2 -d= | while read profile; do
+	chrome=~/.mozilla/firefox/$profile/chrome
+	mkdir -p $chrome
+	userChrome=$chrome/userChrome.css
+
+	if [ -L $userChrome ] && [ "$(realpath "$userChrome")" = $(realpath ./firefox-userChrome.css) ]; then
+		$verbose && echo Already linked: $userChrome
+	elif [ -e $chrome/userChrome.css ]; then
+		echo Error (already exists): $userChrome
+	else
+		echo Linking: $userChrome
+		ln -s "$(realpath ./firefox-userChrome.css)" $chrome
 	fi
 done

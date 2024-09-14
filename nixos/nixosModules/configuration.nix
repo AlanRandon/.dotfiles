@@ -15,6 +15,7 @@
     xdg-utils
     bashmount
     unstable.newsboat
+    powertop
 
     # Git
     github-cli
@@ -131,6 +132,8 @@
       };
     };
   };
+
+  powerManagement.powertop.enable = true;
 
   hardware = {
     pulseaudio.enable = true;

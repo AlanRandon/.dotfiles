@@ -118,5 +118,5 @@ return {
 	},
 	{ "nvim-treesitter/nvim-treesitter-context" },
 	{ "nvim-treesitter/nvim-treesitter-textobjects" },
-	{ "HiPhish/rainbow-delimiters.nvim" },
+	{ "HiPhish/rainbow-delimiters.nvim", cond = false },
 }

@@ -1,0 +1,76 @@
+:root {
+  /* Catppuccin Colors */
+  --rosewater: #f2d5cf;
+  --flamingo: #eebebe;
+  --pink: #f4b8e4;
+  --mauve: #ca9ee6;
+  --red: #e78284;
+  --maroon: #ea999c;
+  --peach: #ef9f76;
+  --green: #a6d189;
+  --teal: #81c8be;
+  --sky: #99d1db;
+  --sapphire: #85c1dc;
+  --blue: #8caaee;
+  --lavender: #babbf1;
+  --text: #c6d0f5;
+  --subtext1: #b5bfe2;
+  --subtext0: #a5adce;
+  --overlay2: #949cbb;
+  --overlay1: #838ba7;
+  --overlay0: #737994;
+  --surface2: #626880;
+  --surface1: #51576d;
+  --surface0: #414559;
+  --base: #303446;
+  --mantle: #292c3c;
+  --crust: #232634;
+
+  --bg: var(--base);
+  --currentline: var(--mantle);
+  --fg: var(--text);
+  --comment: var(--overlay1);
+
+  --font: "FiraCode Nerd Font Mono", monospace;
+
+  /* vimium theme uses colors: flamingo, peach, rosewater, green, blue, lavender */
+  --tridactyl-fg: var(--fg);
+  --tridactyl-bg: var(--bg);
+  --tridactyl-url-fg: var(--rosewater);
+  --tridactyl-url-bg: var(--bg);
+  --tridactyl-highlight-box-bg: var(--currentline);
+  --tridactyl-highlight-box-fg: var(--fg);
+  --tridactyl-of-fg: var(--fg);
+  --tridactyl-of-bg: var(--currentline);
+  --tridactyl-cmdl-fg: var(--text);
+
+  --tridactyl-cmdl-font-family: var(--font);
+  --tridactyl-cmplt-font-family: var(--font);
+  --tridactyl-hintspan-font-family: var(--font);
+
+  /* Hint character tags */
+  --tridactyl-hintspan-fg: var(--bg) !important;
+  --tridactyl-hintspan-bg: var(--green) !important;
+
+  /* Element Highlights */
+  --tridactyl-hint-active-fg: none;
+  --tridactyl-hint-active-bg: none;
+  --tridactyl-hint-active-outline: none;
+  --tridactyl-hint-bg: none;
+  --tridactyl-hint-outline: none;
+  --tridactyl-hintspan-border-width: 0px;
+  --tridactyl-cmplt-border-top: none;
+
+  --tridactyl-cmdl-line-height: 1.5;
+
+  --tridactyl-status-border: 2px solid var(--green);
+  --tridactyl-status-border-radius: 0;
+}
+
+:root .TridactylOwnNamespace {
+  background: var(--bg);
+}
+
+#completions .sectionHeader {
+  background: unset;
+}

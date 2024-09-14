@@ -1,8 +1,10 @@
+{ pkgs, ... }:
+
 {
   programs.firefox = {
     enable = true;
     languagePacks = [ "en-GB" "en-US" ];
-    nativeMessagingHosts.tridactyl = true;
+    nativeMessagingHosts.packages = with pkgs; [ tridactyl-native ];
     policies =
       {
         DisablePocket = true;
@@ -33,9 +35,10 @@
             value = val: { Value = val; Status = "locked"; };
           in
           {
-            "browser.startup.homepage" = value "https://github.com";
+            "browser.startup.homepage" = value "data:text/html,<h1>New Tab</h1>";
             "browser.newtabpage.enabled" = value false;
             "toolkit.legacyUserProfileCustomizations.stylesheets" = value true;
+            "browser.toolbars.bookmarks.visibility" = value "never";
           };
       };
   };
