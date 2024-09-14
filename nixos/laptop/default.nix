@@ -2,7 +2,7 @@
   imports = [
     ./file-system.nix
     ./hardware-configuration.nix
-    ../nixosModules/sway.nix
+    ../nixosModules/windowManager.nix
     ../nixosModules/firefox.nix
     ../nixosModules/configuration.nix
   ];

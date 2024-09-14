@@ -3,18 +3,18 @@
 {
   environment.systemPackages =
     with pkgs; [
-      (writeTextFile
-        {
-          name = "dbus-sway-environment";
-          destination = "/bin/dbus-sway-environment";
-          executable = true;
+      # (writeTextFile
+      #   {
+      #     name = "dbus-sway-environment";
+      #     destination = "/bin/dbus-sway-environment";
+      #     executable = true;
 
-          text = ''
-            dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-            systemctl --user stop pipewire wireplumber pipewire-pulse xdg-desktop-portal xdg-desktop-portal-wlr
-            systemctl --user start pipewire wireplumber pipewire-pulse xdg-desktop-portal xdg-desktop-portal-wlr
-          '';
-        })
+      #     text = ''
+      #       dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+      #       systemctl --user stop pipewire wireplumber pipewire-pulse xdg-desktop-portal xdg-desktop-portal-wlr
+      #       systemctl --user start pipewire wireplumber pipewire-pulse xdg-desktop-portal xdg-desktop-portal-wlr
+      #     '';
+      #   })
 
       # Notifications
       mako
@@ -32,7 +32,8 @@
       wireplumber
 
       # Wallpaper
-      swaybg
+      # swaybg
+      hyprpaper
 
       # Launcher
       fuzzel
@@ -51,7 +52,8 @@
     ];
 
   programs = {
-    sway.enable = true;
+    # sway.enable = true;
+    hyprland.enable = true;
     hyprlock.enable = true;
     dconf = {
       enable = true;
@@ -88,7 +90,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --user-menu --time --cmd sway";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --user-menu --time --cmd hyprland";
           user = "greeter";
         };
       };
@@ -107,10 +109,5 @@
       alsa.enable = true;
       pulse.enable = true;
     };
-  };
-
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
   };
 }

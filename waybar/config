@@ -3,8 +3,10 @@
   "spacing": 4,
   "modules-left": [
     "sway/workspaces",
+    "hyprland/workspaces",
     "custom/touchpad",
-    "sway/mode"
+    "sway/mode",
+    "hyprland/submap",
   ],
   "modules-center": [
     "mpris"
@@ -39,8 +41,9 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "{capacity}% {icon} ",
+    "format": "{capacity}% {icon}  ({time} left)",
     "format-charging": "{capacity}%  ",
+    "format-time": "{H}:{m}",
     "format-icons": [
       "",
       "",
