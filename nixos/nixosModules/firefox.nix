@@ -35,7 +35,7 @@
             value = val: { Value = val; Status = "locked"; };
           in
           {
-            "browser.startup.homepage" = value "data:text/html,<h1>New Tab</h1>";
+            "browser.startup.homepage" = value "file:///home/alan/.config/newtab.html";
             "browser.newtabpage.enabled" = value false;
             "toolkit.legacyUserProfileCustomizations.stylesheets" = value true;
             "browser.toolbars.bookmarks.visibility" = value "never";

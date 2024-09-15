@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>New Tab</title>
+    <style>
+      :root {
+        --base: #303446;
+        --text: #c6d0f5;
+        --green: #a6d189;
+        background-color: var(--base);
+        color: var(--text);
+        font-family: "FiraMono Nerd Font", sans-serif;
+      }
+
+      .prompt-text {
+        background-color: var(--green);
+        color: var(--base);
+        padding: 0 1ch;
+      }
+
+      .prompt {
+        display: flex;
+        align-items: center;
+      }
+
+      .line {
+        display: flex;
+        align-items: center;
+        gap: 1ch;
+      }
+
+      .cursor-blink {
+        width: 1ch;
+        height: 1em;
+        display: inline-block;
+        animation: 1s ease-in-out cursor-blink infinite alternate;
+      }
+
+      @keyframes cursor-blink {
+        from {
+          background-color: var(--text);
+        }
+        to {
+          background-color: transparent;
+        }
+      }
+
+      .logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="line">
+      <div class="prompt">
+        <div class="prompt-text">alan</div>
+        <div style="color: var(--green)"></div>
+      </div>
+      <span style="color: var(--green)">firefox</span>
+      <div class="cursor-blink"></div>
+    </div>
+    <img
+      class="logo"
+      width="128"
+      height="128"
+      src="file:///run/current-system/sw/share/icons/hicolor/128x128/apps/firefox.png"
+    />
+  </body>
+</html>
