@@ -1,5 +1,6 @@
 PATH=$PATH:$HOME/.fzf/bin:$HOME/bin:$HOME/.zvm/bin:$HOME/.zvm/self:$HOME/.npm-global/bin
 # export SWAYSOCK=$(ls /run/user/1000/sway-ipc.* | head -n 1)
+export HYPRLAND_INSTANCE_SIGNATURE=$(hyprctl -j instances | jq -r '.[0].instance')
 
 if [[ $TERM_PROGRAM != "vscode" ]] && [ -z $TMUX ]; then
 	session=$(tmux list-sessions -F "#{session_id}" | head -1)

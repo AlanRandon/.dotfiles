@@ -3,6 +3,7 @@ background-color=#303446
 text-color=#c6d0f5
 border-color=#a6d189
 border-size=10
+border-radius=5
 anchor=center
 margin=5
 default-timeout=5000
