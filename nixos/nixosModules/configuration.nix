@@ -1,15 +1,6 @@
 { lib, pkgs, ... }:
 
 {
-  nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
-  nixpkgs.config.allowUnfree = true;
-
   environment.systemPackages = with pkgs; [
     unzip
     xdg-utils
@@ -43,6 +34,7 @@
     bat
     bc
     wget
+    dig
     ripgrep
     fd
     jq
@@ -65,7 +57,6 @@
 
     # Sound
     playerctl
-    pulseaudio
     mpv
     pavucontrol
 
@@ -80,11 +71,6 @@
     noto-fonts-color-emoji
   ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -112,19 +98,12 @@
   programs = {
     zsh.enable = true;
     git.enable = true;
-    nix-ld = {
-      enable = true;
-      libraries = with pkgs; [
-        zlib
-        openssl.dev
-      ];
-    };
   };
 
   services = {
     gnome.gnome-keyring.enable = true;
-    envfs.enable = true;
     udisks2.enable = true;
+    blueman.enable = true;
     openssh = {
       enable = true;
       settings = {
@@ -138,6 +117,10 @@
   hardware = {
     pulseaudio.enable = true;
     opengl.enable = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = false;
+    };
   };
 
   sound.enable = true;
@@ -147,6 +130,4 @@
     "image/png" = "mpv.desktop";
     "video/vnd.avi" = "mpv.desktop";
   };
-
-  system.stateVersion = "23.11";
 }

@@ -2,6 +2,7 @@ set searchengine duckduckgo
 
 bind <Space>g set searchengine google
 bind <Space>d set searchengine duckduckgo
+bind <Space>p tabnew http://neverssl.com
 
 set searchurls.gh https://github.com/search?q=%s
 set searchurls.n https://search.nixos.org/packages?query=%s

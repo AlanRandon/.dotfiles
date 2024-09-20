@@ -3,11 +3,11 @@
 
 if [[ $1 = "mice" ]]; then
 	# required, but who knows why
-	hyprctl keyword device::enabled $2
 
 	hyprctl -j devices | \
 		jq -r '.mice.[] | select(.name != "kanata-1").name' | \
 		while read device; do
+			hyprctl keyword device\[$device\]:enabled2 $2
 			hyprctl keyword device\[$device\]:enabled $2
 		done
 fi

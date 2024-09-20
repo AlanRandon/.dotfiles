@@ -12,6 +12,7 @@
     "mpris"
   ],
   "modules-right": [
+    "tray",
     "backlight",
     "pulseaudio",
     "network",

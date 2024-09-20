@@ -9,6 +9,10 @@
   font-family: "FiraMono Nerd Font";
 }
 
+#tray {
+  margin: 10px 2.5px 0;
+}
+
 window#waybar {
   color: @text;
   background: transparent;

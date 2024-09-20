@@ -8,6 +8,23 @@
     policies =
       {
         DisablePocket = true;
+        Handlers = {
+          extensions = {
+            pdf = {
+              action = "useSystemDefault";
+            };
+          };
+          schemes = {
+            mailto = {
+              action = "useHelperApp";
+              ask = true;
+              handlers = [{
+                name = "Gmail";
+                uriTemplate = "https://mail.google.com/mail/?extsrc=mailto&url=%s";
+              }];
+            };
+          };
+        };
         ExtensionSettings = {
           # uBlock Origin
           "uBlock0@raymondhill.net" = {

@@ -1,7 +1,9 @@
 #!/usr/bin/env sh
 
 if [[ $1 = "select" ]]; then
+	~/scripts/hypr_utils mice true
 	rect=$(slurp)
+	~/scripts/hypr_utils mice false
 	[ -z $rect ] && exit 1
 	grim -t png -g "$rect" - | wl-copy -t image/png
 elif [[ $1 = "screen" ]]; then

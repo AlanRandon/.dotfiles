@@ -51,7 +51,7 @@ vim.diagnostic.config({
 
 vim.api.nvim_create_user_command("XdgOpen", function(opts)
 	local filepath = require("plenary.path").new(opts.fargs[1]):expand()
-	vim.fn.system({ "swaymsg", "exec", "xdg-open", filepath })
+	vim.fn.system({ "hyprctl", "keyword", "exec", "xdg-open", filepath })
 end, { nargs = 1 })
 
 require("lazy").setup("custom.plugins")
