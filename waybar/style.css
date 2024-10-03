@@ -9,17 +9,14 @@
   font-family: "FiraMono Nerd Font";
 }
 
-#tray {
-  margin: 10px 2.5px 0;
-}
-
 window#waybar {
   color: @text;
   background: transparent;
   font-size: 0.9em;
 }
 
-window#waybar label.module {
+window#waybar label.module,
+#tray {
   margin: 10px 2.5px 0;
   padding: 0.5em 1em;
   border-radius: 0.5em;

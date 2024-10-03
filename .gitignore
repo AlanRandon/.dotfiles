@@ -2,6 +2,7 @@
 **/out
 **/.luarc.json
 scripts/apod-api-key
+scripts/motd-location
 btop/btop.log
 nom/nom.db
 newsboat/cache.db

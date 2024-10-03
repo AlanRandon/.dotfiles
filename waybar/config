@@ -6,7 +6,7 @@
     "hyprland/workspaces",
     "custom/touchpad",
     "sway/mode",
-    "hyprland/submap",
+    "hyprland/submap"
   ],
   "modules-center": [
     "mpris"
@@ -44,7 +44,7 @@
     },
     "format": "{capacity}% {icon}{time}",
     "format-charging": "{capacity}%  ",
-    "format-time": " ({H}:{m})",
+    "format-time": " <i>{H}:{m}</i>",
     "format-icons": [
       " ",
       " ",
@@ -54,9 +54,9 @@
     ]
   },
   "network": {
-    "format-wifi": "{signalStrength}%  ",
+    "format-wifi": " ",
     "format-ethernet": "󰈁",
-    "format-disconnected": "󰖪",
+    "format-disconnected": "󰖪 ",
     "on-click": "alacritty -e nmtui"
   },
   "pulseaudio": {

@@ -7,6 +7,7 @@
     bashmount
     unstable.newsboat
     powertop
+    networkmanagerapplet
 
     # Git
     github-cli
@@ -17,6 +18,7 @@
     nodejs
     clang
     nasm
+    python312
 
     # Development tools
     pkg-config
@@ -24,6 +26,7 @@
     gnumake
     autoconf
     gdb
+    binaryen
 
     # Command line utilities
     unstable.fzf
@@ -40,6 +43,7 @@
     jq
     btop
     glow
+    unixtools.xxd
 
     # Terminal
     unstable.alacritty # Emulator
@@ -130,4 +134,9 @@
     "image/png" = "mpv.desktop";
     "video/vnd.avi" = "mpv.desktop";
   };
+
+  security.pki.certificates = [
+    (builtins.readFile ../../certificates/securly.pem)
+    (builtins.readFile ../../certificates/school.pem)
+  ];
 }

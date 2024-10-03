@@ -1,0 +1,27 @@
+#!/usr/bin/env zsh
+
+if [ -z $1 ]; then
+	alacritty -e ~/scripts/motd inner
+	exit
+fi
+
+curl "wttr.in/$(<~/scripts/motd-location)?0"
+
+fs=$(df -h / | tail -n1 | awk '{print $3 "/" $2 " (" $5 ")"}')
+
+glow <<EOF
+Storage: $fs
+
+[t]erminal
+[b]rowser
+[q]uit
+EOF
+
+while :; do
+	read -sk1 shortcut
+	case "${shortcut}"; in
+		t) exec zsh ;;
+		b) hyprctl keyword exec '$browser' && exit ;;
+		q) exit
+	esac
+done
