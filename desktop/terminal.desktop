@@ -1,5 +1,5 @@
 [Desktop Entry]
-Actions=glow;newsboat;bashmount
+Actions=glow;newsboat;bashmount;bluetuith
 Terminal=true
 Exec=zsh
 Name=Terminal
@@ -23,3 +23,8 @@ Terminal=true
 Icon=Alacritty
 Name=bashmount
 
+[Desktop Action bluetuith]
+Exec=zsh -c "rfkill unblock bluetooth && rfkill unblock wifi && bluetuith"
+Terminal=true
+Icon=Alacritty
+Name=bluetuith

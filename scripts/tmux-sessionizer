@@ -1,6 +1,9 @@
 #!/usr/bin/env sh
 
 PATH=$PATH:$HOME/.fzf/bin
+FZF_CMD="fzf"
+
+[[ -z $DISABLE_POPUP ]] && FZF_CMD="fzf-tmux -p 80%,80% --"
 
 if [[ $# -eq 1 ]]; then
 	selected=$1
@@ -9,7 +12,7 @@ else
 		fd -ad1 -td . ~
 		fd -Had1 -td . ~/projects
 	}
-	selected=$(paths | fzf-tmux -p 80%,80% -- --preview '
+	selected=$(paths | $FZF_CMD --preview '
 		selected_name=$(basename {1} | tr . _)
 		if tmux has-session -t=$selected_name 2> /dev/null; then
 			echo -e "\033[32msession running\033[0m"

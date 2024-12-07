@@ -5,22 +5,25 @@ if [ -z $1 ]; then
 	exit
 fi
 
-curl "wttr.in/$(<~/scripts/motd-location)?0"
+center() {
+	cols=$(tput cols)
+	for line in $@; do
+		echo $line 
+	done | awk '{ padding = '$cols' - length; printf "%*s%s\n", padding / 2, "", $0 }'
+}
 
-fs=$(df -h / | tail -n1 | awk '{print $3 "/" $2 " (" $5 ")"}')
+motd() {
+	fs=$(df -h / | tail -n1 | awk '{print $3 "/" $2 " (" $5 ")"}')
+	glow <<(center "Storage: $fs" "" "[t]erminal" "[b]rowser" "[q]uit")
+	curl "wttr.in/$(<~/scripts/motd-location)?0" -sm 1
+}
 
-glow <<EOF
-Storage: $fs
+msg=$(motd)
 
-[t]erminal
-[b]rowser
-[q]uit
-EOF
-
-while :; do
+motd & while :; do
 	read -sk1 shortcut
 	case "${shortcut}"; in
-		t) exec zsh ;;
+		t) DISABLE_POPUP=true exec ~/scripts/tmux-sessionizer ;;
 		b) hyprctl keyword exec '$browser' && exit ;;
 		q) exit
 	esac

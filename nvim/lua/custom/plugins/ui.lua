@@ -25,6 +25,10 @@ return {
 				render = "wrapped-compact",
 				stages = "slide",
 			})
+
+			vim.keymap.set({ "n", "v" }, "<leader>un", function()
+				notify.dismiss({})
+			end)
 		end,
 		cond = not vim.g.vscode,
 	},

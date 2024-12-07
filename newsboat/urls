@@ -11,7 +11,9 @@ https://blog.rust-lang.org/feed.xml ! rust programming
 https://blog.rust-lang.org/inside-rust/feed.xml ! rust programming
 "query:Rust:tags # \"rust\""
 
-https://ziglang.org/news/index.xml zig programming
+https://ziglang.org/devlog/index.xml ! zig-devlog zig programming
+https://ziglang.org/news/index.xml ! zig programming
+"query:Zig:tags # \"zig\""
 
 https://neovim.io/news.xml ! neovim programming
 https://dotfyle.com/this-week-in-neovim/rss.xml ! neovim programming

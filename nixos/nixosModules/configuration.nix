@@ -2,12 +2,17 @@
 
 {
   environment.systemPackages = with pkgs; [
+    bluetuith
+    hyperfine
     unzip
     xdg-utils
     bashmount
     unstable.newsboat
     powertop
     networkmanagerapplet
+    wasmtime
+    sshfs
+    wakeonlan
 
     # Git
     github-cli
@@ -51,7 +56,7 @@
 
     # Text editor
     unstable.neovim
-    vscode # for liveshare
+    # vscode # for liveshare
 
     # Image editor
     gimp
@@ -105,6 +110,7 @@
   };
 
   services = {
+    printing.enable = true;
     gnome.gnome-keyring.enable = true;
     udisks2.enable = true;
     blueman.enable = true;
@@ -119,20 +125,23 @@
   powerManagement.powertop.enable = true;
 
   hardware = {
-    pulseaudio.enable = true;
-    opengl.enable = true;
+    # pulseaudio.enable = true;
+    graphics.enable = true;
     bluetooth = {
       enable = true;
       powerOnBoot = false;
     };
   };
 
-  sound.enable = true;
-
   xdg.mime.defaultApplications = {
     "application/pdf" = "org.pwmt.zathura.desktop";
     "image/png" = "mpv.desktop";
+    "image/jpeg" = "mpv.desktop";
+    "image/webp" = "mpv.desktop";
+    "image/avif" = "mpv.desktop";
     "video/vnd.avi" = "mpv.desktop";
+    "video/mp4" = "mpv.desktop";
+    "inode/directory" = "nvim.desktop";
   };
 
   security.pki.certificates = [

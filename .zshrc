@@ -33,6 +33,9 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light chisui/zsh-nix-shell
 
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+
 zinit snippet OMZP::git
 
 # Load completions
@@ -40,12 +43,6 @@ autoload -Uz compinit
 compinit
 
 zinit cdreplay -q
-
-# Keybindings
-bindkey -v
-bindkey '^f' autosuggest-accept
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
 
 # History
 HISTSIZE=5000

@@ -11,3 +11,12 @@ if [[ $1 = "mice" ]]; then
 			hyprctl keyword device\[$device\]:enabled $2
 		done
 fi
+
+if [[ $1 = "random-wallpaper" ]]; then
+	wallpaper=$(fd . ~/wallpapers | shuf -n1)
+	pgrep hyprpaper || hyprctl keyword exec hyprpaper
+	sleep 0.5
+	hyprctl hyprpaper preload $wallpaper
+	hyprctl hyprpaper wallpaper ,$wallpaper
+fi
+

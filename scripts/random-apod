@@ -30,13 +30,17 @@ ext=$(echo $url | awk -F. '{print $NF}')
 [ -f /tmp/apod.$ext ] && rm /tmp/apod.$ext
 curl -Sso /tmp/apod.$ext $url
 
-IFS=, read w h < <(cat /sys/class/graphics/*/virtual_size)
-padding=20
-ffmpeg -y -pix_fmt rgba -i /tmp/apod.$ext \
-	-filter_complex "split[bg][fg],[fg]scale=$w-$padding*2:$h-$padding*2:force_original_aspect_ratio=decrease,pad=iw+$padding*2:ih+$padding*2:$padding:$padding:#ffffff00[fg],[bg]scale=$w:$h:force_original_aspect_ratio=increase,crop=$w:$h,gblur=sigma=20[bg],[bg][fg]overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2" \
-	/tmp/apod-blur.png
+hyprctl hyprpaper unload /tmp/apod.$ext
+hyprctl hyprpaper preload /tmp/apod.$ext
+hyprctl hyprpaper wallpaper ,/tmp/apod.$ext
 
-pid=$(pidof swaybg)
-swaybg -i /tmp/apod-blur.png -m fit &
-sleep 1
-kill $pid
+# IFS=, read w h < <(cat /sys/class/graphics/*/virtual_size)
+# padding=20
+# ffmpeg -y -pix_fmt rgba -i /tmp/apod.$ext \
+# 	-filter_complex "split[bg][fg],[fg]scale=$w-$padding*2:$h-$padding*2:force_original_aspect_ratio=decrease,pad=iw+$padding*2:ih+$padding*2:$padding:$padding:#ffffff00[fg],[bg]scale=$w:$h:force_original_aspect_ratio=increase,crop=$w:$h,gblur=sigma=20[bg],[bg][fg]overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2" \
+# 	/tmp/apod-blur.png
+
+# pid=$(pidof swaybg)
+# swaybg -i /tmp/apod-blur.png -m fit &
+# sleep 1
+# kill $pid

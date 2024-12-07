@@ -12,7 +12,7 @@ done
 
 cd "$(dirname $(realpath $0))/.."
 
-xdg_cfgs=(nvim mpv bashmount sway swaylock waybar mako alacritty zathura btop fuzzel newsboat hypr tridactyl starship.toml newtab.html)
+xdg_cfgs=(nvim mpv bashmount sway swaylock waybar mako alacritty zathura btop fuzzel newsboat hypr tridactyl starship.toml newtab.html bluetuith)
 home_cfgs=(.zshrc .gitconfig .tmux.conf scripts)
 desktop_cfgs=($(ls desktop/*.desktop))
 
