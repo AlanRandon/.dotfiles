@@ -98,6 +98,7 @@ null_ls.setup({
 
 require("mason").setup()
 require("mason-lspconfig").setup({
+	automatic_installation = false,
 	ensure_installed = {
 		"rust_analyzer",
 		"lua_ls",

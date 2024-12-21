@@ -3,7 +3,7 @@ local autoformat_enabled = true
 
 ---@param bufnr number
 local function is_null_ls_formatting_enabled(bufnr)
-	local file_type = vim.api.nvim_buf_get_option(bufnr, "filetype")
+	local file_type = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
 	local generators =
 		require("null-ls.generators").get_available(file_type, require("null-ls.methods").internal.FORMATTING)
 	return #generators > 0
@@ -11,8 +11,12 @@ end
 
 ---@param bufnr number
 local function format(bufnr)
+	if #vim.lsp.get_clients({ bufnr = bufnr }) == 1 and not is_null_ls_formatting_enabled(bufnr) then
+		return
+	end
+
 	vim.lsp.buf.format({
-		---@param client lsp.Client
+		bufnr = bufnr,
 		filter = function(client)
 			if is_null_ls_formatting_enabled(bufnr) then
 				return client.name == "null-ls"
@@ -26,9 +30,9 @@ end
 vim.api.nvim_create_user_command("FormatOnSaveToggle", function()
 	autoformat_enabled = not autoformat_enabled
 	if autoformat_enabled then
-		print("FormatOnSave turned on")
+		vim.notify("FormatOnSave turned on")
 	else
-		print("FormatOnSave turned off")
+		vim.notify("FormatOnSave turned off")
 	end
 end, {})
 
