@@ -24,7 +24,7 @@ Icon=Alacritty
 Name=bashmount
 
 [Desktop Action bluetuith]
-Exec=zsh -c "rfkill unblock bluetooth && rfkill unblock wifi && bluetuith"
+Exec=zsh -c "rfkill unblock bluetooth && rfkill unblock wifi && bluetuith && pactl set-default-sink $(pactl list short sinks | rg bluez | cut -f1)"
 Terminal=true
 Icon=Alacritty
 Name=bluetuith

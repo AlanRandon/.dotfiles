@@ -45,6 +45,8 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 
+vim.g.zig_fmt_autosave = false
+
 vim.diagnostic.config({
 	virtual_text = true,
 })

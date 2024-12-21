@@ -68,11 +68,14 @@
     playerctl
     mpv
     pavucontrol
+    pulseaudio
 
     # LaTeX
     unstable.tectonic
     zathura
     poppler_utils
+
+    google-chrome
   ];
 
   fonts.packages = with pkgs; [
@@ -88,7 +91,6 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
   console = {
-    font = "Lat2-Terminus16";
     keyMap = lib.mkForce "uk";
     useXkbConfig = true; # use xkb.options in tty.
   };
