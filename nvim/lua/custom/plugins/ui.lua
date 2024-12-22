@@ -11,7 +11,6 @@ return {
 				},
 			},
 		},
-		cond = not vim.g.vscode,
 	},
 	{
 		"rcarriga/nvim-notify",
@@ -38,6 +37,5 @@ return {
 				notify.dismiss({})
 			end)
 		end,
-		cond = not vim.g.vscode,
 	},
 }

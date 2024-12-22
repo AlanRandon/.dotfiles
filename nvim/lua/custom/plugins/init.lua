@@ -1,6 +1,7 @@
 return {
-	{ "ThePrimeagen/vim-be-good", cmd = "VimBeGood", cond = not vim.g.vscode },
-	{ "NStefan002/speedtyper.nvim", cmd = "Speedtyper", opts = {}, cond = not vim.g.vscode },
+	{ "krady21/compiler-explorer.nvim" },
+	{ "ThePrimeagen/vim-be-good", cmd = "VimBeGood" },
+	{ "NStefan002/speedtyper.nvim", cmd = "Speedtyper", opts = {} },
 	{
 		"ActionScripted/tetris.nvim",
 		cmd = "Tetris",
@@ -16,11 +17,10 @@ return {
 				q = "quit",
 			},
 		},
-		cond = not vim.g.vscode,
 	},
-	{ "tpope/vim-fugitive", cmd = "Git", cond = not vim.g.vscode },
+	{ "tpope/vim-fugitive", cmd = "Git" },
 	{ "tpope/vim-repeat", event = "VeryLazy" },
-	{ "mbbill/undotree", cmd = "UndotreeToggle", cond = not vim.g.vscode },
+	{ "mbbill/undotree", cmd = "UndotreeToggle" },
 	{ "2kabhishek/co-author.nvim", cmd = "CoAuthor" },
 	"tpope/vim-commentary",
 	{
@@ -42,6 +42,5 @@ return {
 			{ "<C-R>", mode = "i" },
 		},
 		name = "registers",
-		cond = vim.g.vscode,
 	},
 }

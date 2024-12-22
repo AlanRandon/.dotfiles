@@ -12,13 +12,11 @@ return {
 		config = function()
 			require("custom.completion")
 		end,
-		cond = not vim.g.vscode,
 		event = { "InsertEnter", "CmdlineEnter" },
 	},
 	{
 		"L3MON4D3/LuaSnip",
 		version = "v2.*",
-		cond = not vim.g.vscode,
 		config = function()
 			require("custom.snippet")
 		end,

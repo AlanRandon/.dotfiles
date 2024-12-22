@@ -1,7 +1,3 @@
-if vim.g.vscode then
-	return
-end
-
 ---@class LspProgress
 ---@field message string
 ---@field title string

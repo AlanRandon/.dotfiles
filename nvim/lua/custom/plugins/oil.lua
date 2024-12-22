@@ -5,6 +5,6 @@ return {
 	opts = {},
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	keys = {
-		{ "<leader>ft", "<cmd>Oil<cr>", desc = "[F]ile [T]ree" },
+		{ "-", "<cmd>Oil<cr>", desc = "[F]ile [T]ree" },
 	},
 }
