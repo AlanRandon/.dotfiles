@@ -7,3 +7,7 @@
 #TabsToolbar {
   visibility: collapse;
 }
+
+#PanelUI-button {
+  display: none;
+}

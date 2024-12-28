@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 if [ -z $1 ]; then
-	alacritty -e ~/scripts/motd inner
+	ghostty -e ~/scripts/motd inner
 	exit
 fi
 

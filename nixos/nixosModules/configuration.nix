@@ -32,6 +32,7 @@
     autoconf
     gdb
     binaryen
+    httplz
 
     # Command line utilities
     unstable.fzf
@@ -49,9 +50,11 @@
     btop
     glow
     unixtools.xxd
+    unstable.yazi
 
     # Terminal
     unstable.alacritty # Emulator
+    ghostty
     tmux # Multiplexer
 
     # Text editor
