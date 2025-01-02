@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+rfkill unblock bluetooth
+rfkill unblock wifi
+bluetuith
+pactl set-default-sink $(pactl list short sinks | rg bluez | cut -f1)

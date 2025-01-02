@@ -70,7 +70,7 @@ alias vim="nvim"
 alias nd="nix develop"
 
 export EDITOR=nvim
-export TERMINAL=alacritty
+export TERMINAL=ghostty
 export BROWSER=firefox
 
 [ -f $HOME/.cargo/env ] && . "$HOME/.cargo/env"

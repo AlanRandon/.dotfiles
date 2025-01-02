@@ -75,11 +75,32 @@
         "type": "github"
       }
     },
+    "not-bad-launcher": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1735821136,
+        "narHash": "sha256-5erNXe5sVfPm3AqUhCkAavLBZdzD/bVf7ZTM00dlfBY=",
+        "owner": "AlanRandon",
+        "repo": "not-bad-launcher",
+        "rev": "2c8d7b6151c8bb0a8f63b71f20ea51fd7e088cc5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AlanRandon",
+        "repo": "not-bad-launcher",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "ghostty": "ghostty",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "not-bad-launcher": "not-bad-launcher"
       }
     },
     "systems": {

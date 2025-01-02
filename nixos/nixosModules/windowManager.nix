@@ -37,6 +37,7 @@
 
       # Launcher
       fuzzel
+      not-bad-launcher
 
       # Statusbar
       waybar
@@ -62,7 +63,7 @@
           settings = {
             "org/gnome/desktop/interface" = {
               cursor-theme = "catppuccin-frappe-light-cursors";
-	      application-prefer-dark-theme = true;
+              application-prefer-dark-theme = true;
             };
           };
           lockAll = true;

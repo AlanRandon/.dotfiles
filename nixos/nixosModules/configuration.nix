@@ -51,6 +51,7 @@
     glow
     unixtools.xxd
     unstable.yazi
+    timg
 
     # Terminal
     unstable.alacritty # Emulator
