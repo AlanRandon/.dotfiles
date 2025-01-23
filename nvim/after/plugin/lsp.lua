@@ -98,7 +98,6 @@ require("mason-lspconfig").setup({
 	ensure_installed = {
 		"rust_analyzer",
 		"lua_ls",
-		"zls",
 		"cssls",
 		"emmet_ls",
 		"html",
@@ -129,4 +128,9 @@ require("lspconfig").ocamllsp.setup({
 		codelens = { enable = true },
 		inlayHints = { enable = true },
 	},
+})
+
+require("lspconfig").zls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
 })

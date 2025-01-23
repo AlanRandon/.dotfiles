@@ -1,4 +1,5 @@
-PATH=$PATH:$HOME/.fzf/bin:$HOME/bin:$HOME/.zvm/bin:$HOME/.zvm/self:$HOME/.npm-global/bin
+# PATH=$PATH:$HOME/.fzf/bin:$HOME/bin:$HOME/.zvm/bin:$HOME/.zvm/self
+PATH=$PATH:$HOME/.npm-global/bin
 # export SWAYSOCK=$(ls /run/user/1000/sway-ipc.* | head -n 1)
 which hyprctl &> /dev/null && export HYPRLAND_INSTANCE_SIGNATURE=$(hyprctl -j instances | jq -r '.[0].instance')
 
@@ -67,7 +68,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 
 alias vim="nvim"
-alias nd="nix develop"
+alias nd="nix develop -c $SHELL"
 
 export EDITOR=nvim
 export TERMINAL=ghostty

@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -20,10 +20,13 @@
     # Languages
     rustup
     unstable.cargo-shuttle
+    unstable.cargo-binstall
     nodejs
     clang
     nasm
     python312
+    custom.zig
+    custom.zls
 
     # Development tools
     pkg-config
@@ -33,6 +36,10 @@
     gdb
     binaryen
     httplz
+
+    # Profiling
+    config.boot.kernelPackages.perf
+    flamegraph
 
     # Command line utilities
     unstable.fzf
@@ -55,7 +62,7 @@
 
     # Terminal
     unstable.alacritty # Emulator
-    ghostty
+    custom.ghostty
     tmux # Multiplexer
 
     # Text editor

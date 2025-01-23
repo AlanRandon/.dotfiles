@@ -37,7 +37,7 @@
 
       # Launcher
       fuzzel
-      not-bad-launcher
+      custom.not-bad-launcher
 
       # Statusbar
       waybar
