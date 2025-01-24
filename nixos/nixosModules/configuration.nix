@@ -1,6 +1,8 @@
 { lib, pkgs, config, ... }:
 
 {
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ ];
+
   environment.systemPackages = with pkgs; [
     bluetuith
     hyperfine
