@@ -10,7 +10,7 @@ return {
 			flavour = "frappe",
 			integrations = {
 				telescope = true,
-				cmp = true,
+				blink_cmp = true,
 				notify = true,
 				mason = true,
 			},

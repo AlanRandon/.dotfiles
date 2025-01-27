@@ -7,4 +7,5 @@ return {
 	keys = {
 		{ "-", "<cmd>Oil<cr>", desc = "[F]ile [T]ree" },
 	},
+	cmd = "Oil",
 }
