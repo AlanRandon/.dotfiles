@@ -30,12 +30,13 @@
       };
     };
 
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
+    mountui = {
+      url = "github:AlanRandon/mountui";
       inputs = {
-        nixpkgs-stable.follows = "nixpkgs";
-        nixpkgs-unstable.follows = "nixpkgs-unstable";
-        zig.follows = "zig-overlay";
+        nixpkgs.follows = "nixpkgs";
+        zig-overlay.follows = "zig-overlay";
+        zls-overlay.follows = "zls-overlay";
+        flake-utils.follows = "flake-utils";
       };
     };
   };
@@ -44,8 +45,8 @@
     { self
     , nixpkgs
     , nixpkgs-unstable
-    , ghostty
     , not-bad-launcher
+    , mountui
     , zig-overlay
     , zls-overlay
     , ...
@@ -58,13 +59,13 @@
         };
       };
       overlay-custom = final: prev:
-        let zig = zig-overlay.packages.x86_64-linux.master;
+        let zig = zig-overlay.packages.${system}.master;
         in {
           custom = {
             zig = zig;
-            ghostty = ghostty.packages.x86_64-linux.default;
-            not-bad-launcher = not-bad-launcher.packages.x86_64-linux.default;
-            zls = zls-overlay.packages.x86_64-linux.zls.overrideAttrs (old: {
+            mountui = mountui.packages.${system}.default;
+            not-bad-launcher = not-bad-launcher.packages.${system}.default;
+            zls = zls-overlay.packages.${system}.zls.overrideAttrs (old: {
               nativeBuildInputs = [ zig ];
             });
           };

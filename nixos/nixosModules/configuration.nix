@@ -8,7 +8,7 @@
     hyperfine
     unzip
     xdg-utils
-    bashmount
+    custom.mountui
     unstable.newsboat
     powertop
     networkmanagerapplet
@@ -64,7 +64,7 @@
 
     # Terminal
     unstable.alacritty # Emulator
-    custom.ghostty
+    unstable.ghostty
     tmux # Multiplexer
 
     # Text editor

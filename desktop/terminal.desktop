@@ -1,30 +1,25 @@
 [Desktop Entry]
-Actions=glow;newsboat;bashmount;bluetuith
+Actions=glow;newsboat;mountui;bluetuith
 Terminal=true
 Exec=zsh
 Name=Terminal
-Icon=Alacritty
 
 [Desktop Action glow]
 Exec=glow
 Terminal=true
-Icon=Alacritty
 Name=glow
 
 [Desktop Action newsboat]
 Exec=newsboat
 Terminal=true
-Icon=Alacritty
 Name=newsboat
 
-[Desktop Action bashmount]
-Exec=bashmount
+[Desktop Action mountui]
+Exec=mountui
 Terminal=true
-Icon=Alacritty
-Name=bashmount
+Name=mountui
 
 [Desktop Action bluetuith]
 Exec=sh -c ~/scripts/run-bluetuith
 Terminal=true
-Icon=Alacritty
 Name=bluetuith

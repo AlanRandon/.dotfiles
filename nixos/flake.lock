@@ -16,22 +16,6 @@
         "type": "github"
       }
     },
-    "flake-compat_2": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1696426674,
-        "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -47,33 +31,6 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "ghostty": {
-      "inputs": {
-        "flake-compat": "flake-compat",
-        "nixpkgs-stable": [
-          "nixpkgs"
-        ],
-        "nixpkgs-unstable": [
-          "nixpkgs-unstable"
-        ],
-        "zig": [
-          "zig-overlay"
-        ]
-      },
-      "locked": {
-        "lastModified": 1737606723,
-        "narHash": "sha256-imzoApuVpFNyQbBBjTfbFBeo/elX0moFgXrxJEWFCDo=",
-        "owner": "ghostty-org",
-        "repo": "ghostty",
-        "rev": "eb21a58aa4dc59dd2a0fbd026cf7cd842f0f07ed",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ghostty-org",
-        "repo": "ghostty",
         "type": "github"
       }
     },
@@ -95,6 +52,35 @@
       "original": {
         "owner": "hercules-ci",
         "repo": "gitignore.nix",
+        "type": "github"
+      }
+    },
+    "mountui": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "zig-overlay": [
+          "zig-overlay"
+        ],
+        "zls-overlay": [
+          "zls-overlay"
+        ]
+      },
+      "locked": {
+        "lastModified": 1738867618,
+        "narHash": "sha256-gXvZGpLGIbhSTjZAZtZx+sWzxsJJHM9FZEHZFGLTXA0=",
+        "owner": "AlanRandon",
+        "repo": "mountui",
+        "rev": "e86785c9ea1c00cfc6dbb62346acf954d9df9bf8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AlanRandon",
+        "repo": "mountui",
         "type": "github"
       }
     },
@@ -153,7 +139,7 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "ghostty": "ghostty",
+        "mountui": "mountui",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "not-bad-launcher": "not-bad-launcher",
@@ -178,7 +164,7 @@
     },
     "zig-overlay": {
       "inputs": {
-        "flake-compat": "flake-compat_2",
+        "flake-compat": "flake-compat",
         "flake-utils": [
           "flake-utils"
         ],

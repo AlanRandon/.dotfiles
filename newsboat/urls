@@ -1,11 +1,12 @@
-"query:Today:age < 1"
-"query:This week:age < 7"
-
-"query:Programming:tags # \"programming\""
-
-"query:News:tags # \"news\""
 "query:World News:tags # \"world-news\""
 "query:UK News:tags # \"uk-news\""
+"query:Programming:tags # \"programming\""
+
+"query:Today:age < 1"
+"query:This week:age < 7"
+"query:Old:(age > 7 and tags # \"news\")"
+
+"query:News:tags # \"news\""
 
 https://blog.rust-lang.org/feed.xml ! rust programming
 https://blog.rust-lang.org/inside-rust/feed.xml ! rust programming
@@ -20,7 +21,6 @@ https://dotfyle.com/this-week-in-neovim/rss.xml ! neovim programming
 "query:Neovim:tags # \"neovim\""
 
 https://weekly.nixos.org/feeds/all.rss.xml nixos programming
-https://www.reddit.com/r/theprimeagen/.rss theprimeagen programming
 https://fasterthanli.me/index.xml fasterthanlime programming
 
 https://feeds.bbci.co.uk/news/uk/rss.xml ! news uk-news bbc
@@ -30,5 +30,3 @@ http://feeds.bbci.co.uk/news/world/rss.xml ! news world-news bbc
 https://www.theguardian.com/uk/rss ! news uk-news the-guardian
 https://www.theguardian.com/world/rss ! news world-news the-guardian
 "query:The Guardian:tags # \"the-guardian\""
-
-"query:Old:(age > 7 and tags # \"news\")"
