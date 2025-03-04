@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+run_cmd() {
+	sleep 0.1
+	echo $@
+}
+
+get_info() {
+	run_cmd AUTHENTICATE
+	run_cmd GETINFO circuit-status
+	run_cmd QUIT
+}
+
+get_info \
+	| telnet localhost 9051 \
+	| sed -n '/^250+circuit-status=/,/^\./p' \
+	| sed '1d;$d'

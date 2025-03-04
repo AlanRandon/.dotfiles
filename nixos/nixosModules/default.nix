@@ -1,94 +1,15 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, ... }:
 
 {
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ ];
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "google-chrome" ];
 
-  environment.systemPackages = with pkgs; [
-    bluetuith
-    hyperfine
-    unzip
-    xdg-utils
-    custom.mountui
-    unstable.newsboat
-    powertop
-    networkmanagerapplet
-    wasmtime
-    sshfs
-    wakeonlan
-
-    # Git
-    github-cli
-
-    # Languages
-    rustup
-    unstable.cargo-shuttle
-    unstable.cargo-binstall
-    nodejs
-    clang
-    nasm
-    python312
-    custom.zig
-    custom.zls
-
-    # Development tools
-    pkg-config
-    strace
-    gnumake
-    autoconf
-    gdb
-    binaryen
-    httplz
-
-    # Profiling
-    config.boot.kernelPackages.perf
-    flamegraph
-
-    # Command line utilities
-    unstable.fzf
-    tree
-    ffmpeg
-    figlet
-    lolcat
-    bat
-    bc
-    wget
-    dig
-    ripgrep
-    fd
-    jq
-    btop
-    glow
-    unixtools.xxd
-    unstable.yazi
-    timg
-
-    # Terminal
-    unstable.alacritty # Emulator
-    unstable.ghostty
-    tmux # Multiplexer
-
-    # Text editor
-    unstable.neovim
-    # vscode # for liveshare
-
-    # Image editor
-    gimp
-
-    # Sound editor
-    audacity
-
-    # Sound
-    playerctl
-    mpv
-    pavucontrol
-    pulseaudio
-
-    # LaTeX
-    unstable.tectonic
-    zathura
-    poppler_utils
-
-    google-chrome
+  imports = [
+    ./nixosSupport.nix
+    ./packages.nix
+    ./windowManager.nix
+    ./firefox.nix
+    ./ssh.nix
+    ./tor.nix
   ];
 
   fonts.packages = with pkgs; [
@@ -129,12 +50,6 @@
     gnome.gnome-keyring.enable = true;
     udisks2.enable = true;
     blueman.enable = true;
-    openssh = {
-      enable = true;
-      settings = {
-        PasswordAuthentication = false;
-      };
-    };
   };
 
   powerManagement.powertop.enable = true;

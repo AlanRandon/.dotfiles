@@ -1,15 +1,9 @@
 [credential "https://github.com"]
-	helper = 
 	helper = !/run/current-system/sw/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
 	helper = !/run/current-system/sw/bin/gh auth git-credential
 [user]
 	name = Alan Randon
 	email = alan.randon@outlook.com
 [init]
 	defaultBranch = main
-[url "git@github.com:"]
-	insteadOf = gh:
-[url "git@github.com:AlanRandon/"]
-	insteadOf = me:

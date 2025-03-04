@@ -3,19 +3,6 @@
 {
   environment.systemPackages =
     with pkgs; [
-      # (writeTextFile
-      #   {
-      #     name = "dbus-sway-environment";
-      #     destination = "/bin/dbus-sway-environment";
-      #     executable = true;
-
-      #     text = ''
-      #       dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-      #       systemctl --user stop pipewire wireplumber pipewire-pulse xdg-desktop-portal xdg-desktop-portal-wlr
-      #       systemctl --user start pipewire wireplumber pipewire-pulse xdg-desktop-portal xdg-desktop-portal-wlr
-      #     '';
-      #   })
-
       # Notifications
       mako
       libnotify
@@ -32,11 +19,9 @@
       wireplumber
 
       # Wallpaper
-      # swaybg
       hyprpaper
 
       # Launcher
-      fuzzel
       custom.not-bad-launcher
 
       # Statusbar
@@ -50,10 +35,12 @@
 
       # Cursor theme
       catppuccin-cursors.frappeLight
+
+      # Privileges
+      hyprpolkitagent
     ];
 
   programs = {
-    # sway.enable = true;
     hyprland.enable = true;
     hyprlock.enable = true;
     dconf = {

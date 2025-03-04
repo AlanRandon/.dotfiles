@@ -2,10 +2,7 @@
   imports = [
     ./file-system.nix
     ./hardware-configuration.nix
-    ../nixosModules/windowManager.nix
-    ../nixosModules/firefox.nix
-    ../nixosModules/configuration.nix
-    ../nixosModules/nixosSupport.nix
+    ../nixosModules
   ];
 
   networking.hostName = "nixos";

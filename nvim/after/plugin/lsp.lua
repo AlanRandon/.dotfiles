@@ -92,11 +92,11 @@ null_ls.setup({
 	},
 })
 
-require("mason").setup()
+require("mason").setup({ PATH = "append" })
 require("mason-lspconfig").setup({
 	automatic_installation = false,
 	ensure_installed = {
-		"rust_analyzer",
+		-- "rust_analyzer",
 		"lua_ls",
 		"cssls",
 		"emmet_ls",
