@@ -1,0 +1,36 @@
+#!/usr/bin/env sh
+
+IGNORE_SHELL=1
+
+parent_pid() {
+	rg ^PPid: </proc/$1/status | cut -f2
+}
+
+process_ancestors() {
+	pid=$1
+	while [ "$pid" != "1" ]; do
+		echo $pid
+		pid=$(parent_pid $pid)
+	done
+}
+
+process_shlvl() {
+	strings </proc/$1/environ | rg ^SHLVL= | cut -f2 -d=
+}
+
+set --
+current_shlvl=$(process_shlvl $$)
+for pid in $(process_ancestors $$); do
+	new_shlvl=$(process_shlvl $pid)
+	if [ $new_shlvl -lt $current_shlvl ]; then
+		set -- $pid $@
+	fi
+	current_shlvl=$new_shlvl
+done
+
+echo -n "$(cat </proc/$1/comm)"
+shift 1
+for pid in $@; do
+	echo -n "  $(cat </proc/$pid/comm)"
+done
+echo

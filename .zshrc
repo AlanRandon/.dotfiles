@@ -1,6 +1,4 @@
-# PATH=$PATH:$HOME/.fzf/bin:$HOME/bin:$HOME/.zvm/bin:$HOME/.zvm/self
 PATH=$PATH:$HOME/.npm-global/bin
-# export SWAYSOCK=$(ls /run/user/1000/sway-ipc.* | head -n 1)
 which hyprctl &> /dev/null && export HYPRLAND_INSTANCE_SIGNATURE=$(hyprctl -j instances | jq -r '.[0].instance')
 
 if [[ $TERM_PROGRAM != "vscode" ]] && [ -z $TMUX ]; then
@@ -29,20 +27,19 @@ zinit ice as"command" from"gh-r" \
           atpull"%atclone" src"init.zsh"
 zinit light starship/starship
 
-zinit ice wait lucid blockf atload"zicompinit; zicdreplay"
-zinit light zsh-users/zsh-completions
-
-zinit ice wait lucid atload'_zsh_autosuggest_start'
-zinit light zsh-users/zsh-autosuggestions
-
 zinit ice wait lucid
 zinit light chisui/zsh-nix-shell
 
 zinit ice wait lucid
 zinit snippet OMZP::git
 
-zinit ice wait lucid
-zinit light zsh-users/zsh-syntax-highlighting
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+ blockf \
+    zsh-users/zsh-completions \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
 
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
@@ -76,8 +73,5 @@ export BROWSER=firefox
 
 [ -f $HOME/.cargo/env ] && . "$HOME/.cargo/env"
 [[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 command -v fzf &> /dev/null && eval "$(fzf --zsh)"

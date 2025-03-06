@@ -3,10 +3,9 @@
 add_newline = false
 
 format = """
-$nix_shell$username\
-[](bg:#51576d fg:#a6d189)\
-$directory\
-[](fg:#51576d) \
+${custom.ls-shell}\
+$username\
+$directory \
 """
 
 right_format = "$git_branch $time"
@@ -14,17 +13,13 @@ right_format = "$git_branch $time"
 [username]
 show_always = true
 disabled = false
-style_user = "bg:#a6d189 fg:#51576d"
-style_root = "bg:#a6d189 fg:#51576d"
-format = '[ $user ]($style)'
-
-[nix_shell]
-style = "fg:black bg:blue"
-format = "[ $name ]($style)[](fg:blue bg:#a6d189)"
+style_user = "bg:#51576d fg:#a5adce"
+style_root = "bg:#51576d fg:#a5adce"
+format = '[](bg:prev_bg fg:#51576d inverted)[ $user ]($style)'
 
 [directory]
-style = "fg:#c6d0f5 bg:#51576d"
-format = "[ $path ]($style)"
+style = "fg:#51576d bg:#a6d189"
+format = "[](bg:prev_bg fg:#a6d189 inverted)[ $path ]($style)[](fg:prev_bg)"
 truncation_length = 3
 truncation_symbol = "…/"
 
@@ -37,3 +32,9 @@ disabled = false
 style = "fg:#a5adce"
 time_format = '%I:%M:%S %P'
 format = '[$time]($style)'
+
+[custom.ls-shell]
+when = true
+command = "exec ~/scripts/ls-current-shells"
+style = "fg:#a5adce"
+format = '[ $output ]($style)'
