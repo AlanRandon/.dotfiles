@@ -67,7 +67,7 @@
     fd
     jq
     btop
-    glow
+    unstable.glow
     unixtools.xxd
     unstable.yazi
     timg

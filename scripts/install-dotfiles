@@ -12,8 +12,32 @@ done
 
 cd "$(dirname $(realpath $0))/.."
 
-xdg_cfgs=(nvim mpv waybar mako alacritty zathura btop newsboat hypr tridactyl starship.toml newtab.html bluetuith ghostty yazi)
-home_cfgs=(.zshrc .gitconfig .tmux.conf scripts)
+xdg_cfgs=(
+	nvim
+	mpv
+	waybar
+	mako
+	alacritty
+	zathura
+	btop
+	newsboat
+	hypr
+	tridactyl
+	starship.toml
+	newtab.html
+	bluetuith
+	ghostty
+	yazi
+	glow
+)
+
+home_cfgs=(
+	.zshrc
+	.gitconfig
+	.tmux.conf
+	scripts
+)
+
 desktop_cfgs=($(ls desktop/*.desktop))
 
 for cfg in $xdg_cfgs

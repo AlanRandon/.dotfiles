@@ -1,0 +1,6 @@
+# style name or JSON path (default "auto")
+style: /home/alan/.config/glow/catppuccin-frappe.json
+# mouse support (TUI-mode only)
+mouse: false
+# word-wrap at width
+width: 80
