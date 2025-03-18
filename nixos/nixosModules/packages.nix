@@ -71,6 +71,7 @@
     unixtools.xxd
     unstable.yazi
     timg
+    eza
 
     # Terminal
     unstable.alacritty # Emulator

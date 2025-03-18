@@ -9,9 +9,4 @@ return {
 		{ "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "[F]ind [D]iagnostic" },
 	},
 	cmd = "Telescope",
-	config = function()
-		local telescope = require("telescope")
-		telescope.setup({})
-		telescope.load_extension("notify")
-	end,
 }

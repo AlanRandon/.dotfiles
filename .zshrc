@@ -66,6 +66,8 @@ zstyle ':completion:*' menu no
 
 alias vim="nvim"
 alias nd="nix develop -c $SHELL"
+alias l="eza --long --icons --header --git"
+alias lt="l --tree"
 
 export EDITOR=nvim
 export TERMINAL=ghostty
