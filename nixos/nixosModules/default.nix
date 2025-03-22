@@ -33,7 +33,13 @@
   users = {
     users.alan = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "networkmanager" "%wheel" "dialout" "uinput" ]; # Enable ‘sudo’ for the user.
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+        "%wheel"
+        "dialout"
+        "uinput"
+      ]; # Enable ‘sudo’ for the user.
       packages = [ ];
       useDefaultShell = true;
     };

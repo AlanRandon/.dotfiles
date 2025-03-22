@@ -10,12 +10,12 @@
   networking.hostName = "nixos";
 
   boot = {
-	kernelPackages = pkgs.linuxPackages_latest;
-  	# Use the systemd-boot EFI boot loader.
-	loader = {
-		systemd-boot.enable = true;
-		efi.canTouchEfiVariables = true;
-	};
+    kernelPackages = pkgs.linuxPackages_latest;
+    # Use the systemd-boot EFI boot loader.
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
   };
 
   system.stateVersion = "23.11";

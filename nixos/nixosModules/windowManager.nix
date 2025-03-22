@@ -1,44 +1,43 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages =
-    with pkgs; [
-      # Notifications
-      mako
-      libnotify
+  environment.systemPackages = with pkgs; [
+    # Notifications
+    mako
+    libnotify
 
-      # X11
-      xwayland
+    # X11
+    xwayland
 
-      # Screenshots
-      grim
-      slurp
+    # Screenshots
+    grim
+    slurp
 
-      # Screen recording
-      pipewire
-      wireplumber
+    # Screen recording
+    pipewire
+    wireplumber
 
-      # Wallpaper
-      hyprpaper
+    # Wallpaper
+    hyprpaper
 
-      # Launcher
-      custom.not-bad-launcher
+    # Launcher
+    custom.not-bad-launcher
 
-      # Statusbar
-      waybar
+    # Statusbar
+    waybar
 
-      # Brightness	
-      brightnessctl
+    # Brightness
+    brightnessctl
 
-      # Clipboard
-      wl-clipboard
+    # Clipboard
+    wl-clipboard
 
-      # Cursor theme
-      catppuccin-cursors.frappeLight
+    # Cursor theme
+    catppuccin-cursors.frappeLight
 
-      # Privileges
-      hyprpolkitagent
-    ];
+    # Privileges
+    hyprpolkitagent
+  ];
 
   programs = {
     hyprland.enable = true;
@@ -89,7 +88,7 @@
       keyboards.default.config = ''
         (defsrc
         	caps)
-  
+
         (deflayermap (default-layer)
             caps (tap-hold 200 200 esc lmet))
       '';

@@ -41,14 +41,14 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , nixpkgs-unstable
-    , not-bad-launcher
-    , mountui
-    , zig-overlay
-    , zls-overlay
-    , ...
+    {
+      nixpkgs,
+      nixpkgs-unstable,
+      not-bad-launcher,
+      mountui,
+      zig-overlay,
+      zls-overlay,
+      ...
     }@inputs:
     let
       system = "x86_64-linux";
@@ -57,9 +57,12 @@
           inherit system;
         };
       };
-      overlay-custom = final: prev:
-        let zig = zig-overlay.packages.${system}.master;
-        in {
+      overlay-custom =
+        final: prev:
+        let
+          zig = zig-overlay.packages.${system}.master;
+        in
+        {
           custom = {
             zig = zig;
             mountui = mountui.packages.${system}.default;
@@ -75,14 +78,16 @@
         inherit system;
         specialArgs = { inherit inputs; };
         modules = [
-          ({ config, pkgs, ... }: {
+          {
             nixpkgs.overlays = [
               overlay-unstable
               overlay-custom
             ];
-          })
+          }
           ./laptop
         ];
       };
+
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
     };
 }

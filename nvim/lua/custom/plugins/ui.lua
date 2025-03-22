@@ -3,6 +3,15 @@ return {
 		"folke/snacks.nvim",
 		priority = 1000,
 		lazy = false,
+		keys = {
+			{
+				"<leader>nn",
+				function()
+					Snacks.notifier.show_history()
+				end,
+				desc = "Show [N]otification History",
+			},
+		},
 		---@type snacks.Config
 		opts = {
 			bigfile = { enabled = true },
@@ -31,9 +40,23 @@ return {
 							section = "terminal",
 							icon = " ",
 							title = "Git Status",
-							cmd = "git --no-pager diff --stat -B -M -C",
+							cmd = "git --no-pager diff --stat HEAD",
 							enabled = in_git,
+							ttl = 0,
 							height = 10,
+							padding = 1,
+						}
+					end,
+					function()
+						local fortune = vim.system(
+							{ "fortune", "-i", "linux", "-i", "perl", "-i", "computers", "-s" },
+							{ text = true }
+						):wait()
+
+						return {
+							text = { fortune.stdout, hl = "comment" },
+							align = "center",
+							height = 5,
 							padding = 1,
 						}
 					end,

@@ -13,6 +13,8 @@
     networkmanagerapplet
     wasmtime
     wakeonlan
+    fortune
+    cowsay
 
     # Git
     github-cli
@@ -39,6 +41,10 @@
     # NOTE: prefer a flake for projects
     custom.zig
     custom.zls
+
+    # Nix
+    nixfmt-rfc-style
+    nixd
 
     # Development tools
     pkg-config

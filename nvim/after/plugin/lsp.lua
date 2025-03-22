@@ -86,17 +86,17 @@ null_ls.setup({
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.prettier,
 		null_ls.builtins.formatting.ocamlformat,
-		null_ls.builtins.formatting.nixpkgs_fmt,
 		null_ls.builtins.completion.spell.with(writing_mode_source),
 		null_ls.builtins.hover.dictionary.with(writing_mode_source),
 	},
 })
 
+local lspconfig = require("lspconfig")
+
 require("mason").setup({ PATH = "append" })
 require("mason-lspconfig").setup({
 	automatic_installation = false,
 	ensure_installed = {
-		-- "rust_analyzer",
 		"lua_ls",
 		"cssls",
 		"emmet_ls",
@@ -104,13 +104,13 @@ require("mason-lspconfig").setup({
 	},
 	handlers = {
 		function(server_name)
-			require("lspconfig")[server_name].setup({
+			lspconfig[server_name].setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
 			})
 		end,
 		asm_lsp = function()
-			require("lspconfig")["asm_lsp"].setup({
+			lspconfig["asm_lsp"].setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
 				filetypes = { "asm", "vmasm", "nasm" },
@@ -121,7 +121,7 @@ require("mason-lspconfig").setup({
 	},
 })
 
-require("lspconfig").ocamllsp.setup({
+lspconfig.ocamllsp.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 	settings = {
@@ -130,7 +130,19 @@ require("lspconfig").ocamllsp.setup({
 	},
 })
 
-require("lspconfig").zls.setup({
+lspconfig.zls.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+})
+
+lspconfig.nixd.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	settings = {
+		nixd = {
+			formatting = {
+				command = { "nixfmt" },
+			},
+		},
+	},
 })
