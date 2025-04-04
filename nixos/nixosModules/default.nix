@@ -1,7 +1,11 @@
 { lib, pkgs, ... }:
 
 {
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "google-chrome" ];
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "google-chrome"
+    ];
 
   imports = [
     ./nixosSupport.nix
@@ -10,7 +14,10 @@
     ./firefox.nix
     ./ssh.nix
     ./tor.nix
+    ./man.nix
   ];
+
+  boot.tmp.cleanOnBoot = true;
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraMono" ]; })
@@ -62,7 +69,18 @@
 
   hardware = {
     # pulseaudio.enable = true;
-    graphics.enable = true;
+    graphics = {
+      enable = true;
+      extraPackages = with pkgs; [
+        # these may do something?
+        # intel-media-driver
+        # intel-vaapi-driver
+        # vaapiVdpau
+        # intel-compute-runtime
+        # intel-ocl
+        intel-compute-runtime-legacy1
+      ];
+    };
     bluetooth = {
       enable = true;
       powerOnBoot = false;

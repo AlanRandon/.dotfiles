@@ -1,3 +1,4 @@
+# zmodload zsh/zprof
 PATH=$PATH:$HOME/.npm-global/bin
 which hyprctl &> /dev/null && export HYPRLAND_INSTANCE_SIGNATURE=$(hyprctl -j instances | jq -r '.[0].instance')
 
@@ -68,6 +69,7 @@ alias vim="nvim"
 alias nd="nix develop -c $SHELL"
 alias l="eza --long --icons --header --git"
 alias lt="l --tree"
+alias m="~/scripts/fzfman"
 
 export EDITOR=nvim
 export TERMINAL=ghostty
@@ -77,3 +79,4 @@ export BROWSER=firefox
 [[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 command -v fzf &> /dev/null && eval "$(fzf --zsh)"
+# zprof | less

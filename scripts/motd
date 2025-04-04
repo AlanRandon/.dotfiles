@@ -5,17 +5,22 @@ if [ -z $1 ]; then
 	exit
 fi
 
-center() {
-	cols=$(tput cols)
-	for line in $@; do
-		echo $line 
-	done | awk '{ padding = '$cols' - length; printf "%*s%s\n", padding / 2, "", $0 }'
-}
-
 motd() {
-	fs=$(df -h / | tail -n1 | awk '{print $3 "/" $2 " (" $5 ")"}')
-	glow <<(center "Storage: $fs" "" "[t]erminal" "[b]rowser" "[q]uit")
-	curl "wttr.in/$(<~/scripts/motd-location)?0" -sm 1
+	echo -e '\x1b[1000;1000H'
+	cols=$(tput cols)
+	center='{ padding = '$cols' - length; printf "%*s" $0 "\n", padding / 2, "" }'
+	df -h / | tail -n1 | awk '{ print "Storage: " $3 "/" $2 }' | awk $center
+	df -h / | tail -n1 | awk '{ print int($5/100*'$cols') }' | perl -CS -e 'print ("\x{2588}" x <STDIN>)' | lolcat
+	echo -n '\x1b[30m'
+	df -h / | tail -n1 | awk '{ print int((1-$5/100)*'$cols'+1) }' | xargs -I{} sh -c "printf '·%.0s' {1..{}}"
+	echo -e '\x1b[0;0H\x1b[0m'
+
+	curl "wttr.in/$(<~/scripts/motd-location)?format=3" -sm 1 | awk $center
+	echo
+	echo "[t]erminal" | awk $center 
+	echo "[b]rowser " | awk $center 
+	echo "[q]uit    " | awk $center 
+	echo
 }
 
 msg=$(motd)

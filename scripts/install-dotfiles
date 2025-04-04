@@ -24,7 +24,7 @@ xdg_cfgs=(
 	hypr
 	tridactyl
 	starship.toml
-	newtab.html
+	firefox/newtab.html
 	bluetuith
 	ghostty
 	yazi
@@ -42,27 +42,27 @@ desktop_cfgs=($(ls desktop/*.desktop))
 
 for cfg in $xdg_cfgs
 do
-	if [ -L ~/.config/$cfg ] && [ "$(realpath ~/.config/$cfg)" = $(realpath $cfg) ]; then
-		$verbose && echo Already linked: ~/.config/$cfg
-	elif [ -e ~/.config/$cfg ]; then
-		echo "Error (already exists): ~/.config/$cfg"
+	loc=~/.config/$(basename $cfg)
+	if [ -L $loc ] && [ "$(realpath "$loc")" = $(realpath $cfg) ]; then
+		$verbose && echo Already linked: $loc
+	elif [ -e $loc ]; then
+		echo "Error (already exists): $loc -> $(realpath $loc)"
 	else
-		echo Linking: ~/.config/$cfg
-		[ -d $cfg ] && ln -st ~/.config "$(realpath $cfg)"
-		[ -f $cfg ] && ln -s "$(realpath $cfg)" ~/.config
+		echo Linking: $loc
+		ln -sT "$(realpath $cfg)" $loc
 	fi
 done
 
 for cfg in $home_cfgs
 do
-	if [ -L ~/$cfg ] && [ "$(realpath ~/$cfg)" = $(realpath $cfg) ]; then
-		$verbose && echo Already linked: ~/$cfg
-	elif [ -e ~/$cfg ]; then
-		echo "Error (already exists): ~/$cfg"
+	loc=~/$(basename $cfg)
+	if [ -L $loc ] && [ "$(realpath "$loc")" = $(realpath $cfg) ]; then
+		$verbose && echo Already linked: $loc
+	elif [ -e $loc ]; then
+		echo "Error (already exists): $loc -> $(realpath $loc)"
 	else
-		echo Linking: ~/$cfg
-		[ -d $cfg ] && ln -st ~ "$(realpath $cfg)"
-		[ -f $cfg ] && ln -s "$(realpath $cfg)" ~/$cfg
+		echo Linking: $loc
+		ln -sT "$(realpath $cfg)" $loc
 	fi
 done
 
@@ -74,25 +74,21 @@ do
 	if [ -L $loc ] && [ "$(realpath "$loc")" = $(realpath $cfg) ]; then
 		$verbose && echo Already linked: $loc
 	elif [ -e $loc ]; then
-		echo "Error (already exists): $loc"
+		echo "Error (already exists): $loc -> $(realpath $loc)"
 	else
 		echo Linking: $loc
-		[ -d $cfg ] && ln -st ~/.local/share/applications "$(realpath $cfg)"
-		[ -f $cfg ] && ln -s "$(realpath $cfg)" ~/.local/share/applications
+		ln -sT "$(realpath $cfg)" $loc
 	fi
 done
 
 rg Path= <~/.mozilla/firefox/profiles.ini | cut -f2 -d= | while read profile; do
 	chrome=~/.mozilla/firefox/$profile/chrome
-	mkdir -p $chrome
-	userChrome=$chrome/userChrome.css
-
-	if [ -L $userChrome ] && [ "$(realpath "$userChrome")" = $(realpath ./firefox-userChrome.css) ]; then
-		$verbose && echo Already linked: $userChrome
-	elif [ -e $chrome/userChrome.css ]; then
-		echo Error (already exists): $userChrome
+	if [ -L $chrome ] && [ "$(realpath "$chrome")" = $(realpath ./firefox/chrome) ]; then
+		$verbose && echo Already linked: $chrome
+	elif [ -e $chrome ]; then
+		echo "Error (already exists): $chrome -> $(realpath $chrome)"
 	else
-		echo Linking: $userChrome
-		ln -s "$(realpath ./firefox-userChrome.css)" $chrome
+		echo Linking: $chrome
+		ln -s -T "$(realpath ./firefox/chrome)" $chrome
 	fi
 done

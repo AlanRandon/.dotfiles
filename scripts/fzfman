@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+sources() {
+	man -k . | awk '{ gsub(/[()]/,"",$2); print "man " $2 " " $1 }'
+	tldr -l | awk '{ print "tldr \"" $1 "\"" }'
+}
+
+sources | fzf --bind 'enter:become(sh -c {})' --preview 'sh -c {}'

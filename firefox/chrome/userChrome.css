@@ -1,7 +1,3 @@
-/*
- * mkdir -p  ~/.mozilla/firefox/$PROFILE/chrome
- * ln -s $(realpath firefox-userChrome.css)  ~/.mozilla/firefox/$PROFILE/chrome/userChrome.css */
-
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
 #TabsToolbar {
