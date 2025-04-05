@@ -2,8 +2,8 @@
 
 pkill -O 1 -f battery-notifier
 while :; do
-	capacity=$(cat /sys/class/power_supply/BAT1/capacity)
-	status=$(cat /sys/class/power_supply/BAT1/status)
+	capacity=$(cat /sys/class/power_supply/BAT0/capacity)
+	status=$(cat /sys/class/power_supply/BAT0/status)
 	if [[ $capacity -lt 20 && $status != "Charging" ]]; then
 		notify-send "Battery Low" "$capacity%"
 		sleep 60

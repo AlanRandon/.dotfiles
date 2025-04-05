@@ -30,8 +30,8 @@
 }
 
 #nav-bar {
-  background-color: var(--catppuccin-base) !important;
-  color: var(--catppuccin-text) !important;
+  background-color: var(--catppuccin-base, #303446) !important;
+  color: var(--catppuccin-text, #c6d0f5) !important;
   border: none !important;
   box-shadow: none !important;
   height: min-content;
@@ -46,11 +46,11 @@ toolbarspring {
 #page-action-buttons,
 #identity-icon,
 #tracking-protection-icon {
-  color: var(--catppuccin-green) !important;
+  color: var(--catppuccin-green, #a6d189) !important;
 }
 
 #nav-bar .urlbar-input-box * {
-  color: var(--catppuccin-text) !important;
+  color: var(--catppuccin-text, #c6d0f5) !important;
 }
 
 #star-button-box {
@@ -58,7 +58,7 @@ toolbarspring {
 }
 
 #urlbar-container #urlbar-background {
-  background-color: var(--catppuccin-base) !important;
+  background-color: var(--catppuccin-base, #303446) !important;
   border: none !important;
   box-shadow: none !important;
 }

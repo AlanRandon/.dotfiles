@@ -74,18 +74,34 @@
         };
     in
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs; };
-        modules = [
-          {
-            nixpkgs.overlays = [
-              overlay-unstable
-              overlay-custom
-            ];
-          }
-          ./laptop
-        ];
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            {
+              nixpkgs.overlays = [
+                overlay-unstable
+                overlay-custom
+              ];
+            }
+            ./laptop
+          ];
+        };
+        # Using Greek Philosophers as hostnames now
+        socrates = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            {
+              nixpkgs.overlays = [
+                overlay-unstable
+                overlay-custom
+              ];
+            }
+            ./socrates
+          ];
+        };
       };
 
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
