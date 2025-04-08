@@ -2,6 +2,8 @@
 
 A collection of configurations.
 
-## Other tools
+## Not (yet) Automated
 
-- Port forwarding with [ssh-j](https://ssh-j.com)
+- Secrets (samba, motd-location for wttr.in, apod-api-key)
+- Linux user password
+- [Stylus Catppuccin](https://catppuccin-userstyles-customizer.uncenter.dev)

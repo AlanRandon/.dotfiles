@@ -71,6 +71,8 @@ alias l="eza --long --icons --header --git"
 alias lt="l --tree"
 alias m="~/scripts/fzfman"
 
+gcme() { git clone https://github.com/AlanRandon/$@ }
+
 export EDITOR=nvim
 export TERMINAL=ghostty
 export BROWSER=firefox

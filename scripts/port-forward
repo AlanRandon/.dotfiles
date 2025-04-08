@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+echo connect with: \`ssh -J alanrandon@ssh-j.com alan@laptop\` | glow &
+ssh alanrandon@ssh-j.com -N -R laptop:22:localhost:22

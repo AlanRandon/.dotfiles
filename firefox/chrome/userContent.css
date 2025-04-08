@@ -1,0 +1,9 @@
+* {
+	--emtpy: "";
+}
+
+@-moz-document domain(www.youtube.com) {
+	:is(#comment, #replies) #author-thumbnail {
+		display: none;
+	}
+}

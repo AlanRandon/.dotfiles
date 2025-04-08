@@ -59,6 +59,10 @@
     config.boot.kernelPackages.perf
     flamegraph
 
+    # System Monitor
+    # btop
+    htop-vim
+
     # Command line utilities
     unstable.fzf
     tree
@@ -72,7 +76,6 @@
     ripgrep
     fd
     jq
-    btop
     unstable.glow
     unixtools.xxd
     unstable.yazi
@@ -87,6 +90,8 @@
     # Text editor
     unstable.neovim
     # vscode # for liveshare
+    tree-sitter
+    stylua
 
     # Image editor
     gimp

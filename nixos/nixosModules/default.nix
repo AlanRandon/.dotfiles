@@ -15,6 +15,7 @@
     ./ssh.nix
     ./tor.nix
     ./man.nix
+    ./samba.nix
   ];
 
   boot.tmp.cleanOnBoot = true;
@@ -49,6 +50,7 @@
       ]; # Enable ‘sudo’ for the user.
       packages = [ ];
       useDefaultShell = true;
+      uid = 1000;
     };
     defaultUserShell = pkgs.zsh;
   };

@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+if [[ $1 = "start" ]]; then
+	mkdir ~/proliant
+	sshfs alan@Proliant:/ ~/proliant
+elif [[ $1 = "stop" ]]; then
+	fusermount -u ~/proliant
+	rmdir ~/proliant
+else
+	echo USAGE: $0 \{start\|stop\}
+fi

@@ -15,6 +15,8 @@ motd() {
 	df -h / | tail -n1 | awk '{ print int((1-$5/100)*'$cols'+1) }' | xargs -I{} sh -c "printf '·%.0s' {1..{}}"
 	echo -e '\x1b[0;0H\x1b[0m'
 
+	hostname | figlet -cw $(tput cols) -f speed | lolcat -S 30
+
 	curl "wttr.in/$(<~/scripts/motd-location)?format=3" -sm 1 | awk $center
 	echo
 	echo "[t]erminal" | awk $center 

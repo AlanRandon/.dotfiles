@@ -11,6 +11,7 @@ while getopts ':v' flag; do
 done
 
 cd "$(dirname $(realpath $0))/.."
+mkdir -p ~/.config
 
 xdg_cfgs=(
 	nvim
@@ -35,6 +36,7 @@ home_cfgs=(
 	.zshrc
 	.gitconfig
 	.tmux.conf
+	.npmrc
 	scripts
 )
 
