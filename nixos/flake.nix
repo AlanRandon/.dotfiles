@@ -74,8 +74,9 @@
         };
     in
     {
+      # Using Greek Philosophers as hostnames now
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
+        plato = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
@@ -85,10 +86,9 @@
                 overlay-custom
               ];
             }
-            ./laptop
+            ./plato
           ];
         };
-        # Using Greek Philosophers as hostnames now
         socrates = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };

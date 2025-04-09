@@ -20,7 +20,6 @@ xdg_cfgs=(
 	mako
 	alacritty
 	zathura
-	btop
 	newsboat
 	hypr
 	tridactyl
