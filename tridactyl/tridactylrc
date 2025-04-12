@@ -12,5 +12,6 @@ set searchurls.nw https://nixos.wiki/index.php?search=%s&go=Go
 set searchurls.yt https://www.youtube.com/results?search_query=%s
 set searchurls.rs https://crates.io/search?q=%s
 set searchurls.mdn https://developer.mozilla.org/en-US/search?q=%s
+set searchurls.zs https://ziglang.org/documentation/master/std/#%s
 
 colorscheme catppuccin

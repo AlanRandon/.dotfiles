@@ -16,6 +16,7 @@
     ./tor.nix
     ./man.nix
     ./samba.nix
+    ./git.nix
   ];
 
   boot.tmp.cleanOnBoot = true;
@@ -57,7 +58,6 @@
 
   programs = {
     zsh.enable = true;
-    git.enable = true;
   };
 
   services = {

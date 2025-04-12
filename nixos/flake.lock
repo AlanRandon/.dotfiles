@@ -71,11 +71,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1741633420,
-        "narHash": "sha256-hvS1wug+1y0D2nGksS41KZNDh9CVvOSBIONFlXbX+b0=",
+        "lastModified": 1744222525,
+        "narHash": "sha256-RscTvZgN/bHBQXwwXfADjTfMhmBroA3bres5LGR0rtE=",
         "owner": "AlanRandon",
         "repo": "mountui",
-        "rev": "368bdf542a0d46f7ba85abc76c07725d0d1243e0",
+        "rev": "bcb3b5dddaf122df77fe6f7324de9a88793c5dc7",
         "type": "github"
       },
       "original": {
