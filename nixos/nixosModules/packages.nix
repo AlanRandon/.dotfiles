@@ -15,6 +15,7 @@
     wakeonlan
     fortune
     cowsay
+    thokr
 
     # Git
     github-cli

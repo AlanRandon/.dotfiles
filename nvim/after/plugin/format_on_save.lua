@@ -1,3 +1,5 @@
+vim.g.zig_fmt_autosave = false -- builtin zig formatter hangs on save, let the LSP handle this
+
 local format_on_save = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
 local autoformat_enabled = true
 

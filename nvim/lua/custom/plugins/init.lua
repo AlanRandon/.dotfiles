@@ -1,7 +1,6 @@
 return {
 	{ "krady21/compiler-explorer.nvim" },
 	{ "ThePrimeagen/vim-be-good", cmd = "VimBeGood" },
-	{ "NStefan002/speedtyper.nvim", cmd = "Speedtyper", opts = {} },
 	{
 		"ActionScripted/tetris.nvim",
 		cmd = "Tetris",

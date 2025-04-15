@@ -23,6 +23,10 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
+export EDITOR=nvim
+export TERMINAL=ghostty
+export BROWSER=firefox
+
 zinit ice as"command" from"gh-r" \
           atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
           atpull"%atclone" src"init.zsh"
@@ -40,7 +44,9 @@ zinit wait lucid for \
  blockf \
     zsh-users/zsh-completions \
  atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions
+    zsh-users/zsh-autosuggestions \
+ pick"zsh/fzf-zsh-completion.sh" \
+    lincheney/fzf-tab-completion
 
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
@@ -61,21 +67,22 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 setopt autocd
 
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
+ZSH_AUTOSUGGEST_IGNORE_WIDGETS=(fzf_completion)
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+zvm_after_init() {
+	zvm_define_widget autosuggest-accept
+	zvm_bindkey viins '^I' autosuggest-accept
+	zvm_define_widget fzf_completion 
+	zvm_bindkey viins '^ ' fzf_completion
+}
 
 alias vim="nvim"
-alias nd="nix develop -c $SHELL"
+alias nd="nix develop -c zsh"
 alias l="eza --long --icons --header --git"
 alias lt="l --tree"
 alias m="~/scripts/fzfman"
 
 gcme() { git clone https://github.com/AlanRandon/$@ }
-
-export EDITOR=nvim
-export TERMINAL=ghostty
-export BROWSER=firefox
 
 [ -f $HOME/.cargo/env ] && . "$HOME/.cargo/env"
 [[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null

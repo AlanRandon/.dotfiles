@@ -1,48 +1,33 @@
+local set = vim.keymap.set
+local telescope_builtin = require("telescope.builtin")
+
+set("n", "gd", vim.lsp.buf.definition, { desc = "LSP: [G]oto [D]efinition" })
+set("n", "gr", telescope_builtin.lsp_references, { desc = "LSP: [G]oto [R]eferences" })
+set("n", "gI", vim.lsp.buf.implementation, { desc = "LSP: [G]oto [I]mplementation" })
+set("n", "gt", vim.lsp.buf.type_definition, { desc = "LSP: [G]oto [T]ype Definition" })
+
+set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP: [R]e[n]ame" })
+set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: [C]ode [A]ction" })
+
+set("n", "[d", vim.diagnostic.goto_next, { desc = "LSP: Goto Next [D]iagnostic" })
+set("n", "]d", vim.diagnostic.goto_prev, { desc = "LSP: Goto Previous [D]iagnostic" })
+
+set("n", "<leader>ds", telescope_builtin.lsp_document_symbols, { desc = "LSP: [D]ocument [S]ymbols" })
+set("n", "<leader>ws", telescope_builtin.lsp_dynamic_workspace_symbols, { desc = "LSP: [W]orkspace [S]ymbols" })
+set("n", "K", vim.lsp.buf.hover, { desc = "LSP: Hover Documentation" })
+set("n", "<leader>ih", ":InlayHintsToggle<CR>", { desc = "LSP: Toggle [I]nlay [H]ints" })
+
+set({ "i", "n" }, "<C-s>", vim.lsp.buf.signature_help, { desc = "LSP: [S]ignature Help" })
+
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 	border = "rounded",
 })
-
-vim.api.nvim_create_user_command("InlayHintsToggle", function()
-	---@diagnostic disable-next-line missing-parameter
-	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-end, {})
-
-local function on_attach(client, bufnr)
-	local function nmap(key, action, desc)
-		vim.keymap.set("n", key, action, { buffer = bufnr, desc = ("LSP: %s"):format(desc) })
-	end
-
-	nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-	nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-	nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-	nmap("gt", vim.lsp.buf.type_definition, "[G]oto [T]ype Definition")
-
-	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-	nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-
-	nmap("[d", vim.diagnostic.goto_next, "Goto Next [D]iagnostic")
-	nmap("]d", vim.diagnostic.goto_prev, "Goto Previous [D]iagnostic")
-
-	nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-	nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-	nmap("<leader>ih", ":InlayHintsToggle<CR>", "Toggle [I]nlay [H]ints")
-
-	vim.keymap.set(
-		{ "i", "n" },
-		"<C-s>",
-		vim.lsp.buf.signature_help,
-		{ buffer = bufnr, desc = "LSP: [S]ignature Help" }
-	)
-end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
 vim.g.haskell_tools = {
-	hls = {
-		on_attach = on_attach,
-	},
+	hls = {},
 }
 
 vim.g.rustaceanvim = {
@@ -60,7 +45,6 @@ vim.g.rustaceanvim = {
 			["experimental/serverStatus"] = function() end,
 		},
 		capabilities = capabilities,
-		on_attach = on_attach,
 		settings = {
 			["rust-analyzer"] = {
 				checkOnSave = {
@@ -101,18 +85,17 @@ require("mason-lspconfig").setup({
 		"cssls",
 		"emmet_ls",
 		"html",
+		"tailwindcss",
 	},
 	handlers = {
 		function(server_name)
 			lspconfig[server_name].setup({
 				capabilities = capabilities,
-				on_attach = on_attach,
 			})
 		end,
 		asm_lsp = function()
 			lspconfig["asm_lsp"].setup({
 				capabilities = capabilities,
-				on_attach = on_attach,
 				filetypes = { "asm", "vmasm", "nasm" },
 			})
 		end,
@@ -123,7 +106,6 @@ require("mason-lspconfig").setup({
 
 lspconfig.ocamllsp.setup({
 	capabilities = capabilities,
-	on_attach = on_attach,
 	settings = {
 		codelens = { enable = true },
 		inlayHints = { enable = true },
@@ -132,12 +114,10 @@ lspconfig.ocamllsp.setup({
 
 lspconfig.zls.setup({
 	capabilities = capabilities,
-	on_attach = on_attach,
 })
 
 lspconfig.nixd.setup({
 	capabilities = capabilities,
-	on_attach = on_attach,
 	settings = {
 		nixd = {
 			formatting = {

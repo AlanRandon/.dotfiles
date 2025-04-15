@@ -6,6 +6,7 @@ return {
 		{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "[F]ind [G]rep" },
 		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "[F]ind [B]uffer" },
 		{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "[F]ind [H]elp" },
+		{ "<leader>fm", "<cmd>Telescope man_pages<cr>", desc = "[F]ind [M]an Page" },
 		{ "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "[F]ind [D]iagnostic" },
 	},
 	cmd = "Telescope",

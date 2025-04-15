@@ -15,9 +15,7 @@ return {
 				mason = true,
 			},
 			custom_highlights = {
-				AlphaHeader = { fg = pallette.green },
-				AlphaFooter = { fg = pallette.subtext0 },
-				AlphaButtonShortcut = { fg = pallette.green, style = { "bold" } },
+				LineNr = { fg = pallette.overlay1 },
 			},
 			transparent_background = true,
 			no_italic = true,
