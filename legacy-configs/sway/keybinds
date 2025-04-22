@@ -149,8 +149,8 @@ mode $media {
 bindsym $mod+Alt+n exec ~/scripts/random-apod
 bindsym $mod+Alt+Shift+n exec ~/scripts/random-apod reset
 
-bindsym $mod+Shift+n exec alacritty -e nmtui
-bindsym $mod+Shift+v exec pavucontrol
+bindsym $mod+Shift+n exec $term -e impala
+bindsym $mod+Shift+v exec $term -e pulsemixer
 
 # Switch the current container between different layout styles
 # bindsym $mod+s layout stacking

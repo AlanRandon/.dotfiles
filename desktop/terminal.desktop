@@ -1,5 +1,5 @@
 [Desktop Entry]
-Actions=glow;newsboat;mountui;bluetuith
+Actions=glow;newsboat;mountui;bluetuith;netui
 Terminal=true
 Exec=zsh
 Name=Terminal
@@ -23,3 +23,8 @@ Name=mountui
 Exec=sh -c ~/scripts/run-bluetuith
 Terminal=true
 Name=bluetuith
+
+[Desktop Action netui]
+Exec=nix run ~/projects/netui
+Terminal=true
+Name=netui

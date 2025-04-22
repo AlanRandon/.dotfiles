@@ -57,7 +57,7 @@
     "format-wifi": " ",
     "format-ethernet": "󰈁",
     "format-disconnected": "󰖪 ",
-    "on-click": "alacritty -e nmtui"
+    "on-click": "ghostty -e impala"
   },
   "pulseaudio": {
     "format": "{volume}% {icon}  {format_source}",
@@ -72,7 +72,7 @@
         ""
       ]
     },
-    "on-click": "pavucontrol"
+    "on-click": "ghostty -e pulsemixer"
   },
   "mpris": {
     "format": "{player_icon} {title}",

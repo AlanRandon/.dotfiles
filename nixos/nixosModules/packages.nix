@@ -16,6 +16,10 @@
     fortune
     cowsay
     thokr
+    clinfo
+
+    # Networking
+    impala
 
     # Git
     github-cli
@@ -104,6 +108,7 @@
     playerctl
     mpv
     pavucontrol
+    pulsemixer
     pulseaudio
 
     # LaTeX

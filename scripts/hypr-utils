@@ -1,15 +1,23 @@
 #!/usr/bin/env sh
 
+if [[ $1 = "set-touchpad" ]]; then
+	device=$(hyprctl devices | grep touchpad | xargs)
+	status_file=${XDG_RUNTIME_DIR:-/run/user/$UID}/touchpad-status
+	echo $2 > $status_file
+	hyprctl keyword device\[$device\]:enabled $2
+fi
 
-if [[ $1 = "mice" ]]; then
-	# required, but who knows why
-
-	hyprctl -j devices | \
-		jq -r '.mice.[] | select(.name != "kanata-1").name' | \
-		while read device; do
-			hyprctl keyword device\[$device\]:enabled2 $2
-			hyprctl keyword device\[$device\]:enabled $2
-		done
+if [[ $1 = "toggle-touchpad" ]]; then
+	device=$(hyprctl devices | grep touchpad | xargs)
+	status_file=${XDG_RUNTIME_DIR:-/run/user/$UID}/touchpad-status
+	touch $status_file
+	case $(<$status_file) in
+		true) status=false && notify-send "Touchpad Disabled" ;;
+		false) status=true && notify-send "Touchpad Enabled" ;;
+		*) status=false && notify-send "Touchpad Disabled" ;;
+	esac
+	echo $status > $status_file
+	hyprctl keyword device\[$device\]:enabled $status
 fi
 
 if [[ $1 = "random-wallpaper" ]]; then

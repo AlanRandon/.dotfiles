@@ -81,6 +81,8 @@ alias nd="nix develop -c zsh"
 alias l="eza --long --icons --header --git"
 alias lt="l --tree"
 alias m="~/scripts/fzfman"
+alias zb="zig build"
+alias zbr="zig build run"
 
 gcme() { git clone https://github.com/AlanRandon/$@ }
 

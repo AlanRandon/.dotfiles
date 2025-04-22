@@ -34,8 +34,7 @@
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
-      zlib
-      openssl.dev
+      # unstable.util-linux.lib
     ];
   };
 

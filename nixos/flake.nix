@@ -33,8 +33,6 @@
       url = "github:AlanRandon/mountui";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        zig-overlay.follows = "zig-overlay";
-        zls-overlay.follows = "zls-overlay";
         flake-utils.follows = "flake-utils";
       };
     };

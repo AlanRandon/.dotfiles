@@ -1,0 +1,21 @@
+#!/usr/bin/env -S nix shell nixpkgs#vulnix nixpkgs#colorized-logs -c sh
+
+vulnix -SDj \
+	| jq -c '.[]' \
+	| while IFS= read -r pkg; do
+		jq '$pkg | "# \(.pname) (\(.name))"' -rn --argjson pkg "$pkg" | pipetty glow
+		nix why-depends --derivation /run/current-system "$(jq '$pkg.derivation' -rn --argjson pkg "$pkg")"
+
+		jq '$pkg.affected_by.[]' -rn --argjson pkg "$pkg" \
+			| while IFS= read -r cve; do
+				jq '"## \($cve) \($pkg.cvssv3_basescore[$cve] // "")\n\($pkg.description[$cve])"' \
+					-rn --arg cve "$cve" --argjson pkg "$pkg" \
+					| pipetty glow
+				echo
+			done
+
+		echo
+	done \
+	| less
+
+# vim: ft=sh

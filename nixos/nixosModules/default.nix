@@ -26,7 +26,10 @@
     noto-fonts-color-emoji
   ];
 
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    wifi.backend = "iwd";
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/London";
@@ -81,6 +84,7 @@
         # intel-compute-runtime
         # intel-ocl
         intel-compute-runtime-legacy1
+        pocl
       ];
     };
     bluetooth = {

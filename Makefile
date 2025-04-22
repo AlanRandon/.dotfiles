@@ -1,4 +1,4 @@
-.PHONY: install gc clean
+.PHONY: install gc clean update
 
 install:
 	git add .
