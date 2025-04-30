@@ -34,6 +34,10 @@
 
     # Cursor theme
     catppuccin-cursors.frappeLight
+    (unstable.magnetic-catppuccin-gtk.override {
+      tweaks = [ "frappe" ];
+      accent = [ "green" ];
+    })
 
     # Privileges
     hyprpolkitagent
@@ -50,6 +54,7 @@
             "org/gnome/desktop/interface" = {
               cursor-theme = "catppuccin-frappe-light-cursors";
               application-prefer-dark-theme = true;
+              gtk-theme = "Catppuccin-GTK-Green-Dark-Frappe";
             };
           };
           lockAll = true;
@@ -62,12 +67,14 @@
     "xdg/gtk-2.0/gtkrc".text = ''
       gtk-application-prefer-dark-theme = true
       gtk-cursor-theme-name="catppuccin-frappe-light-cursors"
+      gtk-theme-name = "Catppuccin-GTK-Green-Dark-Frappe"
     '';
 
     "xdg/gtk-3.0/settings.ini".text = ''
       [Settings]
       gtk-application-prefer-dark-theme = true
       gtk-cursor-theme-name = catppuccin-frappe-light-cursors
+      gtk-theme-name = Catppuccin-GTK-Green-Dark-Frappe
     '';
   };
 

@@ -1,6 +1,10 @@
 {
-  "height": 30,
+  "height": 10,
   "spacing": 4,
+  "margin-top": 5,
+  "margin-left": 5,
+  "margin-right": 5,
+  "margin-bottom": 0,
   "modules-left": [
     "sway/workspaces",
     "hyprland/workspaces",
@@ -14,13 +18,14 @@
   "modules-right": [
     "tray",
     "backlight",
-    "pulseaudio",
+    "pulseaudio#sink",
+    "pulseaudio#source",
     "network",
     "battery",
     "clock"
   ],
   "backlight": {
-    "format": "{percent}% {icon}",
+    "format": "{icon} {percent}%",
     "format-icons": [
       "󱩎",
       "󱩏",
@@ -35,16 +40,16 @@
     ]
   },
   "clock": {
-    "format": "{:%H:%M}  "
+    "format": "󰃰 {:%H:%M}"
   },
   "battery": {
     "states": {
       "warning": 30,
       "critical": 15
     },
-    "format": "{capacity}% {icon}{time}",
-    "format-charging": "{capacity}%  ",
-    "format-time": " <i>{H}:{m}</i>",
+    "format": "{icon}{time} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-time": " {H}:{m}",
     "format-icons": [
       " ",
       " ",
@@ -59,11 +64,23 @@
     "format-disconnected": "󰖪 ",
     "on-click": "ghostty -e impala"
   },
-  "pulseaudio": {
-    "format": "{volume}% {icon}  {format_source}",
-    "format-muted": "{volume}% 󰝟  {format_source}",
-    "format-source": "{volume}% ",
-    "format-source-muted": "{volume}% ",
+  "pulseaudio#sink": {
+    "format": "{volume}% {icon}",
+    "format-muted": "󰝟 {volume}%",
+    "format-icons": {
+      "headphone": " ",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "ghostty -e pulsemixer"
+  },
+  "pulseaudio#source": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": " {volume}%",
     "format-icons": {
       "headphone": " ",
       "default": [

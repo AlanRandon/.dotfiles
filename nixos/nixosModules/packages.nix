@@ -99,7 +99,7 @@
     stylua
 
     # Image editor
-    gimp
+    unstable.gimp3
 
     # Sound editor
     audacity

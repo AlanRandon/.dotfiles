@@ -2,6 +2,7 @@
 @define-color base-translucent rgba(48, 52, 70, 0.8);
 @define-color text #c6d0f5;
 @define-color green #a6d189;
+@define-color overlay0 #737994;
 @define-color red #e78284;
 @define-color blue #8caaee;
 
@@ -11,26 +12,29 @@
 
 window#waybar {
   color: @text;
-  background: transparent;
-  font-size: 0.9em;
+  background: @base;
+  font-size: 1em;
+  border-radius: 5px;
 }
 
 window#waybar label.module,
 #tray {
-  margin: 10px 2.5px 0;
-  padding: 0.5em 1em;
-  border-radius: 0.5em;
+  margin: 5px;
+  margin-right: 0;
+  padding: 0.3em 0.5em;
+  border-radius: 5px;
   background: @base;
+  border: @overlay0 solid 1px;
 }
 
 window#waybar label.module#clock {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 #workspaces {
-  margin: 10px 2.5px 0 10px;
-  border-radius: 1000px;
-  background: @base;
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 #battery.critical {
@@ -39,18 +43,21 @@ window#waybar label.module#clock {
 }
 
 #workspaces button {
+  margin-right: 5px;
   color: @text;
   padding: 0.2em 0.5em;
   border: none;
   box-shadow: none;
   text-shadow: none;
   transition: none;
-  border-radius: 1000px;
+  border-radius: 5px;
+  border: @overlay0 solid 1px;
 }
 
 #workspaces button.active,
 #workspaces button.focused,
 #workspaces button:hover {
-  background: @green;
-  color: @base;
+  /* background: @green; */
+  /* color: @base; */
+  border-color: @green;
 }
