@@ -19,8 +19,8 @@ return {
 	{ "Bilal2453/luvit-meta", lazy = true },
 	{
 		"mrcjkb/rustaceanvim",
-		version = "^3",
-		ft = { "rust" },
+		version = "^6",
+		lazy = false,
 	},
 	{
 		"mrcjkb/haskell-tools.nvim",

@@ -3,6 +3,7 @@ Actions=glow;newsboat;mountui;bluetuith;netui
 Terminal=true
 Exec=zsh
 Name=Terminal
+Type=Application
 
 [Desktop Action glow]
 Exec=glow
