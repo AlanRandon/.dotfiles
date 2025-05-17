@@ -20,6 +20,14 @@ https://www.youtube.com/feeds/videos.xml?playlist_id=PLwpOQsKKqZGNgqrjxnKizM8p3S
 "query:European News:tags # \"europe-news\""
 "query:World News:tags # \"world-news\""
 "query:UK News:tags # \"uk-news\""
+"query:Local News:tags # \"local-news\""
+
+https://www.oxford.gov.uk/rss/news ! local-news
+http://feeds.bbci.co.uk/news/england/oxford/rss.xml ! news local-news bbc
+https://www.theguardian.com/uk/oxford ! news local-news the-guardian
+
+"query:Local MP Parliament Appearences:tags # \"local-mp-appearences\""
+https://www.theyworkforyou.com/rss/mp/26540.rdf ! local-mp-appearences
 
 "query:This week:age < 7"
 "query:Old:(age > 7 and tags # \"news\")"
@@ -52,4 +60,5 @@ https://feeds.bbci.co.uk/news/world/europe/rss.xml ! news europe-news bbc
 https://www.theguardian.com/uk/rss ! news uk-news the-guardian
 https://www.theguardian.com/world/rss ! news world-news the-guardian
 https://www.theguardian.com/world/europe-news/rss ! news europe-news the-guardian
+https://www.theguardian.com/uk-news/oxfordshire/rss ! news local-news the-guardian
 "query:The Guardian:tags # \"the-guardian\""

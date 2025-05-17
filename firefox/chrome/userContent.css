@@ -1,9 +1,16 @@
 * {
-	--emtpy: "";
+  --emtpy: "";
 }
 
 @-moz-document domain(www.youtube.com) {
-	:is(#comment, #replies) #author-thumbnail {
-		display: none;
-	}
+  :is(#comment, #replies) {
+    #header :is(#author-text, #name),
+    #author-thumbnail {
+      display: none !important;
+    }
+  }
+
+  ytd-comments-header-renderer {
+    display: none !important;
+  }
 }

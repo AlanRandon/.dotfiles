@@ -112,7 +112,7 @@ Run `chown -R <USERNAME> /home/<USERNAME>` to gain ownership of your own home di
 ## Userspace configuration
 
 Run `/home/<USERNAME>/projects/.dotfiles/scripts/install-dotfiles` to install additional configuration files (e.g. window manager and vim configuration).
-Exit the `root` login and login as the user - use `Win+Enter` to start a new terminal - zinit will install zsh plugins automatically and `Ctrl+Shift+I` will install tmux plugins. Use the `vim` alias to enter neovim for lazy to install neovim plugins, try a `:checkhealth` when this is done to check the vim environment is configured as should be.
+Exit the `root` login and login as the user - use `Win+Enter` to start a new terminal - zinit will install zsh plugins automatically. Use the `vim` alias to enter neovim for lazy to install neovim plugins, try a `:checkhealth` when this is done to check the vim environment is configured as should be.
 Open firefox with `Win+b` and ensure the appropriate extensions are installed. Userstyles can be downloaded from the [catppuccin userstyles customizer](https://catppuccin-userstyles-customizer.uncenter.dev) and imported into the Stylus extension.
 
 ## Secrets

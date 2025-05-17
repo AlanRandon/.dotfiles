@@ -65,7 +65,7 @@
     "on-click": "ghostty -e impala"
   },
   "pulseaudio#sink": {
-    "format": "{volume}% {icon}",
+    "format": "{icon} {volume}%",
     "format-muted": "󰝟 {volume}%",
     "format-icons": {
       "headphone": " ",

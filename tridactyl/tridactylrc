@@ -15,3 +15,4 @@ set searchurls.mdn https://developer.mozilla.org/en-US/search?q=%s
 set searchurls.zs https://ziglang.org/documentation/master/std/#%s
 
 colorscheme catppuccin
+autocmd DocLoad .*\.youtube\.com/.* js -r youtube.js

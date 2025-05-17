@@ -6,8 +6,9 @@ A collection of configurations.
 
 See [INSTALL.md](INSTALL.md)
 
-## Not (yet) Automated
+## Issues
 
-- Secrets (samba, motd-location for wttr.in, apod-api-key)
-- Linux user password
-- [Stylus Catppuccin](https://catppuccin-userstyles-customizer.uncenter.dev)
+- `zinit` does not provide a lock file for plugins
+- Missing secrets management (samba, motd-location for wttr.in, apod-api-key)
+- Missing linux user password management
+- [Stylus Catppuccin](https://catppuccin-userstyles-customizer.uncenter.dev) not automated

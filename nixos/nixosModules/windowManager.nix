@@ -39,6 +39,9 @@
       accent = [ "green" ];
     })
 
+    adwaita-icon-theme
+    hicolor-icon-theme
+
     # Privileges
     hyprpolkitagent
   ];
@@ -62,6 +65,8 @@
       ];
     };
   };
+
+  xdg.icons.enable = true;
 
   environment.etc = {
     "xdg/gtk-2.0/gtkrc".text = ''

@@ -1,8 +1,9 @@
 # zmodload zsh/zprof
-PATH=$PATH:$HOME/.npm-global/bin
+PATH=$PATH:$HOME/.npm-global/bin:$HOME/.local/bin:
 which hyprctl &> /dev/null && export HYPRLAND_INSTANCE_SIGNATURE=$(hyprctl -j instances | jq -r '.[0].instance')
 
-if [[ $TERM_PROGRAM != "vscode" ]] && [ -z $TMUX ]; then
+# [[ $TERM_PROGRAM != "vscode" ]] &&
+if [ -z $TMUX ]; then
 	session=$(tmux list-sessions -F "#{session_id}" | head -1)
 	if [ -z $session ]; then
 		exec tmux new-session
@@ -27,29 +28,28 @@ export EDITOR=nvim
 export TERMINAL=ghostty
 export BROWSER=firefox
 
-zinit ice as"command" from"gh-r" \
-          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-          atpull"%atclone" src"init.zsh"
-zinit light starship/starship
-
-zinit ice wait lucid
-zinit light chisui/zsh-nix-shell
-
-zinit ice wait lucid
-zinit snippet OMZP::git
+zinit wait lucid for \
+	OMZL::clipboard.zsh \
+	OMZP::git 
 
 zinit wait lucid for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma-continuum/fast-syntax-highlighting \
- blockf \
-    zsh-users/zsh-completions \
- atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions \
- pick"zsh/fzf-zsh-completion.sh" \
-    lincheney/fzf-tab-completion
+	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+		zdharma-continuum/fast-syntax-highlighting \
+	blockf \
+		zsh-users/zsh-completions \
+	atload"!_zsh_autosuggest_start" \
+		zsh-users/zsh-autosuggestions \
+	pick"zsh/fzf-zsh-completion.sh" \
+		lincheney/fzf-tab-completion
 
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
+
+zvm_vi_yank () {
+	zvm_yank
+	printf %s "${CUTBUFFER}" |  wl-copy -n
+	zvm_exit_visual_mode
+}
 
 zinit cdreplay -q
 
@@ -90,4 +90,7 @@ gcme() { git clone https://github.com/AlanRandon/$@ }
 [[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 command -v fzf &> /dev/null && eval "$(fzf --zsh)"
+
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
 # zprof | less

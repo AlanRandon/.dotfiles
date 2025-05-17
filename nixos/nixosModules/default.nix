@@ -17,6 +17,7 @@
     ./man.nix
     ./samba.nix
     ./git.nix
+    ./tmux.nix
   ];
 
   boot.tmp.cleanOnBoot = true;

@@ -3,7 +3,8 @@
 add_newline = false
 
 format = """
-${custom.ls-shell}\
+ $shell\
+${env_var.SHLVL}\
 $username\
 $directory \
 """
@@ -33,8 +34,10 @@ style = "fg:#a5adce"
 time_format = '%I:%M:%S %P'
 format = '[$time]($style)'
 
-[custom.ls-shell]
-when = true
-command = "exec ~/scripts/ls-current-shells"
+[env_var.SHLVL]
 style = "fg:#a5adce"
-format = '[ $output ]($style)'
+format = "[\\($env_value\\) ]($style)"
+
+[shell]
+disabled = false
+style = "fg:#a5adce"

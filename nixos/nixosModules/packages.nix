@@ -17,6 +17,8 @@
     cowsay
     thokr
     clinfo
+    unstable.mcpelauncher-ui-qt
+    starship
 
     # Networking
     impala
@@ -69,23 +71,25 @@
     htop-vim
 
     # Command line utilities
-    unstable.fzf
     tree
     ffmpeg
     figlet
     lolcat
-    bat
     bc
     wget
     dig
-    ripgrep
-    fd
     jq
     unstable.glow
     unixtools.xxd
     unstable.yazi
     timg
-    eza
+    unstable.fzf
+
+    zoxide # better cd
+    bat # better cat
+    eza # better ls
+    ripgrep # better grep
+    fd # better find
 
     # Terminal
     unstable.alacritty # Emulator
