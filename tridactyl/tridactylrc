@@ -13,6 +13,9 @@ set searchurls.yt https://www.youtube.com/results?search_query=%s
 set searchurls.rs https://crates.io/search?q=%s
 set searchurls.mdn https://developer.mozilla.org/en-US/search?q=%s
 set searchurls.zs https://ziglang.org/documentation/master/std/#%s
+set searchurls.tw https://tailwindcss.com/docs/%s
 
 colorscheme catppuccin
-autocmd DocLoad .*\.youtube\.com/.* js -r youtube.js
+
+autocmd UriChange .*youtube\.com js -r youtube.js
+autocmd DocStart .*youtube\.com js -r youtube.js

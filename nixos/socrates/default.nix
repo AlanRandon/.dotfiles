@@ -10,6 +10,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [ "kvm-intel" ];
     # Use the systemd-boot EFI boot loader.
     loader = {
       systemd-boot.enable = true;

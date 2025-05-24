@@ -18,12 +18,13 @@
     ./samba.nix
     ./git.nix
     ./tmux.nix
+    ./virtManager.nix
   ];
 
   boot.tmp.cleanOnBoot = true;
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraMono" ]; })
+    nerd-fonts.fira-mono
     noto-fonts-color-emoji
   ];
 

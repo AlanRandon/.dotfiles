@@ -12,6 +12,9 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCz_3xlMTVUYYTQqCfh9lD7w ! n
 "query:TLDR News Daily:tags # \"tldr-daily\""
 "query:TLDR News:tags # \"tldr-news\""
 
+https://www.youtube.com/feeds/videos.xml?channel_id=UCKRw8GAAtm27q4R3Q0kst_g ! news juicemedia
+"query:thejuicemedia:tags # \"juicemedia\""
+
 "query:Today:age < 1"
 
 https://www.youtube.com/feeds/videos.xml?playlist_id=PLwpOQsKKqZGNgqrjxnKizM8p3SBGLTqWa ! puppet-regime
@@ -47,6 +50,11 @@ https://dotfyle.com/this-week-in-neovim/rss.xml ! neovim programming
 "query:Neovim:tags # \"neovim\""
 
 https://weekly.nixos.org/feeds/all.rss.xml nixos programming
+https://nixos.org/blog/newsletters-rss.xml ! nixos programming
+https://nixos.org/blog/announcements-rss.xml ! nixos programming
+https://nixos.org/blog/stories-rss.xml ! nixos programming
+"query:NixOS:tags # \"nixos\""
+
 https://fasterthanli.me/index.xml fasterthanlime programming
 
 https://audioboom.com/channels/5112392.rss ! news uk-news private-eye podcasts

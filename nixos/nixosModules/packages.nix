@@ -20,6 +20,9 @@
     unstable.mcpelauncher-ui-qt
     starship
 
+    dysk
+    du-dust
+
     # Networking
     impala
 

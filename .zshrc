@@ -29,10 +29,6 @@ export TERMINAL=ghostty
 export BROWSER=firefox
 
 zinit wait lucid for \
-	OMZL::clipboard.zsh \
-	OMZP::git 
-
-zinit wait lucid for \
 	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
 		zdharma-continuum/fast-syntax-highlighting \
 	blockf \
@@ -40,16 +36,21 @@ zinit wait lucid for \
 	atload"!_zsh_autosuggest_start" \
 		zsh-users/zsh-autosuggestions \
 	pick"zsh/fzf-zsh-completion.sh" \
-		lincheney/fzf-tab-completion
+		lincheney/fzf-tab-completion \
+		OMZP::git \
 
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 
-zvm_vi_yank () {
-	zvm_yank
-	printf %s "${CUTBUFFER}" |  wl-copy -n
-	zvm_exit_visual_mode
-}
+for f in zvm_backward_kill_region zvm_yank zvm_replace_selection zvm_change_surround_text_object zvm_vi_delete zvm_vi_change zvm_vi_change_eol; do
+  eval "$(echo "_$f() {"; declare -f $f | tail -n +2)"
+  eval "$f() { _$f; echo -en \$CUTBUFFER | wl-copy -n }"
+done
+
+for f in zvm_vi_put_after zvm_vi_put_before; do
+  eval "$(echo "_$f() {"; declare -f $f | tail -n +2)"
+  eval "$f() { CUTBUFFER=\$(wl-paste); _$f; zvm_highlight clear }"
+done
 
 zinit cdreplay -q
 
