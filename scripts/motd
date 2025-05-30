@@ -6,26 +6,11 @@ if [ -z $1 ]; then
 fi
 
 motd() {
-	echo -e '\x1b[1000;1000H'
-	cols=$(tput cols)
-	center='{ padding = '$cols' - length; printf "%*s" $0 "\n", padding / 2, "" }'
-	df -h / | tail -n1 | awk '{ print "Storage: " $3 "/" $2 }' | awk $center
-	df -h / | tail -n1 | awk '{ print int($5/100*'$cols') }' | perl -CS -e 'print ("\x{2588}" x <STDIN>)' | lolcat
-	echo -n '\x1b[30m'
-	df -h / | tail -n1 | awk '{ print int((1-$5/100)*'$cols'+1) }' | xargs -I{} sh -c "printf '·%.0s' {1..{}}"
-	echo -e '\x1b[0;0H\x1b[0m'
-
-	hostname | figlet -cw $(tput cols) -f speed | lolcat -S 30
-
-	curl "wttr.in/$(<~/scripts/motd-location)?format=3" -sm 1 | awk $center
-	echo
-	echo "[t]erminal" | awk $center 
-	echo "[b]rowser " | awk $center 
-	echo "[q]uit    " | awk $center 
-	echo
+	sleep 0.01
+	hostname | figlet -cw $(tput cols) -f speed | clolcat
+	curl "wttr.in/$(<~/scripts/motd-location)?format=3" -sm 1
+	dysk
 }
-
-msg=$(motd)
 
 motd & while :; do
 	read -sk1 shortcut

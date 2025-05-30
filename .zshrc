@@ -84,6 +84,7 @@ alias lt="l --tree"
 alias m="~/scripts/fzfman"
 alias zb="zig build"
 alias zbr="zig build run"
+alias mkflake="~/scripts/mkflake"
 
 gcme() { git clone https://github.com/AlanRandon/$@ }
 

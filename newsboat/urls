@@ -1,6 +1,9 @@
 "query:Programming:tags # \"programming\""
 "query:Podcasts:tags # \"podcasts\""
 
+https://discourse.nixos.org/c/announcements/security/56.rss ! nixos nixos-security programming
+"query:NixOS Security:tags # \"nixos-security\""
+
 https://www.youtube.com/feeds/videos.xml?playlist_id=PL40441042C458B62B ! news uk-news pmqs
 "query:Prime Minister's Questions:tags # \"pmqs\""
 

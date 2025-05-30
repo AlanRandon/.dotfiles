@@ -77,7 +77,7 @@
     tree
     ffmpeg
     figlet
-    lolcat
+    clolcat
     bc
     wget
     dig
