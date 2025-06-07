@@ -37,9 +37,10 @@ window#waybar label.module#clock {
   margin-bottom: 5px;
 }
 
-#battery.critical {
+window#waybar label.module#battery.critical {
   color: @base;
   background: @red;
+  border: none;
 }
 
 #workspaces button {

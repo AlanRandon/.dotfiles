@@ -1,4 +1,5 @@
 vim.g.mapleader = " " -- use space as <leader>
+vim.g.maplocalleader = " " -- use space as <localleader>
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then

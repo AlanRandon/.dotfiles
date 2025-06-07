@@ -92,9 +92,10 @@
     "on-click": "ghostty -e pulsemixer"
   },
   "mpris": {
-    "format": "{player_icon} {title}",
-    "format-paused": "{status_icon} {title}",
-    "title-len": 20,
+    "format": "{player_icon} {position}/{length} {title}",
+    "format-paused": "{status_icon} {position}/{length} {title}",
+    "title-len": 15,
+    "interval": 5,
     "player-icons": {
       "default": " "
     },

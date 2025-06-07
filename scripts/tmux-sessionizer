@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
 PATH=$PATH:$HOME/.fzf/bin
-FZF_CMD="fzf"
 
+FZF_CMD="fzf"
 [[ -z $DISABLE_POPUP ]] && FZF_CMD="fzf-tmux -p 80%,80% --"
 
 if [[ $# -eq 1 ]]; then

@@ -32,4 +32,12 @@ return {
 		"nvimtools/none-ls.nvim",
 		config = function() end,
 	},
+	{
+		"Julian/lean.nvim",
+		opts = {
+			abbreviations = { builtin = true },
+			lsp = {},
+			mappings = true,
+		},
+	},
 }

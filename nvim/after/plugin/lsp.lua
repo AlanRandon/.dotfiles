@@ -116,6 +116,10 @@ lspconfig.zls.setup({
 	capabilities = capabilities,
 })
 
+lspconfig.clangd.setup({
+	capabilities = capabilities,
+})
+
 lspconfig.nixd.setup({
 	capabilities = capabilities,
 	settings = {
