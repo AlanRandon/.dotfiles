@@ -19,6 +19,7 @@
     ./git.nix
     ./tmux.nix
     ./virtManager.nix
+    ./intel.nix
   ];
 
   boot.tmp.cleanOnBoot = true;
@@ -63,6 +64,7 @@
 
   programs = {
     zsh.enable = true;
+    bandwhich.enable = true;
   };
 
   services = {
@@ -75,20 +77,6 @@
   powerManagement.powertop.enable = true;
 
   hardware = {
-    # pulseaudio.enable = true;
-    graphics = {
-      enable = true;
-      extraPackages = with pkgs; [
-        # these may do something?
-        # intel-media-driver
-        # intel-vaapi-driver
-        # vaapiVdpau
-        # intel-compute-runtime
-        # intel-ocl
-        intel-compute-runtime-legacy1
-        pocl
-      ];
-    };
     bluetooth = {
       enable = true;
       powerOnBoot = false;

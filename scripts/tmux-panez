@@ -8,7 +8,8 @@ list_panes_cmd="tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_in
 selected=$($fzf_cmd \
 	--bind "start:reload:$list_panes_cmd" \
 	--bind "change:reload:sleep 0.1; $list_panes_cmd || true" \
-	--bind "ctrl-x:execute(tmux kill-pane -t {})+reload($list_panes_cmd)")
+	--bind "ctrl-x:execute(tmux kill-pane -t {})+reload($list_panes_cmd)" \
+	--preview 'tmux capture-pane -pet {}')
 
 if [[ -z $selected ]]; then
 	exit 0

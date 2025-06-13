@@ -8,6 +8,8 @@
 
   networking.hostName = "plato";
 
+  dotfiles.intel.enable = true;
+
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     # Use the systemd-boot EFI boot loader.

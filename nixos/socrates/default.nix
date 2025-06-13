@@ -8,6 +8,8 @@
 
   networking.hostName = "socrates";
 
+  dotfiles.intel.enable = true;
+
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "kvm-intel" ];

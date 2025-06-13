@@ -10,7 +10,10 @@ if [[ $# -eq 1 ]]; then
 else
 	paths() {
 		fd -ad1 -td . ~
-		fd -Had1 -td . ~/projects
+		[ -d ~/Documents ] && fd -ad1 -td . ~/Documents
+		[ -d ~/Music ] && fd -ad1 -td . ~/Music
+		[ -d ~/projects ] && fd -Had1 -td . ~/projects
+		[ -d ~/projects/scratch ] && fd -Had1 -td . ~/projects/scratch
 	}
 	selected=$(paths | $FZF_CMD --preview '
 		selected_name=$(basename {1} | tr . _)

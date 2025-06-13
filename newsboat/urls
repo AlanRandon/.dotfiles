@@ -60,6 +60,9 @@ https://nixos.org/blog/stories-rss.xml ! nixos programming
 
 https://fasterthanli.me/index.xml fasterthanlime programming
 
+https://www.tomscott.com/updates.xml tom-scott
+https://feeds.megaphone.fm/lateralcast tom-scott
+
 https://audioboom.com/channels/5112392.rss ! news uk-news private-eye podcasts
 "query:Private Eye:tags # \"private-eye\""
 
