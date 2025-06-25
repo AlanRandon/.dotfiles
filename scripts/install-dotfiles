@@ -30,6 +30,7 @@ xdg_cfgs=(
 	ghostty
 	yazi
 	glow
+	himalaya
 )
 
 home_cfgs=(

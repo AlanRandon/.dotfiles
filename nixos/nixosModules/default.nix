@@ -20,6 +20,7 @@
     ./tmux.nix
     ./virtManager.nix
     ./intel.nix
+    ./email.nix
   ];
 
   boot.tmp.cleanOnBoot = true;

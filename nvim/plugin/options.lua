@@ -11,6 +11,9 @@ o.confirm = true -- confirm closing when not saved rather than aborting command
 o.formatoptions:remove("o") -- stop "o" extending comments
 o.updatetime = 250
 
+o.spelllang = "en_gb"
+o.wrap = false
+
 -- show whitespace hints
 o.list = true
 o.listchars = { tab = "» ", trail = "·", nbsp = "␣" }

@@ -15,8 +15,6 @@ motd() {
 motd & while :; do
 	read -sk1 shortcut
 	case "${shortcut}"; in
-		t) DISABLE_POPUP=true exec ~/scripts/tmux-sessionizer ;;
-		b) hyprctl keyword exec '$browser' && exit ;;
 		q) exit
 	esac
 done

@@ -9,19 +9,24 @@ set("n", "gt", vim.lsp.buf.type_definition, { desc = "LSP: [G]oto [T]ype Definit
 set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP: [R]e[n]ame" })
 set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: [C]ode [A]ction" })
 
-set("n", "[d", vim.diagnostic.goto_next, { desc = "LSP: Goto Next [D]iagnostic" })
-set("n", "]d", vim.diagnostic.goto_prev, { desc = "LSP: Goto Previous [D]iagnostic" })
+set("n", "[d", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "LSP: Goto Next [D]iagnostic" })
+
+set("n", "]d", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "LSP: Goto Previous [D]iagnostic" })
 
 set("n", "<leader>ds", telescope_builtin.lsp_document_symbols, { desc = "LSP: [D]ocument [S]ymbols" })
 set("n", "<leader>ws", telescope_builtin.lsp_dynamic_workspace_symbols, { desc = "LSP: [W]orkspace [S]ymbols" })
-set("n", "K", vim.lsp.buf.hover, { desc = "LSP: Hover Documentation" })
+
+set("n", "K", function()
+	vim.lsp.buf.hover({ border = "rounded" })
+end, { desc = "LSP: Hover Documentation" })
+
 set("n", "<leader>ih", ":InlayHintsToggle<CR>", { desc = "LSP: Toggle [I]nlay [H]ints" })
 
 set({ "i", "n" }, "<C-s>", vim.lsp.buf.signature_help, { desc = "LSP: [S]ignature Help" })
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = "rounded",
-})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
@@ -86,6 +91,7 @@ require("mason-lspconfig").setup({
 		"emmet_ls",
 		"html",
 		"tailwindcss",
+		"texlab",
 	},
 	handlers = {
 		function(server_name)
@@ -126,6 +132,19 @@ lspconfig.nixd.setup({
 		nixd = {
 			formatting = {
 				command = { "nixfmt" },
+			},
+		},
+	},
+})
+
+lspconfig.texlab.setup({
+	capabilities = capabilities,
+	settings = {
+		texlab = {
+			build = {
+				executable = "tectonic",
+				args = { "-X", "build" },
+				onSave = true,
 			},
 		},
 	},

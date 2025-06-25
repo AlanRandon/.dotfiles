@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+if (( $# != 2 )); then
+	echo USAGE: mkproj TEMPLATE NAME
+	exit 1
+fi
+
+template=$(echo $1 | sed 's/^rs$/rust/;s/^z$/zig/')
+name=$2
+
+if [[ -e ~/projects/$name ]]; then
+	echo "~/projects/$name already exists"
+	exit 1
+fi
+
+mkdir -p ~/projects/$name
+
+selected=~/projects/$name
+selected_name="$(echo "$name" | tr . _)"
+
+tmux new-session \
+	-c $selected -ds $selected_name \
+	sh -c "nix flake init -t github:AlanRandon/nix-templates#$template && exec zsh"
+
+tmux switch-client -t $selected_name
