@@ -21,6 +21,8 @@
     ./virtManager.nix
     ./intel.nix
     ./email.nix
+    ./mimeapps.nix
+    ./typesetting.nix
   ];
 
   boot.tmp.cleanOnBoot = true;
@@ -82,17 +84,6 @@
       enable = true;
       powerOnBoot = false;
     };
-  };
-
-  xdg.mime.defaultApplications = {
-    "application/pdf" = "org.pwmt.zathura.desktop";
-    "image/png" = "mpv.desktop";
-    "image/jpeg" = "mpv.desktop";
-    "image/webp" = "mpv.desktop";
-    "image/avif" = "mpv.desktop";
-    "video/vnd.avi" = "mpv.desktop";
-    "video/mp4" = "mpv.desktop";
-    "inode/directory" = "nvim.desktop";
   };
 
   security.pki.certificates = [

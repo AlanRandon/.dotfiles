@@ -118,11 +118,6 @@
     pulsemixer
     pulseaudio
 
-    # LaTeX
-    unstable.tectonic
-    zathura
-    poppler_utils
-
     google-chrome
   ];
 }

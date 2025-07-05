@@ -6,7 +6,7 @@ which hyprctl &> /dev/null && export HYPRLAND_INSTANCE_SIGNATURE=$(hyprctl -j in
 if [ -z $TMUX ]; then
 	session=$(tmux list-sessions -F "#{session_id}" | head -1)
 	if [ -z $session ]; then
-		exec tmux new-session
+		exec tmux new-session -s $(basename . | tr . _)
 	else
 		exec tmux attach-session -t $session
 	fi

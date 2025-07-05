@@ -12,9 +12,14 @@ motd() {
 	dysk
 }
 
-motd & while :; do
-	read -sk1 shortcut
-	case "${shortcut}"; in
-		q) exit
-	esac
-done
+wait-for-lose-focus() {
+	echo -ne "\e[?1004h" # listen for focus events
+	while :; do
+		read -sk3 event
+		if [ $event = $(echo -e "\e[O") ]; then
+			exit
+		fi
+	done
+}
+
+motd & wait-for-lose-focus

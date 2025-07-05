@@ -149,3 +149,11 @@ lspconfig.texlab.setup({
 		},
 	},
 })
+
+lspconfig.tinymist.setup({
+	capabilities = capabilities,
+})
+
+lspconfig.blueprint_ls.setup({
+	capabilities = capabilities,
+})
