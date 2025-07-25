@@ -124,6 +124,7 @@ lspconfig.zls.setup({
 
 lspconfig.clangd.setup({
 	capabilities = capabilities,
+	filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "hpp" },
 })
 
 lspconfig.nixd.setup({

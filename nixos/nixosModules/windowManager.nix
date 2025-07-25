@@ -99,10 +99,12 @@
       enable = true;
       keyboards.default.config = ''
         (defsrc
+        	tab
         	caps)
 
         (deflayermap (default-layer)
-            caps (tap-hold 200 200 esc lmet))
+        	tab (tap-hold 200 200 tab lmet)
+        	caps (tap-hold 200 200 esc lctl))
       '';
     };
     pipewire = {

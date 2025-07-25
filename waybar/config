@@ -47,28 +47,28 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "{icon}{time} {capacity}%",
+    "format": "{icon} {capacity}%",
     "format-charging": " {capacity}%",
-    "format-time": " {H}:{m}",
+    "format-time": " {H}:{m} ",
     "format-icons": [
-      " ",
-      " ",
-      " ",
-      " ",
-      " "
+      "",
+      "",
+      "",
+      "",
+      ""
     ]
   },
   "network": {
-    "format-wifi": " ",
+    "format-wifi": "",
     "format-ethernet": "󰈁",
-    "format-disconnected": "󰖪 ",
+    "format-disconnected": "󰖪",
     "on-click": "ghostty -e impala"
   },
   "pulseaudio#sink": {
     "format": "{icon} {volume}%",
     "format-muted": "󰝟 {volume}%",
     "format-icons": {
-      "headphone": " ",
+      "headphone": "",
       "default": [
         "",
         "",
@@ -82,7 +82,7 @@
     "format-source": " {volume}%",
     "format-source-muted": " {volume}%",
     "format-icons": {
-      "headphone": " ",
+      "headphone": "",
       "default": [
         "",
         "",
@@ -97,10 +97,10 @@
     "title-len": 15,
     "interval": 5,
     "player-icons": {
-      "default": " "
+      "default": ""
     },
     "status-icons": {
-      "paused": " "
+      "paused": ""
     }
   },
   "custom/touchpad": {

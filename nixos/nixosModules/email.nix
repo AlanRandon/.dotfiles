@@ -1,10 +1,10 @@
 { pkgs, ... }:
 
 {
-
   environment.systemPackages = with pkgs; [
-    unstable.himalaya
+    neomutt
     pass
+    lynx
   ];
 
   programs.gnupg.agent = {

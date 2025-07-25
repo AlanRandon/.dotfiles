@@ -1,5 +1,5 @@
 # zmodload zsh/zprof
-PATH=$PATH:$HOME/.npm-global/bin:$HOME/.local/bin:
+PATH=$PATH:$HOME/.npm-global/bin:$HOME/.local/bin
 which hyprctl &> /dev/null && export HYPRLAND_INSTANCE_SIGNATURE=$(hyprctl -j instances | jq -r '.[0].instance')
 
 # [[ $TERM_PROGRAM != "vscode" ]] &&
@@ -27,6 +27,9 @@ source "${ZINIT_HOME}/zinit.zsh"
 export EDITOR=nvim
 export TERMINAL=ghostty
 export BROWSER=firefox
+
+# Neomutt/ncurses
+export ESCDELAY=0
 
 zinit wait lucid for \
 	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
@@ -84,6 +87,7 @@ alias lt="l --tree"
 alias m="~/scripts/fzfman"
 alias zb="zig build"
 alias zbr="zig build run"
+alias zbt="zig build test --summary all"
 alias mkproj="~/scripts/mkproj"
 
 gcme() { git clone https://github.com/AlanRandon/$@ }

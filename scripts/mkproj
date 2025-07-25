@@ -5,7 +5,7 @@ if (( $# != 2 )); then
 	exit 1
 fi
 
-template=$(echo $1 | sed 's/^rs$/rust/;s/^z$/zig/')
+template=$(echo $1 | sed 's/^rs$/rust/;s/^z$/zig/;s/^hs$/haskell/')
 name=$2
 
 if [[ -e ~/projects/$name ]]; then

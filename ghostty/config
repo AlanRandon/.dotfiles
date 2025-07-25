@@ -1,5 +1,5 @@
 theme = catppuccin-frappe
-font-family = FiraMono Nerd Font
+font-family = FiraMono Nerd Font Mono
 font-size = 11
 window-decoration = false
 gtk-adwaita = false

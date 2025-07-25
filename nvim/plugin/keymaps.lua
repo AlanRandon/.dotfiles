@@ -13,11 +13,6 @@ set("n", "<leader>s", function()
 	vim.opt.spell = not vim.o.spell
 end, { desc = "Toggle [S]pell" })
 
-set("n", "<C-h>", "<C-w>h")
-set("n", "<C-j>", "<C-w>j")
-set("n", "<C-k>", "<C-w>k")
-set("n", "<C-l>", "<C-w>l")
-
 set("n", "<C-u>", "<C-u>zz", { desc = "[U]p Half Page" })
 set("n", "<C-d>", "<C-d>zz", { desc = "[D]own Half Page" })
 
