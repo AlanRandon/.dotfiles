@@ -60,6 +60,7 @@
       ]; # Enable ‘sudo’ for the user.
       packages = [ ];
       useDefaultShell = true;
+      initialHashedPassword = "$y$j9T$Eyu1AFhGHTSfunmXO2G2b0$qWXs1yzrYxD1eBveUI96tqkVrb0JMmzmjFGfT/pSNrD";
       uid = 1000;
     };
     defaultUserShell = pkgs.zsh;

@@ -1,0 +1,43 @@
+# https://margiolis.net/en/w/mutt_gmail_outlook/
+
+set from = "Alan Randon <alan.randon@outlook.com>"
+set realname = "Alan Randon"
+set imap_user = "alan.randon@outlook.com"
+
+set smtp_url = "smtp://alan.randon@outlook.com@smtp.office365.com:587"
+set folder = "imaps://alan.randon@outlook.com@outlook.office365.com"
+
+set smtp_authenticators = "xoauth2"
+set imap_authenticators = "xoauth2"
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+set my_pass = "`pass outlook`"
+set imap_pass = $my_pass
+set smtp_pass = $my_pass
+
+set imap_oauth_refresh_command = "~/scripts/mutt_oauth2.py ~/.config/neomutt/accounts/outlooktoken"
+set smtp_oauth_refresh_command = "~/scripts/mutt_oauth2.py ~/.config/neomutt/accounts/outlooktoken"
+
+set spoolfile = "+INBOX"
+set record = "+Sent"
+set postponed = "+Drafts"
+set trash = "+Deleted"
+
+# mailboxes =INBOX =Sent =Drafts =Archive =Trash
+set imap_check_subscribed = true
+
+macro index,pager gi "<change-folder>=INBOX<enter>" "go to inbox"
+macro index,pager mi ";<save-message>=INBOX<enter><enter>" "move mail to inbox"
+macro index,pager ci ";<copy-message>=INBOX<enter>" "copy mail to inbox"
+macro index,pager gs "<change-folder>=Sent<enter>" "go to sent"
+macro index,pager ms ";<save-message>=Sent<enter><enter>" "move mail to sent"
+macro index,pager cs ";<copy-message>=Sent<enter>" "copy mail to sent"
+macro index,pager gS "<change-folder>=Junk<enter>" "go to spam"
+macro index,pager mS ";<save-message>=Junk<enter><enter>" "move mail to spam"
+macro index,pager cS ";<copy-message>=Junk<enter>" "copy mail to spam"
+macro index,pager ga "<change-folder>=Archive<enter>" "go to archive"
+macro index,pager ma ";<save-message>=Archive<enter><enter>" "move mail to archive"
+macro index,pager ca ";<copy-message>=Archive<enter>" "copy mail to archive"
+
+# vim: ft=muttrc

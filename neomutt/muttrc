@@ -1,18 +1,17 @@
-source ~/.config/neomutt/alan.randon@outlook.com
+source ~/.config/neomutt/keys/unbinds
+source ~/.config/neomutt/keys/binds
+
+source ~/.config/neomutt/accounts/outlook
+# folder-hook "accounts/outlook" "source ~/.config/neomutt/accounts/outlook"
+
 source ~/.config/neomutt/catpuccin
-folder-hook "alan.randon@outlook.com" "source ~/.config/neomutt/alan.randon@outlook.com"
 
 set mailcap_path = ~/.config/neomutt/mailcap
 auto_view text/html                                   # view HTML automatically
 alternative_order text/plain text/enriched text/html  # save HTML for last
 
-source ~/.config/neomutt/vi-keys.rc
-
-macro index,pager \CP "<sidebar-prev><sidebar-open>"
-macro index,pager \CN "<sidebar-next><sidebar-open>"
-
 set abort_key = "<Esc>"
 
-set sidebar_visible
-set sidebar_format = "%B%<F? [%F]>%* %<N?%N/>%S"
-set mail_check_stats
+# set sidebar_visible
+# set sidebar_format = "%B%<F? [%F]>%* %<N?%N/>%S"
+# set mail_check_stats

@@ -9,4 +9,4 @@ newsboat/cache.db
 newsboat/history.search
 newsboat/history.cmdline
 newsboat/queue
-neomutt/outlooktoken
+neomutt/accounts/*token
