@@ -1,12 +1,5 @@
 return {
-	{
-		"neovim/nvim-lspconfig",
-		dependencies = {
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
-		},
-		config = function() end,
-	},
+	"neovim/nvim-lspconfig",
 	{
 		"folke/lazydev.nvim",
 		ft = "lua",
@@ -28,12 +21,10 @@ return {
 		dependencies = {},
 		lazy = false,
 	},
-	{
-		"nvimtools/none-ls.nvim",
-		config = function() end,
-	},
+	{ "nvimtools/none-ls.nvim" },
 	{
 		"Julian/lean.nvim",
+		event = { "BufReadPre *.lean", "BufNewFile *.lean" },
 		opts = {
 			abbreviations = { builtin = true },
 			lsp = {},

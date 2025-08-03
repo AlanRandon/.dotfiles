@@ -26,8 +26,6 @@ end, { desc = "LSP: Hover Documentation" })
 
 set("n", "<leader>ih", ":InlayHintsToggle<CR>", { desc = "LSP: Toggle [I]nlay [H]ints" })
 
-set({ "i", "n" }, "<C-s>", vim.lsp.buf.signature_help, { desc = "LSP: [S]ignature Help" })
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
@@ -82,32 +80,9 @@ null_ls.setup({
 
 local lspconfig = require("lspconfig")
 
-require("mason").setup({ PATH = "append" })
-require("mason-lspconfig").setup({
-	automatic_installation = false,
-	ensure_installed = {
-		"lua_ls",
-		"cssls",
-		"emmet_ls",
-		"html",
-		"tailwindcss",
-		"texlab",
-	},
-	handlers = {
-		function(server_name)
-			lspconfig[server_name].setup({
-				capabilities = capabilities,
-			})
-		end,
-		asm_lsp = function()
-			lspconfig["asm_lsp"].setup({
-				capabilities = capabilities,
-				filetypes = { "asm", "vmasm", "nasm" },
-			})
-		end,
-		-- rustaceanvim handles this
-		rust_analyzer = function() end,
-	},
+lspconfig.asm_lsp.setup({
+	capabilities = capabilities,
+	filetypes = { "asm", "vmasm", "nasm" },
 })
 
 lspconfig.ocamllsp.setup({
@@ -118,24 +93,9 @@ lspconfig.ocamllsp.setup({
 	},
 })
 
-lspconfig.zls.setup({
-	capabilities = capabilities,
-})
-
 lspconfig.clangd.setup({
 	capabilities = capabilities,
 	filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "hpp" },
-})
-
-lspconfig.nixd.setup({
-	capabilities = capabilities,
-	settings = {
-		nixd = {
-			formatting = {
-				command = { "nixfmt" },
-			},
-		},
-	},
 })
 
 lspconfig.texlab.setup({
@@ -151,10 +111,33 @@ lspconfig.texlab.setup({
 	},
 })
 
-lspconfig.tinymist.setup({
+lspconfig.nixd.setup({
 	capabilities = capabilities,
+	settings = {
+		nixd = {
+			formatting = {
+				command = { "nixfmt" },
+			},
+		},
+	},
 })
 
-lspconfig.blueprint_ls.setup({
-	capabilities = capabilities,
-})
+local lsps = {
+	"html",
+	"cssls",
+	"blueprint_ls",
+	"tinymist",
+	"zls",
+	"emmet_ls",
+	"lua_ls",
+	"texlab",
+	"tailwindcss",
+	"taplo",
+	"ruff",
+	"pyright",
+}
+vim.lsp.enable(lsps)
+
+for _, lsp in ipairs(lsps) do
+	vim.lsp.config(lsp, { capabilities = capabilities })
+end

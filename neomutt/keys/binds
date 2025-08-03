@@ -51,6 +51,7 @@ bind index,pager L edit-label
 bind index,pager n search-next
 bind index,pager N search-opposite
 
+bind index C mail
 bind compose y send-message
 bind compose a attach-file
 bind compose p postpone-message

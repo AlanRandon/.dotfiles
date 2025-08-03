@@ -11,6 +11,17 @@
 		(string) @_format
 		(#contains? @_format "tex")))
 
+; { text = "injection", format = "typst" }
+(inline_table
+	(pair
+		(bare_key) @_key_text (#eq? @_key_text "text")
+	  	(string) @injection.content
+		(#set! injection.language "typst"))
+	(pair
+		(bare_key) @_key_format (#eq? @_key_format "format")
+		(string) @_format
+		(#contains? @_format "typst")))
+
 (table_array_element
 	(bare_key) @_key_cards (#eq? @_key_cards "cards")
 	(pair

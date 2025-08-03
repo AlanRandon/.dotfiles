@@ -117,5 +117,4 @@ return {
 		end,
 	},
 	{ "nvim-treesitter/nvim-treesitter-textobjects" },
-	{ "HiPhish/rainbow-delimiters.nvim", cond = false },
 }

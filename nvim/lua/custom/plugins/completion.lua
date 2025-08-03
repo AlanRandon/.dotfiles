@@ -11,12 +11,28 @@ return {
 			},
 			completion = {
 				ghost_text = { enabled = true },
-				documentation = { window = { border = "single" } },
-				menu = { auto_show = false, border = "single" },
+				documentation = { window = { border = "rounded" } },
+				menu = { auto_show = false, border = "rounded" },
 			},
 			keymap = {
-				["<C-y>"] = {},
-				["<S-Tab>"] = {},
+				["<C-x><C-f>"] = {
+					function(cmp)
+						return cmp.show({ providers = { "path" } })
+					end,
+				},
+				["<C-x><C-n>"] = {
+					function(cmp)
+						return cmp.show({ providers = { "buffer" } })
+					end,
+				},
+				["<C-y>"] = false,
+				["<C-k>"] = false,
+				["<S-Tab>"] = false,
+				["<C-s>"] = {
+					"show_signature",
+					"hide_signature",
+					"fallback",
+				},
 				["<Tab>"] = {
 					function(cmp)
 						if cmp.snippet_active() then
@@ -25,13 +41,12 @@ return {
 							return cmp.select_and_accept()
 						end
 					end,
-					"snippet_forward",
 					"fallback",
 				},
 			},
 			snippets = { preset = "luasnip" },
 			sources = {
-				default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+				default = { "lazydev", "lsp", "snippets" },
 				providers = {
 					lazydev = {
 						name = "LazyDev",

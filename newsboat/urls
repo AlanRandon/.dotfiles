@@ -11,8 +11,6 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UC85QlXFRdNTuW6Tj8zAfH-Q ! n
 https://www.youtube.com/feeds/videos.xml?channel_id=UCSMqateX8OA2s1wsOR2EgJA ! news tldr-news uk-news
 https://www.youtube.com/feeds/videos.xml?channel_id=UC-eegKVWEgBCa4OzjnK_PtA ! news tldr-news europe-news
 https://www.youtube.com/feeds/videos.xml?channel_id=UC-uhvujip5deVcEtLxnW8qg ! news tldr-news world-news
-https://www.youtube.com/feeds/videos.xml?channel_id=UCz_3xlMTVUYYTQqCfh9lD7w ! news tldr-news tldr-daily
-"query:TLDR News Daily:tags # \"tldr-daily\""
 "query:TLDR News:tags # \"tldr-news\""
 
 https://www.youtube.com/feeds/videos.xml?channel_id=UCKRw8GAAtm27q4R3Q0kst_g ! news juicemedia

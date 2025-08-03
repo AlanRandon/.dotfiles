@@ -11,6 +11,7 @@ auto_view text/html                                   # view HTML automatically
 alternative_order text/plain text/enriched text/html  # save HTML for last
 
 set abort_key = "<Esc>"
+set help = "no"
 
 # set sidebar_visible
 # set sidebar_format = "%B%<F? [%F]>%* %<N?%N/>%S"

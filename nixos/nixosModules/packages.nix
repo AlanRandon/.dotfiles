@@ -20,6 +20,16 @@
     unstable.mcpelauncher-ui-qt
     starship
 
+    vscode-langservers-extracted
+    tailwindcss-language-server
+    typescript-language-server
+    lua-language-server
+    emmet-ls
+    texlab
+    ruff
+    pyright
+    taplo
+
     dysk
     du-dust
 
