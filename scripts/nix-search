@@ -1,8 +1,0 @@
-#!/usr/bin/env -S nix shell nixpkgs#nix-search-cli -c sh
-
-nix-search-cli -p typst
-
-fzf --bind 'change:reload(nix-search-cli -p {q})'
-
-# vim: ft=sh
-

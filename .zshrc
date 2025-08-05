@@ -90,6 +90,7 @@ alias zbr="zig build run"
 alias zbt="zig build test --summary all"
 alias mkproj="~/scripts/mkproj"
 
+pl() { fd . ~/Music -e m3u | fzf --bind 'enter:become(mpv --shuffle --no-video --playlist={})' }
 gcme() { git clone https://github.com/AlanRandon/$@ }
 
 [ -f $HOME/.cargo/env ] && . "$HOME/.cargo/env"

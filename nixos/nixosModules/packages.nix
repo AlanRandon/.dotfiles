@@ -123,7 +123,8 @@
 
     # Sound
     playerctl
-    mpv
+    (mpv.override { scripts = [ mpvScripts.mpris ]; })
+    yt-dlp
     pavucontrol
     pulsemixer
     pulseaudio
