@@ -125,6 +125,7 @@ lspconfig.nixd.setup({
 local lsps = {
 	"html",
 	"cssls",
+	"ts_ls",
 	"blueprint_ls",
 	"tinymist",
 	"zls",

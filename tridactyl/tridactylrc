@@ -1,19 +1,44 @@
-set searchengine duckduckgo
+" vim: filetype=vim
 
-bind <Space>g set searchengine google
-bind <Space>d set searchengine duckduckgo
+" remove old config
+" this file is the single source of truth for tridactyl config
+sanitize tridactyllocal tridactylsync
+
+" allow <C-f> for regualar search
+unbind <C-f>
+
+" use / for tridactyl search
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+bind ,<Space> nohlsearch
+set findcase sensitive
+
 bind <Space>p tabnew http://neverssl.com
 
-set searchurls.gh https://github.com/search?q=%s
+" clear existing searchurls
+jsb Object.keys(tri.config.get("searchurls")).reduce((prev, u) => prev.catch(()=>{}).then(_ => tri.excmds.setnull("searchurls." + u)), Promise.resolve())
+
+set searchurls.g https://www.google.com/search?q=%s
+set searchurls.d https://duckduckgo.com/?q=%s
+set searchurls.yt https://www.youtube.com/results?search_query=%s
+set searchurls.w https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
+
 set searchurls.n https://search.nixos.org/packages?query=%s
 set searchurls.no https://search.nixos.org/options?query=%s
-set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
 set searchurls.nw https://nixos.wiki/index.php?search=%s&go=Go
-set searchurls.yt https://www.youtube.com/results?search_query=%s
+set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
+
 set searchurls.rs https://crates.io/search?q=%s
 set searchurls.mdn https://developer.mozilla.org/en-US/search?q=%s
+set searchurls.npm https://www.npmjs.com/search?q=%s
 set searchurls.zs https://ziglang.org/documentation/master/std/#%s
 set searchurls.tw https://tailwindcss.com/docs/%s
+
+set searchurls.gh https://github.com/search?q=%s
+
+set searchengine d
 
 colorscheme catppuccin
 

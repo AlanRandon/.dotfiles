@@ -6,11 +6,13 @@ set("x", "<leader>p", [["_dP]], { desc = "[P]aste Without Yank" })
 set("t", "<ESC>", "<C-\\><C-n>", { desc = "Escape Terminal Mode" })
 
 set("n", "<leader>w", function()
-	vim.opt.wrap = not vim.o.wrap
+	-- not sure about opt_local here
+	vim.opt_local.wrap = not vim.opt_local.wrap
 end, { desc = "Toggle [W]rap" })
 
 set("n", "<leader>s", function()
-	vim.opt.spell = not vim.o.spell
+	-- not sure about opt_local here
+	vim.opt_local.spell = not vim.opt_local.spell
 end, { desc = "Toggle [S]pell" })
 
 set("n", "<C-u>", "<C-u>zz", { desc = "[U]p Half Page" })

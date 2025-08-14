@@ -90,7 +90,28 @@ alias zbr="zig build run"
 alias zbt="zig build test --summary all"
 alias mkproj="~/scripts/mkproj"
 
-pl() { fd . ~/Music -e m3u | fzf --bind 'enter:become(mpv --shuffle --no-video --playlist={})' }
+pl() {
+	tmp_file=$(mktemp)
+	printf 'shuffled' > $tmp_file
+	
+	shuffled_prompt="(shuffled) > "
+	unshuffled_prompt="(unshuffled) > "
+	fd . ~/Music -e m3u | fzf \
+		--header "Play a playlist" \
+		--prompt "$shuffled_prompt" \
+		--bind "enter:become(
+		if grep -q 'unshuffled' \"${tmp_file}\"; then
+			rm -f \"${tmp_file}\" &> /dev/null
+			mpv --no-video --playlist={}
+		else
+			rm -f \"${tmp_file}\" &> /dev/null
+			mpv --shuffle --no-video --playlist={}
+		fi
+		)" \
+		--bind "ctrl-s:change-prompt($shuffled_prompt)+execute-silent(printf 'shuffled' > \"${tmp_file}\")" \
+		--bind "ctrl-u:change-prompt($unshuffled_prompt)+execute-silent(printf 'unshuffled' > \"${tmp_file}\")"
+}
+
 gcme() { git clone https://github.com/AlanRandon/$@ }
 
 [ -f $HOME/.cargo/env ] && . "$HOME/.cargo/env"
