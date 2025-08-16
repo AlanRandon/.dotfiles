@@ -1,5 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
+	"nvimtools/none-ls.nvim",
 	{
 		"folke/lazydev.nvim",
 		ft = "lua",
@@ -21,7 +22,6 @@ return {
 		dependencies = {},
 		lazy = false,
 	},
-	{ "nvimtools/none-ls.nvim" },
 	{
 		"Julian/lean.nvim",
 		event = { "BufReadPre *.lean", "BufNewFile *.lean" },

@@ -27,6 +27,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 export EDITOR=nvim
 export TERMINAL=ghostty
 export BROWSER=firefox
+export MANPAGER='nvim +Man!'
 
 # Neomutt/ncurses
 export ESCDELAY=0

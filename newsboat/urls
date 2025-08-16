@@ -22,6 +22,7 @@ https://www.youtube.com/feeds/videos.xml?playlist_id=PLwpOQsKKqZGNgqrjxnKizM8p3S
 "query:Puppet Regime:tags # \"puppet-regime\""
 
 "query:European News:tags # \"europe-news\""
+"query:Central Asian News:tags # \"central-asia-news\""
 "query:World News:tags # \"world-news\""
 "query:UK News:tags # \"uk-news\""
 "query:Local News:tags # \"local-news\""
@@ -74,3 +75,10 @@ https://www.theguardian.com/world/rss ! news world-news the-guardian
 https://www.theguardian.com/world/europe-news/rss ! news europe-news the-guardian
 https://www.theguardian.com/uk-news/oxfordshire/rss ! news local-news the-guardian
 "query:The Guardian:tags # \"the-guardian\""
+
+https://www.rferl.org/api/akvv_qql-vomx-tpejqk_qo ! news central-asia-news rfe-kazakh rfe
+https://www.rferl.org/api/abvv_qyl-vomx-tpeqok_qy ! news central-asia-news rfe-kyrgyz rfe
+https://www.rferl.org/api/avuv_qpl-vomx-tpeuik_qp ! news central-asia-news rfe-tajik rfe
+https://www.rferl.org/api/ajkv_qyl-vomx-tpebpk_qt ! news central-asia-news rfe-turkmen rfe
+https://www.rferl.org/api/avgv_qrl-vomx-tpeumk_qq ! news central-asia-news rfe-uzbek rfe
+"query:Radio Free Europe/Radio Liberty:tags # \"rfe\""

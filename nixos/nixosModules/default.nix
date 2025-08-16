@@ -22,7 +22,6 @@
     ./intel.nix
     ./email.nix
     ./mimeapps.nix
-    ./typesetting.nix
   ];
 
   boot.tmp.cleanOnBoot = true;

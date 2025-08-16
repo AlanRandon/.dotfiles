@@ -2,7 +2,7 @@ local o = vim.opt_local
 o.wrap = true
 o.spell = true
 
-vim.keymap.set("n", "<leader>tp", ":TypstPreview<CR>", { buffer = 0 })
+vim.keymap.set("n", "<leader>tp", ":TypstPreview<CR>", { buffer = 0, desc = "[T]ypst [P]review" })
 
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
@@ -38,4 +38,4 @@ vim.keymap.set("n", "<leader>te", function()
 			end,
 		})
 		:find()
-end, { buffer = 0 })
+end, { buffer = 0, desc = "[T]ypst [E]xport" })

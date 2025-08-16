@@ -35,6 +35,7 @@ set searchurls.mdn https://developer.mozilla.org/en-US/search?q=%s
 set searchurls.npm https://www.npmjs.com/search?q=%s
 set searchurls.zs https://ziglang.org/documentation/master/std/#%s
 set searchurls.tw https://tailwindcss.com/docs/%s
+set searchurls.typ https://typst.app/universe/search/?q=%s
 
 set searchurls.gh https://github.com/search?q=%s
 

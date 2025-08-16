@@ -1,3 +1,5 @@
+---@module "snacks"
+
 return {
 	{
 		"folke/snacks.nvim",
@@ -40,23 +42,10 @@ return {
 							section = "terminal",
 							icon = " ",
 							title = "Git Status",
-							cmd = "git --no-pager diff --stat HEAD",
+							cmd = "git status --short",
 							enabled = in_git,
 							ttl = 0,
 							height = 10,
-							padding = 1,
-						}
-					end,
-					function()
-						local fortune = vim.system(
-							{ "fortune", "-i", "linux", "-i", "perl", "-i", "computers", "-s" },
-							{ text = true }
-						):wait()
-
-						return {
-							text = { fortune.stdout, hl = "comment" },
-							align = "center",
-							height = 5,
 							padding = 1,
 						}
 					end,

@@ -78,50 +78,7 @@ null_ls.setup({
 	},
 })
 
-local lspconfig = require("lspconfig")
-
-lspconfig.asm_lsp.setup({
-	capabilities = capabilities,
-	filetypes = { "asm", "vmasm", "nasm" },
-})
-
-lspconfig.ocamllsp.setup({
-	capabilities = capabilities,
-	settings = {
-		codelens = { enable = true },
-		inlayHints = { enable = true },
-	},
-})
-
-lspconfig.clangd.setup({
-	capabilities = capabilities,
-	filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "hpp" },
-})
-
-lspconfig.texlab.setup({
-	capabilities = capabilities,
-	settings = {
-		texlab = {
-			build = {
-				executable = "tectonic",
-				args = { "-X", "build" },
-				onSave = true,
-			},
-		},
-	},
-})
-
-lspconfig.nixd.setup({
-	capabilities = capabilities,
-	settings = {
-		nixd = {
-			formatting = {
-				command = { "nixfmt" },
-			},
-		},
-	},
-})
-
+---@type (string | {[1]: string, opts: vim.lsp.Config})[]
 local lsps = {
 	"html",
 	"cssls",
@@ -136,9 +93,73 @@ local lsps = {
 	"taplo",
 	"ruff",
 	"pyright",
+	{
+		"tinymist",
+		opts = {
+			settings = {
+				formatterMode = "typstyle",
+			},
+		},
+	},
+	{
+		"nixd",
+		opts = {
+			settings = {
+				nixd = {
+					formatting = {
+						command = { "nixfmt" },
+					},
+				},
+			},
+		},
+	},
+	{
+		"texlab",
+		opts = {
+			settings = {
+				texlab = {
+					build = {
+						executable = "tectonic",
+						args = { "-X", "build" },
+						onSave = true,
+					},
+				},
+			},
+		},
+	},
+	{
+		"clangd",
+		opts = {
+			filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "hpp" },
+		},
+	},
+	{
+		"ocamllsp",
+		opts = {
+			settings = {
+				codelens = { enable = true },
+				inlayHints = { enable = true },
+			},
+		},
+	},
+	{
+		"asm_lsp",
+		opts = {
+			filetypes = { "asm", "vmasm", "nasm" },
+		},
+	},
 }
-vim.lsp.enable(lsps)
 
 for _, lsp in ipairs(lsps) do
-	vim.lsp.config(lsp, { capabilities = capabilities })
+	local lsp_name
+	local opts = { capabilities = capabilities }
+	if type(lsp) == "string" then
+		lsp_name = lsp
+	else
+		lsp_name = lsp[1]
+		opts = vim.tbl_extend("force", opts, lsp.opts or {})
+	end
+
+	vim.lsp.enable(lsp_name)
+	vim.lsp.config(lsp_name, opts)
 end

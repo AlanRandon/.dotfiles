@@ -1,134 +1,224 @@
-{ pkgs, config, ... }:
-
 {
-  environment.systemPackages = with pkgs; [
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+
+let
+
+  mkEnableOptionTrue =
+    description:
+    lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = description;
+    };
+
+  basePackages = with pkgs; [
+    tmux # Multiplexer
+    unstable.fzf
+    jq
+    github-cli
+    ripgrep # `grep`-like
+    unstable.neovim
+    tree-sitter
+    networkmanagerapplet
+    unstable.ghostty
+    pulseaudio
+  ];
+
+  defaultExtraCliPackages = with pkgs; [
+    ffmpeg
+    poppler_utils
+    playerctl
+    yt-dlp
+    httplz
+    strace
     inetutils
-    bluetuith
     hyperfine
     unzip
     xdg-utils
-    custom.mountui
-    unstable.newsboat
-    powertop
-    networkmanagerapplet
-    wasmtime
     wakeonlan
     fortune
     cowsay
-    thokr
-    clinfo
-    unstable.mcpelauncher-ui-qt
-    starship
-
-    vscode-langservers-extracted
-    tailwindcss-language-server
-    typescript-language-server
-    lua-language-server
-    emmet-ls
-    texlab
-    ruff
-    pyright
-    taplo
-
-    dysk
-    du-dust
-
-    # Networking
-    impala
-
-    # Git
-    github-cli
-
-    # Rust
-    # NOTE: not fenix, prefer a flake for projects
-    rustup
-    unstable.cargo-shuttle
-    unstable.cargo-binstall
-
-    # Javascript
-    nodejs
-
-    # C
-    clang
-
-    # Assembly
-    nasm
-
-    # Python
-    python312
-
-    # Zig
-    # NOTE: prefer a flake for projects
-    custom.zig
-    custom.zls
-
-    # Nix
-    nixfmt-rfc-style
-    nixd
-
-    # Development tools
-    pkg-config
-    strace
-    gnumake
-    autoconf
-    gdb
-    binaryen
-    httplz
-
-    # Profiling
-    config.boot.kernelPackages.perf
-    flamegraph
-
-    # System Monitor
-    # btop
-    htop-vim
-
-    # Command line utilities
+    lsof
     tree
-    ffmpeg
     figlet
     clolcat
     bc
     wget
     dig
-    jq
-    unstable.glow
     unixtools.xxd
-    unstable.yazi
-    timg
-    unstable.fzf
+    zoxide # `cd`-like
+    bat # `cat`-like
+    eza # `ls`-like
+    fd # `find`-like
+    dysk # `df`-like
+    du-dust # `du`-like
+  ];
 
-    zoxide # better cd
-    bat # better cat
-    eza # better ls
-    ripgrep # better grep
-    fd # better find
-
-    # Terminal
-    unstable.alacritty # Emulator
-    unstable.ghostty
-    tmux # Multiplexer
-
-    # Text editor
-    unstable.neovim
-    # vscode # for liveshare
-    tree-sitter
-    stylua
-
-    # Image editor
-    unstable.gimp3
-
-    # Sound editor
-    audacity
-
-    # Sound
-    playerctl
-    (mpv.override { scripts = [ mpvScripts.mpris ]; })
-    yt-dlp
-    pavucontrol
+  defaultExtraTuiPackages = with pkgs; [
     pulsemixer
-    pulseaudio
+    gdb
+    bluetuith
+    custom.mountui
+    unstable.newsboat
+    powertop
+    thokr
+    starship
+    htop-vim
+    unstable.glow
+    unstable.yazi
+    impala
+    timg
+  ];
 
+  defaultExtraGuiPackages = with pkgs; [
+    zathura
+    pavucontrol
+    unstable.alacritty
+    unstable.mcpelauncher-ui-qt
+    unstable.gimp3
+    audacity
+    (mpv.override { scripts = [ mpvScripts.mpris ]; })
     google-chrome
+  ];
+
+  defaultExtraDevPackages = with pkgs; [
+    clang
+    nasm
+    pkg-config
+    gnumake
+    autoconf
+    flamegraph
+    config.boot.kernelPackages.perf
+  ];
+
+  defaultLanguagePackages = {
+    zig = {
+      packages = with pkgs; [ custom.zig ];
+      lspPackages = with pkgs; [ custom.zls ];
+    };
+    rust = {
+      packages = with pkgs; [
+        rustup
+        unstable.cargo-shuttle
+        unstable.cargo-binstall
+      ];
+      lspPackages = [ ];
+    };
+    web = {
+      packages = with pkgs; [
+        nodejs
+        wasmtime
+        binaryen
+      ];
+      lspPackages = with pkgs; [
+        vscode-langservers-extracted
+        tailwindcss-language-server
+        typescript-language-server
+        emmet-ls
+      ];
+    };
+    python = {
+      packages = with pkgs; [
+        python312
+        ruff
+      ];
+      lspPackages = with pkgs; [ pyright ];
+    };
+    nix = {
+      packages = with pkgs; [ nixfmt-rfc-style ];
+      lspPackages = with pkgs; [ nixd ];
+    };
+    lua = {
+      packages = with pkgs; [ stylua ];
+      lspPackages = with pkgs; [ lua-language-server ];
+    };
+    toml = {
+      packages = [ ];
+      lspPackages = with pkgs; [ taplo ];
+    };
+    latex = {
+      packages = with pkgs; [ unstable.tectonic ];
+      lspPackages = with pkgs; [ texlab ];
+    };
+    typst = {
+      packages = with pkgs; [
+        typst
+        typstyle
+      ];
+      lspPackages = with pkgs; [
+        tinymist
+      ];
+    };
+  };
+
+  mkExtraPackagesOption = name: defaultPackages: {
+    enable = mkEnableOptionTrue "Enable additional ${name} packages";
+    packages = lib.mkOption {
+      type = with lib.types; listOf package;
+      default = defaultPackages;
+      description = "Extra ${name} packages";
+    };
+  };
+
+  mkLanguageOption =
+    {
+      name,
+      defaultPackages,
+      defaultLspPackages,
+    }:
+    {
+      enable = mkEnableOptionTrue "Enable ${name}";
+      packages = lib.mkOption {
+        type = with lib.types; listOf package;
+        default = defaultPackages;
+        description = "Packages for ${name}";
+      };
+      lspPackages = lib.mkOption {
+        type = with lib.types; listOf package;
+        default = defaultLspPackages;
+        description = "LSP packages for ${name}";
+      };
+    };
+
+  cfg = config.dotfiles.packages;
+
+in
+{
+  options.dotfiles.packages = {
+    languages = lib.attrsets.mapAttrs (
+      name:
+      { packages, lspPackages }:
+      mkLanguageOption {
+        name = name;
+        defaultPackages = packages;
+        defaultLspPackages = lspPackages;
+      }
+    ) defaultLanguagePackages;
+    cli.extra = mkExtraPackagesOption "CLI" defaultExtraCliPackages;
+    tui.extra = mkExtraPackagesOption "TUI" defaultExtraTuiPackages;
+    gui.extra = mkExtraPackagesOption "GUI" defaultExtraGuiPackages;
+    lsp.enable = mkEnableOptionTrue "Enable LSP packages";
+    dev.extra = mkExtraPackagesOption "build and debug tools" defaultExtraDevPackages;
+  };
+
+  config = lib.mkMerge [
+    {
+      environment.systemPackages =
+        basePackages
+        ++ lib.optionals cfg.cli.extra.enable cfg.cli.extra.packages
+        ++ lib.optionals cfg.tui.extra.enable cfg.tui.extra.packages
+        ++ lib.optionals cfg.gui.extra.enable cfg.gui.extra.packages
+        ++ lib.optionals cfg.dev.extra.enable cfg.dev.extra.packages
+        ++ (lib.concatLists (
+          lib.attrsets.mapAttrsToList (
+            _: lang:
+            (lib.optionals lang.enable (lang.packages ++ (lib.optionals cfg.lsp.enable lang.lspPackages)))
+          ) cfg.languages
+        ));
+    }
   ];
 }

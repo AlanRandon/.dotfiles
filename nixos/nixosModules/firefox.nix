@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   programs.firefox = {
-    enable = true;
+    enable = config.dotfiles.packages.gui.extra.enable;
     languagePacks = [
       "en-GB"
       "en-US"
