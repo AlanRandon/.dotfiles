@@ -1,32 +1,31 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
-PATH=$PATH:$HOME/.fzf/bin
+[[ -z $DISABLE_POPUP ]] && FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --tmux 80%,80%"
 
-FZF_CMD="fzf"
-[[ -z $DISABLE_POPUP ]] && FZF_CMD="fzf-tmux -p 80%,80% --"
+DIRS=(
+	'Documents'
+	'Music'
+	'projects'
+	'projects/scratch'
+	''
+)
 
 if [[ $# -eq 1 ]]; then
 	selected=$1
 else
-	paths() {
-		fd -ad1 -td . ~
-		[ -d ~/Documents ] && fd -ad1 -td . ~/Documents
-		[ -d ~/Music ] && fd -ad1 -td . ~/Music
-		[ -d ~/projects ] && fd -Had1 -td . ~/projects
-		[ -d ~/projects/scratch ] && fd -Had1 -td . ~/projects/scratch
-		[ -d /run/media/alan ] && fd -Had1 -td . /run/media/alan
-	}
-	selected=$(paths | $FZF_CMD --preview '
-		selected_name=$(basename {1} | tr . _)
+	selected=$(fd -Had1 -td . "${DIRS[@]/#/$HOME/}" | sed "s|^$HOME/||" \
+		| fzf --tmux 80%,80% --preview-window top,border-none --preview '
+		selected_name="$(basename {1} | tr . _)"
 		if tmux has-session -t=$selected_name 2> /dev/null; then
 			echo -e "\033[32msession running\033[0m"
 			tmux list-windows -t=$selected_name
 		else
-			cd {1}
+			cd $HOME/{1}
 			git -C . rev-parse 2>/dev/null && git log --oneline --color | head -n3
 			eza --icons --git --tree --color=always
 		fi
 	')
+	[[ $selected ]] && selected="$HOME/$selected"
 fi
 
 if [[ -z $selected ]]; then

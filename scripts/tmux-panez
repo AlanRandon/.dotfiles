@@ -1,11 +1,11 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
-fzf_cmd="fzf"
-[[ -z $DISABLE_POPUP ]] && fzf_cmd="fzf-tmux -p 80%,80% --"
+[[ -z $DISABLE_POPUP ]] && FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --tmux 80%,80%"
 
 list_panes_cmd="tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index}'"
 
-selected=$($fzf_cmd \
+selected=$(fzf \
+	--preview-window top,border-none \
 	--bind "start:reload:$list_panes_cmd" \
 	--bind "change:reload:sleep 0.1; $list_panes_cmd || true" \
 	--bind "ctrl-x:execute(tmux kill-pane -t {})+reload($list_panes_cmd)" \

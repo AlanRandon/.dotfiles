@@ -44,6 +44,10 @@
 
     # Privileges
     hyprpolkitagent
+
+    networkmanagerapplet
+    unstable.ghostty
+    pulseaudio
   ];
 
   programs = {
@@ -67,6 +71,11 @@
   };
 
   xdg.icons.enable = true;
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.fira-mono
+    noto-fonts-color-emoji
+  ];
 
   environment.etc = {
     "xdg/gtk-2.0/gtkrc".text = ''

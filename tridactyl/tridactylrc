@@ -28,8 +28,9 @@ set searchurls.w https://en.wikipedia.org/w/index.php?search=%s&title=Special%3A
 set searchurls.n https://search.nixos.org/packages?query=%s
 set searchurls.no https://search.nixos.org/options?query=%s
 set searchurls.nw https://nixos.wiki/index.php?search=%s&go=Go
-set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
+set searchurls.nf https://noogle.dev/q?term=%s
 
+set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
 set searchurls.rs https://crates.io/search?q=%s
 set searchurls.mdn https://developer.mozilla.org/en-US/search?q=%s
 set searchurls.npm https://www.npmjs.com/search?q=%s

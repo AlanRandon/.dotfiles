@@ -15,20 +15,8 @@ let
       description = description;
     };
 
-  basePackages = with pkgs; [
-    tmux # Multiplexer
-    unstable.fzf
-    jq
-    github-cli
-    ripgrep # `grep`-like
-    unstable.neovim
-    tree-sitter
-    networkmanagerapplet
-    unstable.ghostty
-    pulseaudio
-  ];
-
   defaultExtraCliPackages = with pkgs; [
+    jq
     ffmpeg
     poppler_utils
     playerctl
@@ -109,17 +97,20 @@ let
       lspPackages = [ ];
     };
     web = {
-      packages = with pkgs; [
-        nodejs
-        wasmtime
-        binaryen
-      ];
+      packages = with pkgs; [ nodejs ];
       lspPackages = with pkgs; [
         vscode-langservers-extracted
         tailwindcss-language-server
         typescript-language-server
         emmet-ls
       ];
+    };
+    wasm = {
+      packages = with pkgs; [
+        wasmtime
+        binaryen
+      ];
+      lspPackages = [ ];
     };
     python = {
       packages = with pkgs; [
@@ -205,20 +196,15 @@ in
     dev.extra = mkExtraPackagesOption "build and debug tools" defaultExtraDevPackages;
   };
 
-  config = lib.mkMerge [
-    {
-      environment.systemPackages =
-        basePackages
-        ++ lib.optionals cfg.cli.extra.enable cfg.cli.extra.packages
-        ++ lib.optionals cfg.tui.extra.enable cfg.tui.extra.packages
-        ++ lib.optionals cfg.gui.extra.enable cfg.gui.extra.packages
-        ++ lib.optionals cfg.dev.extra.enable cfg.dev.extra.packages
-        ++ (lib.concatLists (
-          lib.attrsets.mapAttrsToList (
-            _: lang:
-            (lib.optionals lang.enable (lang.packages ++ (lib.optionals cfg.lsp.enable lang.lspPackages)))
-          ) cfg.languages
-        ));
-    }
-  ];
+  config.environment.systemPackages =
+    lib.optionals cfg.cli.extra.enable cfg.cli.extra.packages
+    ++ lib.optionals cfg.tui.extra.enable cfg.tui.extra.packages
+    ++ lib.optionals cfg.gui.extra.enable cfg.gui.extra.packages
+    ++ lib.optionals cfg.dev.extra.enable cfg.dev.extra.packages
+    ++ (lib.concatLists (
+      lib.attrsets.mapAttrsToList (
+        _: lang:
+        (lib.optionals lang.enable (lang.packages ++ (lib.optionals cfg.lsp.enable lang.lspPackages)))
+      ) cfg.languages
+    ));
 }

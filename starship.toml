@@ -3,9 +3,8 @@
 add_newline = false
 
 format = """
- $shell\
-${env_var.SHLVL}\
-$username\
+ $shell${env_var.SHLVL} \
+$username \
 $directory \
 """
 
@@ -16,11 +15,11 @@ show_always = true
 disabled = false
 style_user = "bg:#51576d fg:#a5adce"
 style_root = "bg:#51576d fg:#a5adce"
-format = '[](bg:prev_bg fg:#51576d inverted)[ $user ]($style)'
+format = '[](bg:prev_bg fg:#51576d)[ $user ]($style)[](fg:prev_bg)'
 
 [directory]
 style = "fg:#51576d bg:#a6d189"
-format = "[](bg:prev_bg fg:#a6d189 inverted)[ $path ]($style)[](fg:prev_bg)"
+format = "[](bg:prev_bg fg:#a6d189)[ $path ]($style)[](fg:prev_bg)"
 truncation_length = 3
 truncation_symbol = "…/"
 
@@ -28,16 +27,12 @@ truncation_symbol = "…/"
 style = "fg:#a5adce"
 format = '[$symbol$branch]($style)'
 
-[time]
-disabled = false
-style = "fg:#a5adce"
-time_format = '%I:%M:%S %P'
-format = '[$time]($style)'
-
-[env_var.SHLVL]
-style = "fg:#a5adce"
-format = "[\\($env_value\\) ]($style)"
 
 [shell]
 disabled = false
-style = "fg:#a5adce"
+style = "bg:#51576d fg:#a5adce"
+format = '[](bg:prev_bg fg:#51576d)[ $indicator ]($style)'
+
+[env_var.SHLVL]
+style = "bg:#51576d fg:#a5adce"
+format = '[$env_value ]($style)[](fg:prev_bg)'
