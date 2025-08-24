@@ -12,7 +12,7 @@ bind / fillcmdline find
 bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
-bind ,<Space> nohlsearch
+bind <Space><Space> nohlsearch
 set findcase sensitive
 
 bind <Space>p tabnew http://neverssl.com
@@ -29,6 +29,7 @@ set searchurls.n https://search.nixos.org/packages?query=%s
 set searchurls.no https://search.nixos.org/options?query=%s
 set searchurls.nw https://nixos.wiki/index.php?search=%s&go=Go
 set searchurls.nf https://noogle.dev/q?term=%s
+set searchurls.ns https://searchix.ovh/?query=%s
 
 set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
 set searchurls.rs https://crates.io/search?q=%s

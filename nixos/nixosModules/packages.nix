@@ -69,7 +69,14 @@ let
     unstable.mcpelauncher-ui-qt
     unstable.gimp3
     audacity
-    (mpv.override { scripts = [ mpvScripts.mpris ]; })
+    (mpv.override {
+      scripts = with mpvScripts; [
+        uosc
+        mpris
+        mpv-image-viewer.detect-image
+        mpv-image-viewer.image-positioning
+      ];
+    })
     google-chrome
   ];
 
