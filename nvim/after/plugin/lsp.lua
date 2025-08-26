@@ -1,8 +1,9 @@
+---@module "snacks"
+
 local set = vim.keymap.set
-local telescope_builtin = require("telescope.builtin")
 
 set("n", "gd", vim.lsp.buf.definition, { desc = "LSP: [G]oto [D]efinition" })
-set("n", "gr", telescope_builtin.lsp_references, { desc = "LSP: [G]oto [R]eferences" })
+set("n", "gr", Snacks.picker.lsp_references, { desc = "LSP: [G]oto [R]eferences" })
 set("n", "gI", vim.lsp.buf.implementation, { desc = "LSP: [G]oto [I]mplementation" })
 set("n", "gt", vim.lsp.buf.type_definition, { desc = "LSP: [G]oto [T]ype Definition" })
 
@@ -16,9 +17,6 @@ end, { desc = "LSP: Goto Next [D]iagnostic" })
 set("n", "]d", function()
 	vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "LSP: Goto Previous [D]iagnostic" })
-
-set("n", "<leader>ds", telescope_builtin.lsp_document_symbols, { desc = "LSP: [D]ocument [S]ymbols" })
-set("n", "<leader>ws", telescope_builtin.lsp_dynamic_workspace_symbols, { desc = "LSP: [W]orkspace [S]ymbols" })
 
 set("n", "K", function()
 	vim.lsp.buf.hover({ border = "rounded" })

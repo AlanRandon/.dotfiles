@@ -8,4 +8,4 @@ padding=10
 default-timeout=5000
 layer=overlay
 anchor=top-center
-on-notify=exec mpv ~/.config/mako/notify-sound.wav
+on-notify=exec ~/scripts/mpv-unwrapped --no-config ~/.config/mako/notify-sound.wav

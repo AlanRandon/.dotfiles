@@ -9,7 +9,6 @@ return {
 		require("catppuccin").setup({
 			flavour = "frappe",
 			integrations = {
-				telescope = true,
 				blink_cmp = true,
 				notify = true,
 				mason = true,

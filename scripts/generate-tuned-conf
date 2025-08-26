@@ -1,0 +1,30 @@
+#!/usr/bin/env -S nix shell nixpkgs#powertop nixpkgs#tuned nixpkgs#ini2json nixpkgs#json2nix nixpkgs#coreutils -c bash
+
+set -euo pipefail
+
+TMP_PROFILE="/tmp/powertop-profile"
+PROFILE_NAME="powertop-powersave"
+
+echo "Running powertop --auto-tune..."
+sudo powertop --auto-tune
+
+echo "Generating tuned profile in $TMP_PROFILE..."
+rm -rf "$TMP_PROFILE"
+mkdir -p "$TMP_PROFILE"
+powertop2tuned --output "$TMP_PROFILE"
+
+TUNED_CONF="$TMP_PROFILE/tuned.conf"
+if [ ! -f "$TUNED_CONF" ]; then
+    echo "Error: tuned.conf not found in $TMP_PROFILE"
+    exit 1
+fi
+
+echo "Converting tuned.conf to JSON..."
+JSON_FILE="$TMP_PROFILE/tuned.json"
+ini2json "$TUNED_CONF" > "$JSON_FILE"
+
+echo "Converting JSON to Nix..."
+NIX_FILE="$TMP_PROFILE/tuned.nix"
+json2nix < "$JSON_FILE" > "$NIX_FILE"
+
+echo "Nix profile generated at $NIX_FILE"

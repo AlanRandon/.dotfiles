@@ -21,7 +21,7 @@ if [[ $1 = "toggle-touchpad" ]]; then
 fi
 
 if [[ $1 = "random-wallpaper" ]]; then
-	wallpaper=$(fd . ~/wallpapers | shuf -n1)
+	wallpaper=$(fd . ~/wallpapers -E '*.sh' | shuf -n1)
 	pgrep hyprpaper || hyprctl keyword exec hyprpaper
 	sleep 0.5
 	hyprctl hyprpaper preload $wallpaper

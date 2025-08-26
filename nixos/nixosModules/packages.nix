@@ -21,6 +21,7 @@ let
     poppler_utils
     playerctl
     yt-dlp
+    unstable.onedrive
     httplz
     strace
     inetutils
