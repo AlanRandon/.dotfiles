@@ -58,7 +58,7 @@
       overlay-custom =
         final: prev:
         let
-          zig = zig-overlay.packages.${system}.master;
+          zig = zig-overlay.packages.${system}."0.15.1";
         in
         {
           custom = {

@@ -140,7 +140,7 @@ let
       lspPackages = with pkgs; [ taplo ];
     };
     latex = {
-      packages = with pkgs; [ unstable.tectonic ];
+      packages = with pkgs; [ tectonic ];
       lspPackages = with pkgs; [ texlab ];
     };
     typst = {

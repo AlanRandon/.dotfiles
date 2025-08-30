@@ -61,6 +61,7 @@
             "org/gnome/desktop/interface" = {
               cursor-theme = "catppuccin-frappe-light-cursors";
               application-prefer-dark-theme = true;
+              color-scheme = "prefer-dark";
               gtk-theme = "Catppuccin-GTK-Green-Dark-Frappe";
             };
           };
