@@ -1,0 +1,5 @@
+[calendars]
+  [[icloud]]
+    path = ~/.local/share/calendars/icloud/*
+    readonly = True
+    type = discover

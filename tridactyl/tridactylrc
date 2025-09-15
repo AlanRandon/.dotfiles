@@ -20,17 +20,26 @@ bind <Space>p tabnew http://neverssl.com
 " clear existing searchurls
 jsb Object.keys(tri.config.get("searchurls")).reduce((prev, u) => prev.catch(()=>{}).then(_ => tri.excmds.setnull("searchurls." + u)), Promise.resolve())
 
+" general search engines
 set searchurls.g https://www.google.com/search?q=%s
 set searchurls.d https://duckduckgo.com/?q=%s
+set searchurls.mj https://www.mojeek.com/search?q=%s
+set searchurls.br https://search.brave.com/search?q=%s
+
+" youtube
 set searchurls.yt https://www.youtube.com/results?search_query=%s
+
+" wikipedia
 set searchurls.w https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
 
+" nix
 set searchurls.n https://search.nixos.org/packages?query=%s
 set searchurls.no https://search.nixos.org/options?query=%s
 set searchurls.nw https://nixos.wiki/index.php?search=%s&go=Go
 set searchurls.nf https://noogle.dev/q?term=%s
 set searchurls.ns https://searchix.ovh/?query=%s
 
+" programming
 set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
 set searchurls.rs https://crates.io/search?q=%s
 set searchurls.mdn https://developer.mozilla.org/en-US/search?q=%s
@@ -38,10 +47,11 @@ set searchurls.npm https://www.npmjs.com/search?q=%s
 set searchurls.zs https://ziglang.org/documentation/master/std/#%s
 set searchurls.tw https://tailwindcss.com/docs/%s
 set searchurls.typ https://typst.app/universe/search/?q=%s
+set searchurls.uv https://docs.libuv.org/en/stable/search.html?q=%s&check_keywords=yes&area=default
 
 set searchurls.gh https://github.com/search?q=%s
 
-set searchengine d
+set searchengine br
 
 colorscheme catppuccin
 

@@ -1,0 +1,4 @@
+#!/usr/bin/env -S nix shell nixpkgs#proxychains -c sh
+# vim: ft=sh
+
+proxychains4 firefox

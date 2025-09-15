@@ -1,5 +1,5 @@
 [Desktop Entry]
-Actions=glow;newsboat;mountui;bluetuith;netui
+Actions=glow;newsboat;mountui;bluetuith;netui;proxychains-firefox
 Terminal=true
 Exec=zsh
 Name=Terminal
@@ -29,3 +29,7 @@ Name=bluetuith
 Exec=nix run ~/projects/netui
 Terminal=true
 Name=netui
+
+[Desktop Action proxychains-firefox]
+Exec=~/scripts/proxychains-firefox
+Name=firefox (proxychains)

@@ -31,6 +31,8 @@ xdg_cfgs=(
 	yazi
 	glow
 	neomutt
+	pimsync
+	khal
 )
 
 home_cfgs=(
@@ -95,3 +97,5 @@ rg Path= <~/.mozilla/firefox/profiles.ini | cut -f2 -d= | while read profile; do
 		ln -s -T "$(realpath ./firefox/chrome)" $chrome
 	fi
 done
+
+exit 0

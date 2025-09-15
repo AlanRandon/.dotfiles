@@ -32,6 +32,8 @@
     # Clipboard
     wl-clipboard
 
+    wtype
+
     # Cursor theme
     catppuccin-cursors.frappeLight
     (unstable.magnetic-catppuccin-gtk.override {

@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+# run `pass insert icloud/username` with `example@icloud.com`
+# run `pass insert icloud/calendar` with an app password (https://account.apple.com/)
+
+mkdir -p ~/.local/share/calendars/icloud
+pimsync sync

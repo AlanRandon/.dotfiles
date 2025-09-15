@@ -28,3 +28,26 @@ if [[ $1 = "random-wallpaper" ]]; then
 	hyprctl hyprpaper wallpaper ,$wallpaper
 fi
 
+if [[ $1 = "pick-emoji" ]]; then
+	if [[ $2 = "generate" ]]; then
+		curl -s https://raw.githubusercontent.com/muan/emojilib/refs/heads/main/dist/emoji-en-US.json \
+			| jq 'to_entries | map("\(.key) \(.value | join(", "))")[]' -r > ~/scripts/emoji-picker-data
+		exit 0
+	fi
+
+	if [[ $2 = "internal" ]]; then
+		address=$3
+		line=$(fzf --no-hscroll <~/scripts/emoji-picker-data)
+		[[ -z $line ]] && exit 1
+		hyprctl dispatch focuswindow "address:$address"
+		sleep 0.1
+		wtype "$(echo $line | cut -d' ' -f1)"
+		exit 0
+	fi
+
+	address=$(hyprctl activewindow -j | jq .address -r)
+	[[ $address = 'null' ]] && exit 1
+	hyprctl dispatch exec \
+		'[float; size 400 300; bordersize 1; bordercolor rgb(737994)]' \
+		"ghostty --window-padding-x=10 --window-padding-y=10 -e '~/scripts/hypr-utils pick-emoji internal $address'"
+fi

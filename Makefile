@@ -4,6 +4,9 @@ install:
 	git add .
 	sudo nixos-rebuild --flake ./nixos# switch
 
+home:
+	./scripts/install-dotfiles
+
 clean:
 	sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +3
 	sudo nix store gc

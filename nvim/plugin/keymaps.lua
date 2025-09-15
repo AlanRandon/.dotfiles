@@ -24,6 +24,26 @@ set("n", "N", "Nzz")
 
 set("x", " md", ":!prettier --parser markdown<CR>", { desc = "Format [M]ark[d]own Range" })
 
+vim.keymap.set("n", "<leader>zt", function()
+	local old_compiler = vim.b.current_compiler or "make"
+	vim.cmd([[
+		compiler zig_build_test
+		make
+		QuickfixDiagnosticsLoad
+	]])
+	vim.cmd("compiler " .. old_compiler)
+end, { desc = "[Z]ig [T]est" })
+
+vim.keymap.set("n", "<leader>zb", function()
+	local old_compiler = vim.b.current_compiler or "make"
+	vim.cmd([[
+		compiler zig_build
+		make
+		QuickfixDiagnosticsLoad
+	]])
+	vim.cmd("compiler " .. old_compiler)
+end, { desc = "[Z]ig [B]uild" })
+
 vim.api.nvim_create_user_command("InlayHintsToggle", function()
 	---@diagnostic disable-next-line missing-parameter
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())

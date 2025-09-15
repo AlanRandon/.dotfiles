@@ -91,6 +91,7 @@ local lsps = {
 	"taplo",
 	"ruff",
 	"pyright",
+	"buf_ls",
 	{
 		"tinymist",
 		opts = {

@@ -5,6 +5,10 @@
     neomutt
     pass
     lynx
+
+    # calendars
+    pimsync
+    khal
   ];
 
   programs.gnupg.agent = {
