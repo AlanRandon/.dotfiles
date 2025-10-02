@@ -22,13 +22,6 @@
       };
     };
 
-    not-bad-launcher = {
-      url = "github:AlanRandon/not-bad-launcher";
-      inputs = {
-        nixpkgs.follows = "nixpkgs-unstable";
-      };
-    };
-
     mountui = {
       url = "github:AlanRandon/mountui";
       inputs = {
@@ -42,66 +35,55 @@
     {
       nixpkgs,
       nixpkgs-unstable,
-      not-bad-launcher,
       mountui,
       zig-overlay,
       zls-overlay,
       ...
     }@inputs:
     let
-      system = "x86_64-linux";
-      overlay-unstable = final: prev: {
-        unstable = import nixpkgs-unstable {
+      mkNixosSystem =
+        { system, modules }:
+        nixpkgs.lib.nixosSystem {
           inherit system;
-        };
-      };
-      overlay-custom =
-        final: prev:
-        let
-          zig = zig-overlay.packages.${system}."0.15.1";
-        in
-        {
-          custom = {
-            zig = zig;
-            mountui = mountui.packages.${system}.default;
-            not-bad-launcher = not-bad-launcher.packages.${system}.default;
-            zls = zls-overlay.packages.${system}.zls.overrideAttrs (old: {
-              nativeBuildInputs = [ zig ];
-            });
-          };
+          specialArgs = { inherit inputs; };
+          modules = [
+            {
+              nixpkgs.overlays = [
+                (final: prev: {
+                  unstable = import nixpkgs-unstable {
+                    inherit system;
+                  };
+                  custom =
+                    let
+                      zig = zig-overlay.packages.${system}."0.15.1";
+                    in
+                    {
+                      zig = zig;
+                      mountui = mountui.packages.${system}.default;
+                      zls = zls-overlay.packages.${system}.zls.overrideAttrs (old: {
+                        nativeBuildInputs = [ zig ];
+                      });
+                    };
+                })
+              ];
+            }
+          ]
+          ++ modules;
         };
     in
     {
       # Using Greek Philosophers as hostnames now
       nixosConfigurations = {
-        plato = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs; };
-          modules = [
-            {
-              nixpkgs.overlays = [
-                overlay-unstable
-                overlay-custom
-              ];
-            }
-            ./plato
-          ];
+        plato = mkNixosSystem {
+          system = "x86_64-linux";
+          modules = [ ./plato ];
         };
-        socrates = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs; };
-          modules = [
-            {
-              nixpkgs.overlays = [
-                overlay-unstable
-                overlay-custom
-              ];
-            }
-            ./socrates
-          ];
+        socrates = mkNixosSystem {
+          system = "x86_64-linux";
+          modules = [ ./socrates ];
         };
       };
 
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
+      formatter."x86_64-linux" = nixpkgs.legacyPackages."x86_64-linux".nixfmt-rfc-style;
     };
 }

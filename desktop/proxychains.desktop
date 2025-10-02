@@ -1,0 +1,4 @@
+[Desktop Entry]
+Exec=proxychains4 firefox
+Name=Firefox (proxychains)
+Type=Application

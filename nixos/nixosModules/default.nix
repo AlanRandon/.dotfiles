@@ -8,8 +8,8 @@
     ];
 
   imports = [
-    ./nixosSupport.nix
     ./base.nix
+    ./nixosSupport.nix
     ./packages.nix
     ./windowManager.nix
     ./firefox.nix
@@ -21,29 +21,10 @@
     ./intel.nix
     ./email.nix
     ./mimeapps.nix
+    ./bluetooth.nix
   ];
 
-  networking.networkmanager = {
-    enable = true;
-    wifi.backend = "iwd";
-  };
-
-  programs.bandwhich.enable = true;
-
-  services = {
-    printing.enable = true;
-    udisks2.enable = true;
-    blueman.enable = true;
-  };
-
   powerManagement.powertop.enable = true;
-
-  hardware = {
-    bluetooth = {
-      enable = true;
-      powerOnBoot = false;
-    };
-  };
 
   security.pki.certificates = [
     (builtins.readFile ../../certificates/securly.pem)

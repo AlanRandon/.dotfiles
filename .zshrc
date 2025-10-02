@@ -98,10 +98,10 @@ pl() {
 		--bind "enter:become(
 		if grep -q 'unshuffled' \"${tmp_file}\"; then
 			rm -f \"${tmp_file}\" &> /dev/null
-			mpv --no-video --playlist={}
+			mpv --no-video --playlist={} --loop-playlist
 		else
 			rm -f \"${tmp_file}\" &> /dev/null
-			mpv --shuffle --no-video --playlist={}
+			mpv --shuffle --no-video --playlist={} --loop-playlist
 		fi
 		)" \
 		--bind "ctrl-s:change-prompt($shuffled_prompt)+execute-silent(printf 'shuffled' > \"${tmp_file}\")" \

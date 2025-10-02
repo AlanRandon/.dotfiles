@@ -55,6 +55,11 @@
     defaultUserShell = pkgs.zsh;
   };
 
+  networking.networkmanager = {
+    enable = true;
+    wifi.backend = "iwd";
+  };
+
   programs = {
     zsh.enable = true;
     git = {
@@ -70,6 +75,22 @@
       ];
       extraConfig = ''
         	set -g @plugin_catppuccin ${pkgs.unstable.tmuxPlugins.catppuccin}
+      '';
+    };
+  };
+
+  services = {
+    udisks2.enable = true;
+    kanata = {
+      enable = true;
+      keyboards.default.config = ''
+        (defsrc
+        	tab
+        	caps)
+
+        (deflayermap (default-layer)
+        	tab (tap-hold 200 200 tab lmet)
+        	caps (tap-hold 200 200 esc lctl))
       '';
     };
   };

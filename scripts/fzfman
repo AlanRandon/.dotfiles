@@ -1,14 +1,15 @@
 #!/usr/bin/env sh
 
 sources() {
-	man -k . | sed 's/^/MAN - /'
 # 	# `tldr -u` to update source
 	tldr -ql | sed 's/^/TLDR - /'
 	echo 'API - wttr.in/:help'
 	echo 'API - cheat.sh/:help'
+	echo 'API - https://check.torproject.org/api/ip'
+	man -k . | sed 's/^/MAN - /'
 }
 
-sources | fzf --bind "enter:become(
+sources | fzf --query "MAN - " --bind 'ctrl-c:clear-query' --bind "enter:become(
 	if echo {} | grep -q 'MAN'; then
 		echo {} | sed 's/MAN - //' | awk '{ gsub(/[()]/,\"\",\$2); print \$2 \" \" \$1 }' | xargs man
 	elif echo {} | grep -q 'TLDR'; then
@@ -16,4 +17,4 @@ sources | fzf --bind "enter:become(
 	elif echo \"{}\" | grep -q 'API'; then
 		echo {} | sed 's/API - //' | xargs curl -s | nvim '+Man!'
 	fi
-	)"
+	)" 

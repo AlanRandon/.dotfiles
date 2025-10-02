@@ -51,3 +51,33 @@ if [[ $1 = "pick-emoji" ]]; then
 		'[float; size 400 300; bordersize 1; bordercolor rgb(737994)]' \
 		"ghostty --window-padding-x=10 --window-padding-y=10 -e '~/scripts/hypr-utils pick-emoji internal $address'"
 fi
+
+if [[ $1 = "toggle-scale" ]]; then
+	if [[ "$(hyprctl monitors -j | jq 'map(.scale == 1) | all' -r)" = 'true' ]]; then
+		hyprctl keyword monitor "desc:, preferred, auto, auto"
+	else
+		# hyprctl keyword general:gaps_in 0
+		# hyprctl keyword general:gaps_out 0
+		# hyprctl keyword general:border_size 0
+		hyprctl keyword monitor "desc:, preferred, auto, 1.0"
+	fi
+fi
+
+if [[ $1 = "open-waydroid" ]]; then
+	hyprctl dispatch workspace name:android
+
+	if [[ $(systemctl is-enabled waydroid-container) != "enabled" ]]; then
+		pkexec systemctl start waydroid-container
+		notify-send 'Started waydroid systemd service'
+	fi
+
+	if waydroid status | grep -q STOPPED; then
+		hyprctl dispatch exec waydroid session start
+		notify-send 'Starting waydroid session'
+		while ! waydroid status | grep -q RUNNING; do
+			sleep 0.5
+			notify-send "$(waydroid status)"
+		done
+		hyprctl dispatch exec waydroid show-full-ui
+	fi
+fi

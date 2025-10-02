@@ -1,27 +1,5 @@
 {
   "nodes": {
-    "fenix": {
-      "inputs": {
-        "nixpkgs": [
-          "not-bad-launcher",
-          "nixpkgs"
-        ],
-        "rust-analyzer-src": "rust-analyzer-src"
-      },
-      "locked": {
-        "lastModified": 1741588215,
-        "narHash": "sha256-XTZ051fwGcDPtCUSb7gJv5BsUPYcvjH9mFjVZboMIKQ=",
-        "owner": "nix-community",
-        "repo": "fenix",
-        "rev": "49b0989891f48cbfe6fc288ea76c3efa84000ed5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "fenix",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -173,53 +151,14 @@
         "type": "github"
       }
     },
-    "not-bad-launcher": {
-      "inputs": {
-        "fenix": "fenix",
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1746125221,
-        "narHash": "sha256-+WQMo1Lm5SVvR+oYq1HcHhmRnOGf40gqqnFNPdUcwEA=",
-        "owner": "AlanRandon",
-        "repo": "not-bad-launcher",
-        "rev": "a0d8ea57b5bcf9570fafa2fabe47bc2099c4798d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "AlanRandon",
-        "repo": "not-bad-launcher",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
         "mountui": "mountui",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "not-bad-launcher": "not-bad-launcher",
         "zig-overlay": "zig-overlay_2",
         "zls-overlay": "zls-overlay_2"
-      }
-    },
-    "rust-analyzer-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1741517882,
-        "narHash": "sha256-MmYdZyVwKa3YHzqoHdHw9/jZXkDE/5M3M+7363t4Pkc=",
-        "owner": "rust-lang",
-        "repo": "rust-analyzer",
-        "rev": "5e7dd31c80d5821113ed9c9aa1616a73a63b49a1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rust-lang",
-        "ref": "nightly",
-        "repo": "rust-analyzer",
-        "type": "github"
       }
     },
     "systems": {

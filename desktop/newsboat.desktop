@@ -1,0 +1,5 @@
+[Desktop Entry]
+Terminal=true
+Exec=newsboat
+Name=Newsboat
+Type=Application

@@ -50,7 +50,6 @@ let
   defaultExtraTuiPackages = with pkgs; [
     pulsemixer
     gdb
-    bluetuith
     custom.mountui
     unstable.newsboat
     powertop
@@ -67,7 +66,6 @@ let
     zathura
     pavucontrol
     unstable.alacritty
-    unstable.mcpelauncher-ui-qt
     unstable.gimp3
     audacity
     (mpv.override {
@@ -82,7 +80,6 @@ let
   ];
 
   defaultExtraDevPackages = with pkgs; [
-    clang
     nasm
     pkg-config
     gnumake
@@ -152,6 +149,10 @@ let
         tinymist
       ];
     };
+    c = {
+      packages = with pkgs; [ clang ];
+      lspPackages = with pkgs; [ llvmPackages.clang-tools ];
+    };
   };
 
   mkExtraPackagesOption = name: defaultPackages: {
@@ -204,15 +205,19 @@ in
     dev.extra = mkExtraPackagesOption "build and debug tools" defaultExtraDevPackages;
   };
 
-  config.environment.systemPackages =
-    lib.optionals cfg.cli.extra.enable cfg.cli.extra.packages
-    ++ lib.optionals cfg.tui.extra.enable cfg.tui.extra.packages
-    ++ lib.optionals cfg.gui.extra.enable cfg.gui.extra.packages
-    ++ lib.optionals cfg.dev.extra.enable cfg.dev.extra.packages
-    ++ (lib.concatLists (
-      lib.attrsets.mapAttrsToList (
-        _: lang:
-        (lib.optionals lang.enable (lang.packages ++ (lib.optionals cfg.lsp.enable lang.lspPackages)))
-      ) cfg.languages
-    ));
+  config = {
+    environment.systemPackages =
+      lib.optionals cfg.cli.extra.enable cfg.cli.extra.packages
+      ++ lib.optionals cfg.tui.extra.enable cfg.tui.extra.packages
+      ++ lib.optionals cfg.gui.extra.enable cfg.gui.extra.packages
+      ++ lib.optionals cfg.dev.extra.enable cfg.dev.extra.packages
+      ++ (lib.concatLists (
+        lib.attrsets.mapAttrsToList (
+          _: lang:
+          (lib.optionals lang.enable (lang.packages ++ (lib.optionals cfg.lsp.enable lang.lspPackages)))
+        ) cfg.languages
+      ));
+
+    programs.bandwhich.enable = cfg.tui.extra.enable;
+  };
 }

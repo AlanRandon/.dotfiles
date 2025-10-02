@@ -1,20 +1,30 @@
-{ pkgs, ... }:
-
 {
-  environment.systemPackages = with pkgs; [
-    neomutt
-    pass
-    lynx
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
-    # calendars
-    pimsync
-    khal
-  ];
+let
+  enabled = config.dotfiles.packages.tui.extra.enable;
+in
+{
+  config = lib.mkIf enabled {
+    environment.systemPackages = with pkgs; [
+      neomutt
+      pass
+      lynx
 
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryPackage = pkgs.pinentry-gnome3;
+      # calendars
+      pimsync
+      khal
+    ];
+
+    programs.gnupg.agent = {
+      enable = true;
+      pinentryPackage = pkgs.pinentry-gnome3;
+    };
+
+    services.gnome.gnome-keyring.enable = true;
   };
-
-  services.gnome.gnome-keyring.enable = true;
 }

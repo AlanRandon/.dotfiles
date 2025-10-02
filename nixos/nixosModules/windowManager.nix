@@ -1,128 +1,132 @@
-{ pkgs, ... }:
-
 {
-  environment.systemPackages = with pkgs; [
-    # Notifications
-    mako
-    libnotify
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
-    # X11
-    xwayland
+let
+  enabled = config.dotfiles.window-manager.enable;
+in
+{
+  options.dotfiles.window-manager.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Enable window manager";
+  };
 
-    # Screenshots
-    grim
-    slurp
+  config = lib.mkIf enabled {
+    environment.systemPackages = with pkgs; [
+      # Notifications
+      mako
+      libnotify
 
-    # Screen recording
-    pipewire
-    wireplumber
+      # X11
+      xwayland
 
-    # Wallpaper
-    hyprpaper
+      # Screenshots
+      grim
+      slurp
 
-    # Launcher
-    custom.not-bad-launcher
+      # Screen recording
+      pipewire
+      wireplumber
 
-    # Statusbar
-    waybar
+      # Wallpaper
+      hyprpaper
 
-    # Brightness
-    brightnessctl
+      # Launcher
+      fuzzel
 
-    # Clipboard
-    wl-clipboard
+      # Statusbar
+      waybar
 
-    wtype
+      # Brightness
+      brightnessctl
 
-    # Cursor theme
-    catppuccin-cursors.frappeLight
-    (unstable.magnetic-catppuccin-gtk.override {
-      tweaks = [ "frappe" ];
-      accent = [ "green" ];
-    })
+      # Clipboard
+      wl-clipboard
 
-    adwaita-icon-theme
-    hicolor-icon-theme
+      wtype
 
-    # Privileges
-    hyprpolkitagent
+      # Cursor theme
+      catppuccin-cursors.frappeLight
+      (unstable.magnetic-catppuccin-gtk.override {
+        tweaks = [ "frappe" ];
+        accent = [ "green" ];
+      })
 
-    networkmanagerapplet
-    unstable.ghostty
-    pulseaudio
-  ];
+      adwaita-icon-theme
+      hicolor-icon-theme
 
-  programs = {
-    hyprland.enable = true;
-    hyprlock.enable = true;
-    dconf = {
-      enable = true;
-      profiles.user.databases = [
-        {
-          settings = {
-            "org/gnome/desktop/interface" = {
-              cursor-theme = "catppuccin-frappe-light-cursors";
-              application-prefer-dark-theme = true;
-              color-scheme = "prefer-dark";
-              gtk-theme = "Catppuccin-GTK-Green-Dark-Frappe";
+      # Privileges
+      hyprpolkitagent
+
+      networkmanagerapplet
+      unstable.ghostty
+      pulseaudio
+    ];
+
+    programs = {
+      hyprland.enable = true;
+      hyprlock.enable = true;
+      dconf = {
+        enable = true;
+        profiles.user.databases = [
+          {
+            settings = {
+              "org/gnome/desktop/interface" = {
+                cursor-theme = "catppuccin-frappe-light-cursors";
+                application-prefer-dark-theme = true;
+                color-scheme = "prefer-dark";
+                gtk-theme = "Catppuccin-GTK-Green-Dark-Frappe";
+              };
             };
-          };
-          lockAll = true;
-        }
-      ];
-    };
-  };
-
-  xdg.icons.enable = true;
-
-  fonts.packages = with pkgs; [
-    nerd-fonts.fira-mono
-    noto-fonts-color-emoji
-  ];
-
-  environment.etc = {
-    "xdg/gtk-2.0/gtkrc".text = ''
-      gtk-application-prefer-dark-theme = true
-      gtk-cursor-theme-name="catppuccin-frappe-light-cursors"
-      gtk-theme-name = "Catppuccin-GTK-Green-Dark-Frappe"
-    '';
-
-    "xdg/gtk-3.0/settings.ini".text = ''
-      [Settings]
-      gtk-application-prefer-dark-theme = true
-      gtk-cursor-theme-name = catppuccin-frappe-light-cursors
-      gtk-theme-name = Catppuccin-GTK-Green-Dark-Frappe
-    '';
-  };
-
-  services = {
-    libinput.enable = true;
-    dbus.enable = true;
-    greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --user-menu --time --cmd Hyprland";
-          user = "greeter";
-        };
+            lockAll = true;
+          }
+        ];
       };
     };
-    kanata = {
-      enable = true;
-      keyboards.default.config = ''
-        (defsrc
-        	tab
-        	caps)
 
-        (deflayermap (default-layer)
-        	tab (tap-hold 200 200 tab lmet)
-        	caps (tap-hold 200 200 esc lctl))
+    xdg.icons.enable = true;
+
+    fonts.packages = with pkgs; [
+      nerd-fonts.fira-mono
+      noto-fonts-color-emoji
+    ];
+
+    environment.etc = {
+      "xdg/gtk-2.0/gtkrc".text = ''
+        gtk-application-prefer-dark-theme = true
+        gtk-cursor-theme-name="catppuccin-frappe-light-cursors"
+        gtk-theme-name = "Catppuccin-GTK-Green-Dark-Frappe"
+      '';
+
+      "xdg/gtk-3.0/settings.ini".text = ''
+        [Settings]
+        gtk-application-prefer-dark-theme = true
+        gtk-cursor-theme-name = catppuccin-frappe-light-cursors
+        gtk-theme-name = Catppuccin-GTK-Green-Dark-Frappe
       '';
     };
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      pulse.enable = true;
+
+    services = {
+      libinput.enable = true;
+      dbus.enable = true;
+      greetd = {
+        enable = true;
+        settings = {
+          default_session = {
+            command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --user-menu --time --cmd Hyprland";
+            user = "greeter";
+          };
+        };
+      };
+      pipewire = {
+        enable = true;
+        alsa.enable = true;
+        pulse.enable = true;
+      };
     };
   };
 }

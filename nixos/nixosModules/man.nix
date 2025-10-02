@@ -1,14 +1,24 @@
-{ pkgs, ... }:
-
 {
-  environment.systemPackages = [
-    pkgs.man-pages
-    pkgs.man-pages-posix
-    pkgs.tealdeer
-  ];
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
-  documentation = {
-    dev.enable = true;
-    man.generateCaches = true;
+let
+  enabled = config.dotfiles.packages.tui.extra.enable;
+in
+{
+  config = lib.mkIf enabled {
+    environment.systemPackages = [
+      pkgs.man-pages
+      pkgs.man-pages-posix
+      pkgs.tealdeer
+    ];
+
+    documentation = {
+      dev.enable = true;
+      man.generateCaches = true;
+    };
   };
 }

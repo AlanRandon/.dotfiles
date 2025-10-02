@@ -14,27 +14,20 @@ window#waybar {
   color: @text;
   background: @base;
   font-size: 1em;
-  border-radius: 5px;
 }
 
-window#waybar label.module,
-#tray {
-  margin: 5px;
-  margin-right: 0;
+window#waybar label.module {
   padding: 0.3em 0.5em;
-  border-radius: 5px;
-  background: @base;
-  border: @overlay0 solid 1px;
 }
 
 window#waybar label.module#clock {
-  margin-right: 5px;
+  margin-right: 2px;
 }
 
 #workspaces {
-  margin-left: 5px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-left: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 window#waybar label.module#battery.critical {
@@ -44,7 +37,7 @@ window#waybar label.module#battery.critical {
 }
 
 #workspaces button {
-  margin-right: 5px;
+  margin-right: 2px;
   color: @text;
   padding: 0.2em 0.5em;
   border: none;
@@ -58,7 +51,5 @@ window#waybar label.module#battery.critical {
 #workspaces button.active,
 #workspaces button.focused,
 #workspaces button:hover {
-  /* background: @green; */
-  /* color: @base; */
   border-color: @green;
 }

@@ -33,6 +33,7 @@ xdg_cfgs=(
 	neomutt
 	pimsync
 	khal
+	fuzzel
 )
 
 home_cfgs=(

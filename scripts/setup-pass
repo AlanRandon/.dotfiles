@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+
+gpg_id='alan.randon@outlook.com'
+store="$HOME/.password-store"
+
+passes=(
+	outlook
+	icloud/username
+	icloud/calendar
+)
+
+if ! gpg --list-keys --keyid-format=long $gpg_id > /dev/null; then
+    gpg --batch --pinentry-mode loopback --generate-key <<EOF
+%echo Generating Ed25519 key with encryption subkey
+Key-Type: ed25519
+Key-Usage: SC
+Name-Real: Alan Randon
+Name-Email: alan.randon@outlook.com
+%commit
+
+%echo Add encryption subkey
+Subkey-Type: cv25519
+Subkey-Usage: E
+%commit
+%echo Done
+EOF
+fi
+
+if [[ ! -f $store/.gpg-id ]]; then
+	echo Creating pass store...
+	pass init "$gpg_id"
+fi
+
+for key in "${passes[@]}"; do
+	if [[ ! -f "$store/$key.gpg" ]]; then
+		echo Pass $key does not exist, inserting...
+		pass insert "$key"
+	fi
+done

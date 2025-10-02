@@ -1,24 +1,37 @@
+{ config, lib, ... }:
+
+let
+  enabled = config.dotfiles.virt-manager.enable;
+in
 {
-  programs.virt-manager.enable = true;
+  options.dotfiles.virt-manager.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Enable virt-manager";
+  };
 
-  users.groups.libvirtd.members = [ "alan" ];
+  config = lib.mkIf enabled {
+    programs.virt-manager.enable = true;
 
-  virtualisation.libvirtd.enable = true;
+    users.groups.libvirtd.members = [ "alan" ];
 
-  virtualisation.spiceUSBRedirection.enable = true;
+    virtualisation.libvirtd.enable = true;
 
-  programs.dconf = {
-    enable = true;
-    profiles.user.databases = [
-      {
-        settings = {
-          "org/virt-manager/virt-manager/connections" = {
-            autoconnect = [ "qemu:///system" ];
-            uris = [ "qemu:///system" ];
+    virtualisation.spiceUSBRedirection.enable = true;
+
+    programs.dconf = {
+      enable = true;
+      profiles.user.databases = [
+        {
+          settings = {
+            "org/virt-manager/virt-manager/connections" = {
+              autoconnect = [ "qemu:///system" ];
+              uris = [ "qemu:///system" ];
+            };
           };
-        };
-        lockAll = true;
-      }
-    ];
+          lockAll = true;
+        }
+      ];
+    };
   };
 }
