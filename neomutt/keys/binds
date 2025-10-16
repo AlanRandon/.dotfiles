@@ -26,6 +26,8 @@ bind attach <return> view-mailcap
 bind compose <return> view-mailcap
 bind browser <return> select-entry
 
+bind attach s save-entry
+
 bind browser o create-mailbox
 
 bind index,pager \Cn next-unread
@@ -68,5 +70,9 @@ bind compose \Ck move-up
 bind compose \Cj move-down
 
 bind index,pager s sync-mailbox
+
+bind index,pager r reply
+bind index,pager \Cr group-reply
+bind index,pager \Cf forward-message
 
 # vim: ft=muttrc

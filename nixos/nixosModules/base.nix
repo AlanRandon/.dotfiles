@@ -16,6 +16,8 @@
       BROWSER = "firefox";
       MANPAGER = "nvim +Man!";
 
+      # `nix run nixpkgs#vivid -- generate catppuccin-frappe > nixos/nixosModules/ls-colors`
+      LS_COLORS = builtins.readFile ./ls-colors;
       # fzf catppuccin
       FZF_DEFAULT_OPTS = "\
 --color=bg+:#414559,bg:#303446,spinner:#F2D5CF,hl:#E78284 \
@@ -61,7 +63,10 @@
   };
 
   programs = {
-    zsh.enable = true;
+    zsh = {
+      enable = true;
+      enableLsColors = false;
+    };
     git = {
       enable = true;
       lfs.enable = true;

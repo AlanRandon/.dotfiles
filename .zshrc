@@ -78,8 +78,8 @@ zvm_after_init() {
 
 alias vim="nvim"
 alias nd="nix develop -c zsh"
-alias l="eza --long --icons --header --git"
-alias lt="l --tree"
+alias l="ls -lhAtGp --time-style='+%Y-%m-%d %H:%M'"
+alias lt="tree --du -ha"
 alias m="~/scripts/fzfman"
 alias zb="zig build"
 alias zbr="zig build run"
@@ -115,6 +115,5 @@ gcme() { git clone https://github.com/AlanRandon/$@ }
 
 command -v fzf &> /dev/null && eval "$(fzf --zsh)"
 
-eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 # zprof | less

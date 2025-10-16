@@ -1,0 +1,9 @@
+{
+  "layer": "overlay",
+  "mode": "overlay",
+  "width": 200,
+  "margin-top": 100,
+  "modules-center": ["hyprland/workspaces"],
+  "include": ["~/.config/waybar/modules.jsonc"],
+  "name": "overlay",
+}

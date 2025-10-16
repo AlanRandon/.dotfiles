@@ -39,11 +39,8 @@ let
     wget
     dig
     unixtools.xxd
-    zoxide # `cd`-like
     bat # `cat`-like
-    eza # `ls`-like
     fd # `find`-like
-    dysk # `df`-like
     du-dust # `du`-like
   ];
 

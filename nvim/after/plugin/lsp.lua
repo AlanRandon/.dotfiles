@@ -71,6 +71,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.prettier,
 		null_ls.builtins.formatting.ocamlformat,
+		null_ls.builtins.formatting.djlint,
 		null_ls.builtins.completion.spell.with(writing_mode_source),
 		null_ls.builtins.hover.dictionary.with(writing_mode_source),
 	},

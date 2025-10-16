@@ -7,7 +7,13 @@ sources() {
 	echo 'API - cheat.sh/:help'
 	echo 'API - https://check.torproject.org/api/ip'
 	man -k . | sed 's/^/MAN - /'
+	info -k . | sed 's/^/INFO - /'
 }
+
+if [ -n "$1" ]; then
+	man $@
+	exit
+fi
 
 sources | fzf --query "MAN - " --bind 'ctrl-c:clear-query' --bind "enter:become(
 	if echo {} | grep -q 'MAN'; then
@@ -16,5 +22,7 @@ sources | fzf --query "MAN - " --bind 'ctrl-c:clear-query' --bind "enter:become(
 		echo {} | sed 's/TLDR - //' | xargs tldr | nvim '+Man!'
 	elif echo \"{}\" | grep -q 'API'; then
 		echo {} | sed 's/API - //' | xargs curl -s | nvim '+Man!'
+	elif echo '{}' | grep -q 'INFO'; then
+		~/scripts/fzfman-open-info-k {}
 	fi
 	)" 

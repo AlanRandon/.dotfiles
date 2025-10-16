@@ -113,6 +113,7 @@ in
     services = {
       libinput.enable = true;
       dbus.enable = true;
+      upower.enable = true;
       greetd = {
         enable = true;
         settings = {

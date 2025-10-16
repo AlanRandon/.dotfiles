@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+entry="$@"
+node=${entry%% -- *}
+node=${node#INFO - \"}
+node=${node%\"}
+search=${entry#* -- }
+info --vi-keys "$node" -- "$search"

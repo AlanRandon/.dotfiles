@@ -4,7 +4,7 @@ source ~/.config/neomutt/keys/binds
 source ~/.config/neomutt/accounts/outlook
 # folder-hook "accounts/outlook" "source ~/.config/neomutt/accounts/outlook"
 
-source ~/.config/neomutt/catpuccin
+source ~/.config/neomutt/catppuccin
 
 set mailcap_path = ~/.config/neomutt/mailcap
 auto_view text/html                                   # view HTML automatically
