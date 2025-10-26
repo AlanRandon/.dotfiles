@@ -48,8 +48,10 @@ vim.g.rustaceanvim = {
 		capabilities = capabilities,
 		settings = {
 			["rust-analyzer"] = {
-				checkOnSave = {
-					command = "clippy",
+				semanticHighlighting = {
+					strings = {
+						enable = false,
+					},
 				},
 			},
 		},

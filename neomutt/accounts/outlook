@@ -40,4 +40,4 @@ macro index,pager ga "<change-folder>=Archive<enter>" "go to archive"
 macro index,pager ma ";<save-message>=Archive<enter><enter>" "move mail to archive"
 macro index,pager ca ";<copy-message>=Archive<enter>" "copy mail to archive"
 
-# vim: ft=muttrc
+# vim: ft=neomuttrc

@@ -14,6 +14,8 @@ in
       neomutt
       pass
       lynx
+      abook
+      urlscan
 
       # calendars
       pimsync

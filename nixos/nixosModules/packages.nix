@@ -54,7 +54,6 @@ let
     starship
     htop-vim
     unstable.glow
-    unstable.yazi
     impala
     timg
   ];

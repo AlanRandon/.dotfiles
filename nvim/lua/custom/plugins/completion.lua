@@ -10,22 +10,11 @@ return {
 				window = { show_documentation = false },
 			},
 			completion = {
-				ghost_text = { enabled = true },
-				documentation = { window = { border = "rounded" } },
+				documentation = { window = { border = "rounded" }, auto_show = true },
 				menu = { auto_show = false, border = "rounded" },
 			},
 			keymap = {
-				["<C-x><C-f>"] = {
-					function(cmp)
-						return cmp.show({ providers = { "path" } })
-					end,
-				},
-				["<C-x><C-n>"] = {
-					function(cmp)
-						return cmp.show({ providers = { "buffer" } })
-					end,
-				},
-				["<C-y>"] = false,
+				["<C-y>"] = { "select_and_accept", "fallback" },
 				["<C-k>"] = false,
 				["<S-Tab>"] = false,
 				["<C-s>"] = {
@@ -33,26 +22,24 @@ return {
 					"hide_signature",
 					"fallback",
 				},
-				["<Tab>"] = {
-					function(cmp)
-						if cmp.snippet_active() then
-							return cmp.accept()
-						else
-							return cmp.select_and_accept()
-						end
-					end,
-					"fallback",
-				},
+				["<Tab>"] = false,
 			},
 			snippets = { preset = "luasnip" },
 			sources = {
-				default = { "lazydev", "lsp", "snippets" },
+				default = { "lazydev", "lsp", "snippets", "co_author" },
 				providers = {
 					lazydev = {
 						name = "LazyDev",
 						module = "lazydev.integrations.blink",
 						-- make lazydev completions top priority (see `:h blink.cmp`)
 						score_offset = 100,
+					},
+					snippets = {
+						score_offset = 200,
+					},
+					co_author = {
+						name = "CoAuthor",
+						module = "blink-cmp-co-author",
 					},
 				},
 			},

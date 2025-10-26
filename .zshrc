@@ -27,6 +27,9 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Neomutt/ncurses
 export ESCDELAY=0
 
+export TERMINFO=$HOME/.terminfo
+export COLORTERM=truecolor
+
 zinit wait lucid for \
 	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
 		zdharma-continuum/fast-syntax-highlighting \
@@ -84,29 +87,8 @@ alias m="~/scripts/fzfman"
 alias zb="zig build"
 alias zbr="zig build run"
 alias zbt="zig build test --summary all"
+alias c="cargo"
 alias mkproj="~/scripts/mkproj"
-
-pl() {
-	tmp_file=$(mktemp)
-	printf 'shuffled' > $tmp_file
-	
-	shuffled_prompt="(shuffled) > "
-	unshuffled_prompt="(unshuffled) > "
-	fd . ~/Music -e m3u | fzf \
-		--header "Play a playlist" \
-		--prompt "$shuffled_prompt" \
-		--bind "enter:become(
-		if grep -q 'unshuffled' \"${tmp_file}\"; then
-			rm -f \"${tmp_file}\" &> /dev/null
-			mpv --no-video --playlist={} --loop-playlist
-		else
-			rm -f \"${tmp_file}\" &> /dev/null
-			mpv --shuffle --no-video --playlist={} --loop-playlist
-		fi
-		)" \
-		--bind "ctrl-s:change-prompt($shuffled_prompt)+execute-silent(printf 'shuffled' > \"${tmp_file}\")" \
-		--bind "ctrl-u:change-prompt($unshuffled_prompt)+execute-silent(printf 'unshuffled' > \"${tmp_file}\")"
-}
 
 gcme() { git clone https://github.com/AlanRandon/$@ }
 

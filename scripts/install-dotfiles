@@ -28,7 +28,6 @@ xdg_cfgs=(
 	firefox/newtab.html
 	bluetuith
 	ghostty
-	yazi
 	glow
 	neomutt
 	pimsync
@@ -41,6 +40,7 @@ home_cfgs=(
 	.gitconfig
 	.tmux.conf
 	.npmrc
+	.abook
 	scripts
 )
 

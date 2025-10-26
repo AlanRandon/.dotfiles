@@ -1,5 +1,3 @@
----@module "luasnip.loaders."
-
 ---@param key string
 ---@param pos integer
 local function card_value(pos, key)

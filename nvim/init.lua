@@ -15,10 +15,4 @@ vim.diagnostic.config({
 	virtual_text = true,
 })
 
-vim.filetype.add({
-	extension = {
-		wgsl = "wgsl",
-	},
-})
-
 require("lazy").setup("custom.plugins")

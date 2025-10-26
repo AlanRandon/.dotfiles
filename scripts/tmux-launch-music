@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+
+if [ -z $1 ]; then
+	if ! tmux has-session -t=Music 2> /dev/null; then
+		tmux new-session -ds Music -c ~/Music ~/scripts/tmux-launch-music inner
+	fi
+
+	tmux switch-client -t Music
+	exit
+fi
+
+tmp_file=$(mktemp)
+printf 'shuffled' > $tmp_file
+
+shuffled_prompt="(shuffled) > "
+unshuffled_prompt="(unshuffled) > "
+fd . ~/Music -e m3u | fzf \
+	--header "Play a playlist" \
+	--prompt "$shuffled_prompt" \
+	--bind "enter:become(
+	if grep -q 'unshuffled' \"${tmp_file}\"; then
+		rm -f \"${tmp_file}\" &> /dev/null
+		mpv --no-video --playlist={} --loop-playlist
+	else
+		rm -f \"${tmp_file}\" &> /dev/null
+		mpv --shuffle --no-video --playlist={} --loop-playlist
+	fi
+	)" \
+	--bind "ctrl-s:change-prompt($shuffled_prompt)+execute-silent(printf 'shuffled' > \"${tmp_file}\")" \
+	--bind "ctrl-u:change-prompt($unshuffled_prompt)+execute-silent(printf 'unshuffled' > \"${tmp_file}\")"

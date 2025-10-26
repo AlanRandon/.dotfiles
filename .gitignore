@@ -10,3 +10,5 @@ newsboat/history.search
 newsboat/history.cmdline
 newsboat/queue
 neomutt/accounts/*token
+.abook/addressbook
+.abook/addressbook~

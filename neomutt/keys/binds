@@ -68,6 +68,7 @@ bind compose F filter-entry
 bind compose \Ct edit-type
 bind compose \Ck move-up
 bind compose \Cj move-down
+bind compose S pgp-menu
 
 bind index,pager s sync-mailbox
 
@@ -75,4 +76,14 @@ bind index,pager r reply
 bind index,pager \Cr group-reply
 bind index,pager \Cf forward-message
 
-# vim: ft=muttrc
+macro index,pager a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to abook"
+bind editor <Tab> complete-query
+
+bind query <return> select-entry
+
+macro index,pager \cb "<pipe-message>urlscan<return>" "call urlscan to extract URLs out of a message"
+macro attach,compose \cb "<pipe-entry>urlscan<return>" "call urlscan to extract URLs out of a message"
+
+bind key_select_pgp <return> select-entry
+
+# vim: ft=neomuttrc
