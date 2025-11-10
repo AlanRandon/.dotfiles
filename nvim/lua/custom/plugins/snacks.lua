@@ -80,35 +80,6 @@ return {
 		},
 		notifier = { enabled = true },
 		scope = { enabled = true }, -- adds ii and ai indent textobjects
-		dashboard = {
-			enabled = true,
-			preset = {
-				keys = {
-					{ icon = " ", key = "f", desc = "Find File", action = "<leader>ff" },
-					{ icon = " ", key = "g", desc = "Git", action = ":Git" },
-					{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-					{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
-				},
-			},
-			sections = {
-				{ section = "header" },
-				{ section = "startup", padding = 1 },
-				{ section = "keys", padding = 1 },
-				function()
-					local in_git = Snacks.git.get_root() ~= nil
-					return {
-						section = "terminal",
-						icon = " ",
-						title = "Git Status",
-						cmd = "git status --short",
-						enabled = in_git,
-						ttl = 0,
-						height = 10,
-						padding = 1,
-					}
-				end,
-			},
-		},
 	},
 	init = function()
 		---@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>

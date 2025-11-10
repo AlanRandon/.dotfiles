@@ -1,10 +1,8 @@
 **/node_modules
 **/out
-**/.luarc.json
 scripts/apod-api-key
 scripts/motd-location
-btop/btop.log
-nom/nom.db
+newsboat/urls
 newsboat/cache.db
 newsboat/history.search
 newsboat/history.cmdline

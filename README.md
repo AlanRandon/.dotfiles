@@ -18,3 +18,4 @@ See [INSTALL.md](INSTALL.md)
 - `~/smb-secrets`: contains samba login details
 - `~/.abook/addressbook`: contains contact data
 - `~/scripts/apod-api-key`: required for `random-apod`
+- `./newsboat/urls`: contains rss feeds

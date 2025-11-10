@@ -16,19 +16,20 @@ let
     };
 
   defaultExtraCliPackages = with pkgs; [
-    jq
     ffmpeg
-    poppler_utils
+    opustags
     playerctl
     yt-dlp
+    jq
+    poppler_utils
     unstable.onedrive
     httplz
     strace
     inetutils
+    wakeonlan
     hyperfine
     unzip
     xdg-utils
-    wakeonlan
     fortune
     cowsay
     lsof
@@ -52,10 +53,10 @@ let
     powertop
     thokr
     starship
-    htop-vim
     unstable.glow
     impala
     timg
+    htop-vim
   ];
 
   defaultExtraGuiPackages = with pkgs; [

@@ -7,7 +7,7 @@ fi
 
 motd() {
 	sleep 0.1
-	hostname | figlet -cw $(tput cols) -f speed | clolcat
+	hostname | figlet -cw $(tput cols) -f speed
 
 	script -qfc "stty cols $(tput cols) rows $(tput lines); khal list today 7d; echo; df -h /" /dev/null | sed 's/^/\t\t/'
 	echo

@@ -22,7 +22,6 @@ xdg_cfgs=(
 	zathura
 	newsboat
 	hypr
-	htop
 	tridactyl
 	starship.toml
 	firefox/newtab.html
