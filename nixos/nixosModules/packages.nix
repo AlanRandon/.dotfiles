@@ -18,19 +18,17 @@ let
   defaultExtraCliPackages = with pkgs; [
     ffmpeg
     opustags
-    playerctl
     yt-dlp
+    playerctl
     jq
     poppler_utils
     unstable.onedrive
-    httplz
+    websocat
     strace
     inetutils
     wakeonlan
-    hyperfine
     unzip
     xdg-utils
-    fortune
     cowsay
     lsof
     tree
@@ -40,9 +38,9 @@ let
     wget
     dig
     unixtools.xxd
-    bat # `cat`-like
-    fd # `find`-like
     du-dust # `du`-like
+    fd # `find`-like
+    hyperfine
   ];
 
   defaultExtraTuiPackages = with pkgs; [
@@ -51,11 +49,9 @@ let
     custom.mountui
     unstable.newsboat
     powertop
-    thokr
     starship
     unstable.glow
     impala
-    timg
     htop-vim
   ];
 

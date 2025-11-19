@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+if [ "$TERM" = "tmux-256color" ]; then
+	neomutt $@
+else
+	ghostty -e neomutt $@
+fi
+
+# vim: ft=sh

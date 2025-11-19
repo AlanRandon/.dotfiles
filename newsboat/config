@@ -35,4 +35,3 @@ bind-key l open
 browser "firefox %u"
 prepopulate-query-feeds yes
 show-keymap-hint no
-

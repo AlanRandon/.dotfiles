@@ -9,6 +9,7 @@ in
   xdg.mime.defaultApplications = {
     "application/pdf" = "org.pwmt.zathura.desktop";
     "inode/directory" = "nvim.desktop";
+    "x-scheme-handler/mailto" = "neomutt.desktop";
   }
   // (genAttrsConst [
     "text/html"

@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-global
+
 ---@param key string
 ---@param pos integer
 local function card_value(pos, key)
