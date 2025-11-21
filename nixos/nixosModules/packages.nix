@@ -16,6 +16,7 @@ let
     };
 
   defaultExtraCliPackages = with pkgs; [
+    nix-search-cli
     ffmpeg
     opustags
     yt-dlp

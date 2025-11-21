@@ -26,14 +26,10 @@ return {
 			},
 			snippets = { preset = "luasnip" },
 			sources = {
-				default = { "lsp", "snippets", "co_author" },
+				default = { "lsp", "snippets" },
 				providers = {
 					snippets = {
 						score_offset = 200,
-					},
-					co_author = {
-						name = "CoAuthor",
-						module = "blink-cmp-co-author",
 					},
 				},
 			},

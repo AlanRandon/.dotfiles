@@ -81,6 +81,7 @@ zvm_after_init() {
 
 alias vim="nvim"
 alias nd="nix develop -c zsh"
+alias ns="nix-search -r"
 alias l="ls -lhAtGp --time-style='+%Y-%m-%d %H:%M'"
 alias lt="tree --du -ha"
 alias m="~/scripts/fzfman"

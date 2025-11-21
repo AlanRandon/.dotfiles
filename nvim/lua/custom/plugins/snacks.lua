@@ -55,14 +55,14 @@ return {
 			desc = "[F]ind [D]iagnostic",
 		},
 		{
-			"<leader>fsd",
+			"<leader>fs",
 			function()
 				Snacks.picker.lsp_symbols()
 			end,
 			desc = "LSP: [F]ind [D]ocument Symbols",
 		},
 		{
-			"<leader>fsw",
+			"<leader>fw",
 			function()
 				Snacks.picker.lsp_workspace_symbols()
 			end,

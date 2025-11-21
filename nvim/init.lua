@@ -15,4 +15,9 @@ vim.diagnostic.config({
 	virtual_text = true,
 })
 
-require("lazy").setup("custom.plugins")
+require("lazy").setup({
+	spec = {
+		{ import = "custom.plugins" },
+	},
+	rocks = { enabled = false },
+})

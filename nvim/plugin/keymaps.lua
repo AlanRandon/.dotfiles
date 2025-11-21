@@ -7,12 +7,12 @@ set("t", "<ESC>", "<C-\\><C-n>", { desc = "Escape Terminal Mode" })
 
 set("n", "<leader>w", function()
 	-- not sure about opt_local here
-	vim.opt_local.wrap = not vim.opt_local.wrap
+	vim.opt_local.wrap = not vim.opt_local.wrap:get()
 end, { desc = "Toggle [W]rap" })
 
 set("n", "<leader>s", function()
 	-- not sure about opt_local here
-	vim.opt_local.spell = not vim.opt_local.spell
+	vim.opt_local.spell = not vim.opt_local.spell:get()
 end, { desc = "Toggle [S]pell" })
 
 set("n", "<C-u>", "<C-u>zz", { desc = "[U]p Half Page" })
@@ -43,6 +43,30 @@ vim.keymap.set("n", "<leader>zb", function()
 	]])
 	vim.cmd("compiler " .. old_compiler)
 end, { desc = "[Z]ig [B]uild" })
+
+-- LSP mappings
+
+set("n", "gd", vim.lsp.buf.definition, { desc = "LSP: [G]oto [D]efinition" })
+set("n", "gr", Snacks.picker.lsp_references, { desc = "LSP: [G]oto [R]eferences" })
+set("n", "gI", vim.lsp.buf.implementation, { desc = "LSP: [G]oto [I]mplementation" })
+set("n", "gt", vim.lsp.buf.type_definition, { desc = "LSP: [G]oto [T]ype Definition" })
+
+set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP: [R]e[n]ame" })
+set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: [C]ode [A]ction" })
+
+set("n", "[d", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "LSP: Goto Next [D]iagnostic" })
+
+set("n", "]d", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "LSP: Goto Previous [D]iagnostic" })
+
+set("n", "K", function()
+	vim.lsp.buf.hover({ border = "rounded" })
+end, { desc = "LSP: Hover Documentation" })
+
+set("n", "<leader>ih", ":InlayHintsToggle<CR>", { desc = "LSP: Toggle [I]nlay [H]ints" })
 
 vim.api.nvim_create_user_command("InlayHintsToggle", function()
 	---@diagnostic disable-next-line missing-parameter

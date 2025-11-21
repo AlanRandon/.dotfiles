@@ -8,6 +8,7 @@ sources() {
 	echo 'API - https://check.torproject.org/api/ip'
 	man -k . | sed 's/^/MAN - /'
 	info -k . | sed 's/^/INFO - /'
+	pydoc -k . | sed 's/^/PYDOC - /'
 }
 
 if [ -n "$1" ]; then
@@ -15,13 +16,15 @@ if [ -n "$1" ]; then
 	exit
 fi
 
-sources | fzf --query "MAN - " --bind 'ctrl-c:clear-query' --bind "enter:become(
+sources | fzf --bind "enter:become(
 	if echo {} | grep -q 'MAN'; then
 		echo {} | sed 's/MAN - //' | awk '{ gsub(/[()]/,\"\",\$2); print \$2 \" \" \$1 }' | xargs man
 	elif echo {} | grep -q 'TLDR'; then
 		echo {} | sed 's/TLDR - //' | xargs tldr | nvim '+Man!'
 	elif echo \"{}\" | grep -q 'API'; then
 		echo {} | sed 's/API - //' | xargs curl -s | nvim '+Man!'
+	elif echo \"{}\" | grep -q 'PYDOC'; then
+		echo {} | sed 's/PYDOC - \([^-]*\)\( - .*\)\{0,1\}/\1/' | xargs -I{} pydoc {} | nvim '+Man!'
 	elif echo '{}' | grep -q 'INFO'; then
 		~/scripts/fzfman-open-info-k {}
 	fi
