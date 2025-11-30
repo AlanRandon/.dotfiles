@@ -24,6 +24,8 @@ set("n", "N", "Nzz")
 
 set("x", " md", ":!prettier --parser markdown<CR>", { desc = "Format [M]ark[d]own Range" })
 
+-- compiler
+
 vim.keymap.set("n", "<leader>zt", function()
 	local old_compiler = vim.b.current_compiler or "make"
 	vim.cmd([[
@@ -44,7 +46,7 @@ vim.keymap.set("n", "<leader>zb", function()
 	vim.cmd("compiler " .. old_compiler)
 end, { desc = "[Z]ig [B]uild" })
 
--- LSP mappings
+-- LSP
 
 set("n", "gd", vim.lsp.buf.definition, { desc = "LSP: [G]oto [D]efinition" })
 set("n", "gr", Snacks.picker.lsp_references, { desc = "LSP: [G]oto [R]eferences" })
@@ -72,3 +74,29 @@ vim.api.nvim_create_user_command("InlayHintsToggle", function()
 	---@diagnostic disable-next-line missing-parameter
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, {})
+
+-- treesitter textobjects
+
+vim.keymap.set({ "x", "o" }, "af", function()
+	require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
+end)
+
+vim.keymap.set({ "x", "o" }, "if", function()
+	require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
+end)
+
+vim.keymap.set({ "x", "o" }, "aa", function()
+	require("nvim-treesitter-textobjects.select").select_textobject("@parameter.outer", "textobjects")
+end)
+
+vim.keymap.set({ "x", "o" }, "ia", function()
+	require("nvim-treesitter-textobjects.select").select_textobject("@parameter.inner", "textobjects")
+end)
+
+vim.keymap.set({ "n", "x", "o" }, "]f", function()
+	require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
+end)
+
+vim.keymap.set({ "n", "x", "o" }, "[f", function()
+	require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
+end)

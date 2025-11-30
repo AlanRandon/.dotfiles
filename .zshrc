@@ -70,11 +70,13 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 setopt autocd
 
+zstyle ':completion:*' fzf-completion-opts --bind "ctrl-y:accept"
+
 ZSH_AUTOSUGGEST_IGNORE_WIDGETS=(fzf_completion)
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 zvm_after_init() {
 	zvm_define_widget autosuggest-accept
-	zvm_bindkey viins '^I' autosuggest-accept
+	zvm_bindkey viins '^Y' autosuggest-accept
 	zvm_define_widget fzf_completion 
 	zvm_bindkey viins '^ ' fzf_completion
 }

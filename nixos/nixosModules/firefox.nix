@@ -18,14 +18,7 @@
         };
         schemes = {
           mailto = {
-            action = "useHelperApp";
-            ask = true;
-            handlers = [
-              {
-                name = "Gmail";
-                uriTemplate = "https://mail.google.com/mail/?extsrc=mailto&url=%s";
-              }
-            ];
+            action = "useSystemDefault";
           };
         };
       };
