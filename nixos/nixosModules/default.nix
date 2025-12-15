@@ -22,6 +22,7 @@
     ./email.nix
     ./mimeapps.nix
     ./bluetooth.nix
+    ./printing.nix
   ];
 
   powerManagement.powertop.enable = true;

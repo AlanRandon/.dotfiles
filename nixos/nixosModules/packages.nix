@@ -17,6 +17,7 @@ let
 
   defaultExtraCliPackages = with pkgs; [
     nix-search-cli
+    nix-tree
     ffmpeg
     opustags
     yt-dlp
@@ -61,7 +62,6 @@ let
     pavucontrol
     unstable.alacritty
     unstable.gimp3
-    audacity
     (mpv.override {
       scripts = with mpvScripts; [
         uosc

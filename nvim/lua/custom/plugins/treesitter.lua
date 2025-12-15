@@ -25,6 +25,11 @@ return {
 				"javascript",
 				"css",
 				"json",
+				"scss",
+				"svelte",
+				"tsx",
+				"vue",
+				"norg",
 				-- required
 				"c",
 				"lua",
