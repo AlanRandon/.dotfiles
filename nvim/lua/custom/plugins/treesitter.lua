@@ -30,6 +30,7 @@ return {
 				"tsx",
 				"vue",
 				"norg",
+				"sparql",
 				-- required
 				"c",
 				"lua",

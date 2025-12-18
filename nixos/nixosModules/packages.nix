@@ -23,7 +23,7 @@ let
     yt-dlp
     playerctl
     jq
-    poppler_utils
+    poppler-utils
     unstable.onedrive
     websocat
     strace
@@ -40,7 +40,7 @@ let
     wget
     dig
     unixtools.xxd
-    du-dust # `du`-like
+    dust # `du`-like
     fd # `find`-like
     hyperfine
   ];
