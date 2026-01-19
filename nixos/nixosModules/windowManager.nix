@@ -95,6 +95,7 @@ in
     fonts.packages = with pkgs; [
       nerd-fonts.fira-mono
       noto-fonts-color-emoji
+      roboto
     ];
 
     environment.etc = {

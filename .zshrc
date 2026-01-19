@@ -30,6 +30,8 @@ export ESCDELAY=0
 export TERMINFO=$HOME/.terminfo
 export COLORTERM=truecolor
 
+export PYTHONSTARTUP=$HOME/.pythonrc.py
+
 zinit wait lucid for \
 	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
 		zdharma-continuum/fast-syntax-highlighting \
@@ -91,7 +93,12 @@ alias zb="zig build"
 alias zbr="zig build run"
 alias zbt="zig build test --summary all"
 alias c="cargo"
-alias mkproj="~/scripts/mkproj"
+alias mkproj=". ~/scripts/mkproj"
+
+nd-gcroot() {
+	dir=$(git rev-parse --show-toplevel)
+	nix build .#devShells.x86_64-linux.default --out-link "$dir/.nix-gcroot"
+}
 
 gcme() { git clone https://github.com/AlanRandon/$@ }
 

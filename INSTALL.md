@@ -83,18 +83,9 @@ Pick a hostname - using a Greek Philosopher's name seems like a funny suggestion
 ```nix
 {
   nixosConfigurations = {
-    <HOSTNAME> = nixpkgs.lib.nixosSystem {
-      inherit system;
-        specialArgs = { inherit inputs; };
-        modules = [
-          {
-            nixpkgs.overlays = [
-              overlay-unstable
-              overlay-custom
-            ];
-          }
-          ./<HOSTNAME>
-        ];
+    <HOSTNAME> = mkNixosSystem {
+      system = <ARCHITECTURE>; # usually "x86_64-linux"
+      modules = [ ./<HOSTNAME> ];
     };
   };
 }

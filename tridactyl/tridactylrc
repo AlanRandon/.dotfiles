@@ -60,5 +60,9 @@ set searchengine br
 
 colorscheme catppuccin
 
+set hintstyles.bg none
+set hintstyles.fg none
+set hintstyles.outline none
+
 autocmd UriChange .*youtube\.com js -r youtube.js
 autocmd DocStart .*youtube\.com js -r youtube.js

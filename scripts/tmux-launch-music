@@ -11,6 +11,7 @@ fi
 
 tmp_file=$(mktemp)
 printf 'shuffled' > $tmp_file
+ipc_socket="${XDG_RUNTIME_DIR:=/run/user/$UID}/mpv-music-ipc-socket"
 
 shuffled_prompt="(shuffled) > "
 unshuffled_prompt="(unshuffled) > "
@@ -20,10 +21,10 @@ fd . ~/Music -e m3u | fzf \
 	--bind "enter:become(
 	if grep -q 'unshuffled' \"${tmp_file}\"; then
 		rm -f \"${tmp_file}\" &> /dev/null
-		mpv --no-video --playlist={} --loop-playlist
+		mpv --no-video --playlist={} --loop-playlist --input-ipc-server=$ipc_socket
 	else
 		rm -f \"${tmp_file}\" &> /dev/null
-		mpv --shuffle --no-video --playlist={} --loop-playlist
+		mpv --shuffle --no-video --playlist={} --loop-playlist --input-ipc-server=$ipc_socket
 	fi
 	)" \
 	--bind "ctrl-s:change-prompt($shuffled_prompt)+execute-silent(printf 'shuffled' > \"${tmp_file}\")" \

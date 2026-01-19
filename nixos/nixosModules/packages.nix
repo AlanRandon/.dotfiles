@@ -16,16 +16,17 @@ let
     };
 
   defaultExtraCliPackages = with pkgs; [
-    nix-search-cli
-    nix-tree
     ffmpeg
     opustags
     yt-dlp
+    nix-search-cli
+    nix-tree
     playerctl
     jq
     poppler-utils
     unstable.onedrive
     websocat
+    socat
     strace
     inetutils
     wakeonlan
@@ -62,6 +63,7 @@ let
     pavucontrol
     unstable.alacritty
     unstable.gimp3
+    unstable.inkscape
     (mpv.override {
       scripts = with mpvScripts; [
         uosc
@@ -113,7 +115,14 @@ let
     };
     python = {
       packages = with pkgs; [
-        python312
+        (python313.withPackages (
+          ps: with ps; [
+            pandas
+            numpy
+            plotly
+            requests
+          ]
+        ))
         ruff
       ];
       lspPackages = with pkgs; [ pyright ];

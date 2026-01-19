@@ -5,7 +5,7 @@ if (( $# != 2 )); then
 	exit 1
 fi
 
-template=$(echo $1 | sed 's/^rs$/rust/;s/^z$/zig/;s/^hs$/haskell/')
+template=$(echo $1 | sed 's/^rs$/rust/;s/^z$/zig/;s/^hs$/haskell/;s/^py$/python/')
 name=$2
 
 if [[ -e ~/projects/$name ]]; then
@@ -18,8 +18,6 @@ mkdir -p ~/projects/$name
 selected=~/projects/$name
 selected_name="$(echo "$name" | tr . _)"
 
-tmux new-session \
-	-c $selected -ds $selected_name \
-	sh -c "nix flake init -t github:AlanRandon/nix-templates#$template && exec zsh"
+cd $selected
 
-tmux switch-client -t $selected_name
+nix flake init -t github:AlanRandon/nix-templates#$template

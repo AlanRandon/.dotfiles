@@ -40,6 +40,7 @@ home_cfgs=(
 	.tmux.conf
 	.npmrc
 	.abook
+	.pythonrc.py
 	scripts
 )
 

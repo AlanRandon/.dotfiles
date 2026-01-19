@@ -23,6 +23,7 @@
     ./mimeapps.nix
     ./bluetooth.nix
     ./printing.nix
+    ./imobiledevice.nix
   ];
 
   powerManagement.powertop.enable = true;

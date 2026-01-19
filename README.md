@@ -15,7 +15,6 @@ See [INSTALL.md](INSTALL.md)
 
 - `~/.ssh`: contains ssh public and private keys
 - `~/.gnupg`: contains gpg public and secret keys
-- `~/smb-secrets`: contains samba login details
 - `~/.abook/addressbook`: contains contact data
-- `~/scripts/apod-api-key`: required for `random-apod`
 - `./newsboat/urls`: contains rss feeds
+- `~/smb-secrets`: contains samba login details

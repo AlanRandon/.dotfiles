@@ -84,6 +84,6 @@ bind query <return> select-entry
 macro index,pager \cb "<pipe-message>urlscan<return>" "call urlscan to extract URLs out of a message"
 macro attach,compose \cb "<pipe-entry>urlscan<return>" "call urlscan to extract URLs out of a message"
 
-bind key_select_pgp <return> select-entry
+# bind key_select_pgp <return> select-entry
 
 # vim: ft=neomuttrc

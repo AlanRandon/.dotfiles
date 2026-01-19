@@ -91,11 +91,13 @@
       keyboards.default.config = ''
         (defsrc
         	tab
-        	caps)
+        	caps
+                lctl)
 
         (deflayermap (default-layer)
         	tab (tap-hold 200 200 tab lmet)
-        	caps (tap-hold 200 200 esc lctl))
+        	caps (tap-hold 200 200 esc lctl)
+                lctl comp)
       '';
     };
   };

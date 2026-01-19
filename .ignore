@@ -3,4 +3,5 @@
 !.gitconfig
 !.gitignore
 !.abook
+!.pythonrc.py
 !newsboat/urls

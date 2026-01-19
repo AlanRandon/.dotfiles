@@ -10,6 +10,7 @@ in
     "application/pdf" = "org.pwmt.zathura.desktop";
     "inode/directory" = "nvim.desktop";
     "x-scheme-handler/mailto" = "neomutt.desktop";
+    "image/svg+xml" = "inkview.desktop";
   }
   // (genAttrsConst [
     "text/html"
