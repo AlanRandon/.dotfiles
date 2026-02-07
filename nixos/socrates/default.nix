@@ -8,7 +8,10 @@
 
   networking.hostName = "socrates";
 
-  dotfiles.intel.enable = true;
+  dotfiles = {
+    intel.enable = true;
+    powerManagement.enable = true;
+  };
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
@@ -20,7 +23,10 @@
     };
   };
 
-  virtualisation.waydroid.enable = true;
+  virtualisation.waydroid = {
+    enable = true;
+    package = pkgs.waydroid-nftables;
+  };
 
   system.stateVersion = "24.11";
 }

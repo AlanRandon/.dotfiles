@@ -25,7 +25,6 @@ xdg_cfgs=(
 	tridactyl
 	starship.toml
 	firefox/newtab.html
-	bluetuith
 	ghostty
 	glow
 	neomutt

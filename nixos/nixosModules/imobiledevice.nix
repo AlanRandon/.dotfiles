@@ -2,5 +2,9 @@
 
 {
   services.usbmuxd.enable = true;
-  environment.systemPackages = [ pkgs.ifuse ];
+  environment.systemPackages = with pkgs; [
+    ifuse
+    libimobiledevice
+    usbutils
+  ];
 }

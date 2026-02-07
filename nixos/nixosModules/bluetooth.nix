@@ -16,7 +16,7 @@ in
   };
 
   config = lib.mkIf enabled {
-    environment.systemPackages = lib.optional config.dotfiles.packages.tui.extra.enable pkgs.bluetuith;
+    environment.systemPackages = lib.optional config.dotfiles.packages.tui.extra.enable pkgs.bluetui;
 
     services = {
       blueman.enable = true;

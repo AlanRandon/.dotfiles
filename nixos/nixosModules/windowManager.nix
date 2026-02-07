@@ -98,21 +98,31 @@ in
       roboto
     ];
 
-    environment.etc = {
-      "xdg/gtk-2.0/gtkrc".text = ''
-        gtk-application-prefer-dark-theme = true
-        gtk-cursor-theme-name="catppuccin-frappe-light-cursors"
-        gtk-theme-name = "Catppuccin-GTK-Green-Dark-Frappe"
-        gtk-icon-theme-name = "Adwaita"
-      '';
+    environment = {
+      etc = {
+        "xdg/gtk-2.0/gtkrc".text = ''
+          gtk-application-prefer-dark-theme = true
+          gtk-cursor-theme-name="catppuccin-frappe-light-cursors"
+          gtk-theme-name = "Catppuccin-GTK-Green-Dark-Frappe"
+          gtk-icon-theme-name = "Adwaita"
+        '';
 
-      "xdg/gtk-3.0/settings.ini".text = ''
-        [Settings]
-        gtk-application-prefer-dark-theme = true
-        gtk-cursor-theme-name = catppuccin-frappe-light-cursors
-        gtk-theme-name = Catppuccin-GTK-Green-Dark-Frappe
-        gtk-icon-theme-name = Adwaita
-      '';
+        "xdg/gtk-3.0/settings.ini".text = ''
+          [Settings]
+          gtk-application-prefer-dark-theme = true
+          gtk-cursor-theme-name = catppuccin-frappe-light-cursors
+          gtk-theme-name = Catppuccin-GTK-Green-Dark-Frappe
+          gtk-icon-theme-name = Adwaita
+        '';
+      };
+      sessionVariables = {
+        HYPR_PLUGIN_DIR = "${pkgs.symlinkJoin {
+          name = "hyrpland-plugins";
+          paths = with pkgs; [
+            hyprlandPlugins.hyprscrolling
+          ];
+        }}";
+      };
     };
 
     services = {

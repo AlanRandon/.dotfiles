@@ -2,5 +2,5 @@
 
 rfkill unblock bluetooth
 rfkill unblock wifi
-bluetuith
+bluetui
 pactl set-default-sink $(pactl list short sinks | rg bluez | cut -f1)

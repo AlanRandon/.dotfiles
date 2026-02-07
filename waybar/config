@@ -4,7 +4,6 @@
   "modules-left": [
     "sway/workspaces",
     "hyprland/workspaces",
-    "custom/touchpad",
     "sway/mode",
     "hyprland/submap",
   ],

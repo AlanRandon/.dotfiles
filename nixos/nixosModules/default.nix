@@ -24,9 +24,8 @@
     ./bluetooth.nix
     ./printing.nix
     ./imobiledevice.nix
+    ./powerManagement.nix
   ];
-
-  powerManagement.powertop.enable = true;
 
   security.pki.certificates = [
     (builtins.readFile ../../certificates/securly.pem)

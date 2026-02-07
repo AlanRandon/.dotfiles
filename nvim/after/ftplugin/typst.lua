@@ -4,7 +4,7 @@ o.spell = true
 
 local augroup = vim.api.nvim_create_augroup("custom.typst", {})
 
-vim.keymap.set("n", "<leader>tp", "<cmd>TypstPreview<CR>", { buffer = 0, desc = "[T]ypst [P]review" })
+vim.keymap.set("n", "<leader>tp", "<cmd>TypstPreviewPdf<CR>", { buffer = 0, desc = "[T]ypst [P]review" })
 
 vim.api.nvim_buf_create_user_command(0, "Export", function()
 	vim.ui.select({
@@ -45,6 +45,10 @@ vim.api.nvim_buf_create_user_command(0, "TypstPin", function(opts)
 		end
 	end, 0)
 end, { nargs = "?" })
+
+vim.api.nvim_buf_create_user_command(0, "TypstPreviewPdf", function(_)
+	vim.cmd("!tmux new-window -dc . typst watch % --open")
+end, { nargs = 0 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)

@@ -18,13 +18,14 @@ let
   defaultExtraCliPackages = with pkgs; [
     ffmpeg
     opustags
-    yt-dlp
+    unstable.yt-dlp
     nix-search-cli
     nix-tree
     playerctl
+    units
     jq
     poppler-utils
-    unstable.onedrive
+    onedrive
     websocat
     socat
     strace
@@ -53,7 +54,7 @@ let
     unstable.newsboat
     powertop
     starship
-    unstable.glow
+    glow
     impala
     htop-vim
   ];
@@ -61,9 +62,9 @@ let
   defaultExtraGuiPackages = with pkgs; [
     zathura
     pavucontrol
-    unstable.alacritty
-    unstable.gimp3
-    unstable.inkscape
+    alacritty
+    gimp
+    inkscape
     (mpv.override {
       scripts = with mpvScripts; [
         uosc
@@ -92,8 +93,7 @@ let
     rust = {
       packages = with pkgs; [
         rustup
-        unstable.cargo-shuttle
-        unstable.cargo-binstall
+        cargo-binstall
       ];
       lspPackages = [ ];
     };
