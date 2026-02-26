@@ -32,15 +32,29 @@
   };
 
   outputs =
-    {
-      nixpkgs,
-      nixpkgs-unstable,
-      mountui,
-      zig-overlay,
-      zls-overlay,
-      ...
-    }@inputs:
+    { nixpkgs, ... }@inputs:
     let
+      overlays =
+        { system }:
+        [
+          (final: prev: {
+            unstable = import inputs.nixpkgs-unstable {
+              inherit system;
+            };
+            custom =
+              let
+                zig = inputs.zig-overlay.packages.${system}."0.15.1";
+              in
+              {
+                zig = zig;
+                mountui = inputs.mountui.packages.${system}.default;
+                zls = inputs.zls-overlay.packages.${system}.zls.overrideAttrs (old: {
+                  nativeBuildInputs = [ zig ];
+                });
+              };
+          })
+        ];
+
       mkNixosSystem =
         { system, modules }:
         nixpkgs.lib.nixosSystem {
@@ -48,24 +62,7 @@
           specialArgs = { inherit inputs; };
           modules = [
             {
-              nixpkgs.overlays = [
-                (final: prev: {
-                  unstable = import nixpkgs-unstable {
-                    inherit system;
-                  };
-                  custom =
-                    let
-                      zig = zig-overlay.packages.${system}."0.15.1";
-                    in
-                    {
-                      zig = zig;
-                      mountui = mountui.packages.${system}.default;
-                      zls = zls-overlay.packages.${system}.zls.overrideAttrs (old: {
-                        nativeBuildInputs = [ zig ];
-                      });
-                    };
-                })
-              ];
+              nixpkgs.overlays = overlays { inherit system; };
             }
           ]
           ++ modules;
@@ -76,11 +73,11 @@
       nixosConfigurations = {
         plato = mkNixosSystem {
           system = "x86_64-linux";
-          modules = [ ./plato ];
+          modules = [ ./machines/plato ];
         };
         socrates = mkNixosSystem {
           system = "x86_64-linux";
-          modules = [ ./socrates ];
+          modules = [ ./machines/socrates ];
         };
       };
 

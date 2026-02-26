@@ -3,7 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../nixosModules
+    ../../nixosModules
   ];
 
   networking.hostName = "plato";

@@ -65,6 +65,8 @@ in
       networkmanagerapplet
       unstable.ghostty
       pulseaudio
+
+      cava
     ];
 
     programs = {

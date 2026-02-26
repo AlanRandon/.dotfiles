@@ -1,7 +1,7 @@
 {
   "margin-bottom": 0,
   "spacing": 4,
-  "modules-left": ["hyprland/workspaces", "hyprland/submap"],
+  "modules-left": ["ext/workspaces", "hyprland/submap"],
   "modules-center": ["cava", "mpris", "cava"],
   "modules-right": [
     "tray",
