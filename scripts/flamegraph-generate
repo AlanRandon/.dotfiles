@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+perf script > out.perf
+stackcollapse-perf.pl out.perf | flamegraph.pl > flamegraph.svg

@@ -4,7 +4,7 @@
 " this file is the single source of truth for tridactyl config
 sanitize tridactyllocal tridactylsync
 
-" allow <C-f> for regualar search
+" allow <C-f> for regular search
 unbind <C-f>
 
 " use / for tridactyl search
@@ -17,6 +17,7 @@ set findcase sensitive
 
 set editorcmd ghostty -e "nvim %f '+normal!%lGzv%c|'"
 
+" (usually) trigger captive portal
 bind <Space>p tabnew http://neverssl.com
 
 " clear existing searchurls
@@ -27,6 +28,7 @@ set searchurls.g https://www.google.com/search?q=%s
 set searchurls.d https://duckduckgo.com/?q=%s
 set searchurls.mj https://www.mojeek.com/search?q=%s
 set searchurls.br https://search.brave.com/search?q=%s
+set searchurls.def https://search.brave.com/search?q=define%20%s
 
 " youtube
 set searchurls.yt https://www.youtube.com/results?search_query=%s
@@ -41,19 +43,35 @@ set searchurls.nw https://nixos.wiki/index.php?search=%s&go=Go
 set searchurls.nf https://noogle.dev/q?term=%s
 set searchurls.ns https://searchix.ovh/?query=%s
 
-" programming
-set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
-set searchurls.rs https://crates.io/search?q=%s
+" language references
+set searchurls.z https://ziglang.org/documentation/master
+set searchurls.typ https://typst.app/docs
+set searchurls.c https://www.c-language.org
+
+" standard libraries
+set searchurls.py https://docs.python.org/3/search.html?q=%s
+set searchurls.rs https://doc.rust-lang.org/std/?search=%s
+set searchurls.zs https://ziglang.org/documentation/0.15.1/std/#std?%s
 set searchurls.mdn https://developer.mozilla.org/en-US/search?q=%s
+set searchurls.caniuse https://caniuse.com/?search=%s
+set searchurls.libc https://duckduckgo.com/?q=%s%20site:cppreference.com/w/c
+
+" packages
+set searchurls.cr https://crates.io/search?q=%s
 set searchurls.npm https://www.npmjs.com/search?q=%s
-set searchurls.zs https://ziglang.org/documentation/master/std/#%s
-set searchurls.tw https://tailwindcss.com/docs/%s
-set searchurls.typ https://typst.app/universe/search/?q=%s
+set searchurls.typu https://typst.app/universe/search/?q=%s
+
+" libraries
+set searchurls.tw https://tailwindcss.com/docs
 set searchurls.uv https://docs.libuv.org/en/stable/search.html?q=%s&check_keywords=yes&area=default
 set searchurls.sqlite https://sqlite.org/search?s=d&q=%s
-set searchurls.lsp https://mason-registry.dev/registry/list?search=%s
-set searchurls.caniuse https://caniuse.com/?search=%s
 
+" system
+set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
+set searchurls.hypr https://wiki.hypr.land
+set searchurls.lsp https://mason-registry.dev/registry/list?search=%s
+
+" github
 set searchurls.gh https://github.com/search?q=%s
 
 set searchengine br

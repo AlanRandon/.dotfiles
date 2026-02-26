@@ -1,17 +1,9 @@
 {
   "margin-bottom": 0,
   "spacing": 4,
-  "modules-left": [
-    "sway/workspaces",
-    "hyprland/workspaces",
-    "sway/mode",
-    "hyprland/submap",
-  ],
-  "modules-center": [
-    "mpris"
-  ],
+  "modules-left": ["hyprland/workspaces", "hyprland/submap"],
+  "modules-center": ["cava", "mpris", "cava"],
   "modules-right": [
-    "custom/waydroid",
     "tray",
     "privacy",
     "backlight",
@@ -19,7 +11,8 @@
     "pulseaudio#source",
     "network",
     "battery",
-    "clock"
+    "power-profiles-daemon",
+    "clock",
   ],
   "include": ["~/.config/waybar/modules.jsonc"],
 }

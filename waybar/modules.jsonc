@@ -22,6 +22,16 @@
     "format-time": " {H}:{m} ",
     "format-icons": ["", "", "", "", ""],
   },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}",
+    "tooltip": true,
+    "format-icons": {
+      "performance": "",
+      "balanced": "",
+      "power-saver": "",
+    },
+  },
   "network": {
     "format-wifi": "",
     "format-ethernet": "󰈁",
@@ -63,5 +73,19 @@
     "return-type": "json",
     "interval": 5,
     "exec": "waydroid status | rg Session | grep -q RUNNING && echo '{\"text\":\"\",\"class\":\"custom-waydroid\"}'",
+  },
+  "cava": {
+    "framerate": 60,
+    "autosens": 1,
+    "bars": 6,
+    "sleep_timer": 5,
+    "hide_on_silence": true,
+    "stereo": false,
+    "method": "pipewire",
+    "source": "auto",
+    "bar_delimiter": 0,
+    "input_delay": 0.5,
+    "noise_reduction": 0.5,
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
   },
 }

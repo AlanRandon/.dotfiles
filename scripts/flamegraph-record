@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+rm perf.data perf.data.old out.perf
+
+perf record -F 1000 --call-graph fp -- "$@"
