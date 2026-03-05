@@ -15,6 +15,5 @@ See [INSTALL.md](INSTALL.md)
 
 - `~/.ssh`: contains ssh public and private keys
 - `~/.gnupg`: contains gpg public and secret keys
-- `~/.abook/addressbook`: contains contact data
-- `./newsboat/urls`: contains rss feeds
+- `~/.config/rclone/rclone.conf`: contains rclone secrets
 - `~/smb-secrets`: contains samba login details

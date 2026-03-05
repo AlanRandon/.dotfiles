@@ -18,6 +18,7 @@ let
   defaultExtraCliPackages = with pkgs; [
     ffmpeg
     opustags
+    imagemagick
     unstable.yt-dlp
     nix-search-cli
     nix-tree
@@ -26,6 +27,7 @@ let
     jq
     poppler-utils
     onedrive
+    rclone
     websocat
     socat
     strace

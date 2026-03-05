@@ -1,0 +1,37 @@
+#!/usr/bin/env sh
+
+usage() {
+	echo "USAGE: $0 pull|push"
+	exit 1
+}
+
+push() {
+	rclone copy ~/.abook/addressbook onedrive:abook -i
+	rclone copy ~/.config/newsboat/urls onedrive:newsboat -i
+	rclone copy ~/.local/share/newsboat/cache.db onedrive:newsboat -i
+	rclone sync ~/Pictures/wallpapers onedrive:wallpapers -i
+	rclone sync ~/Music onedrive:Music -i
+}
+
+pull() {
+	rclone copy onedrive:abook/addressbook ~/.abook/addressbook -i
+	rclone copy onedrive:newsboat/urls ~/.config/newsboat/urls -i
+	rclone copy onedrive:newsboat/cache.db ~/.local/share/newsboat/cache.db -i
+	rclone sync onedrive:wallpapers ~/Pictures/wallpapers -i
+	rclone sync onedrive:Music ~/Music -i
+}
+
+if (( $# != 1 )); then
+	usage
+fi
+
+if [[ "$1" = "pull" ]]; then
+	push
+elif [[ "$1" = "push" ]]; then
+	push
+elif [[ "$1" = "usage" ]]; then
+	echo "=== Usage ==="
+	rclone about onedrive:
+else
+	usage
+fi

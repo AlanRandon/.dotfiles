@@ -21,16 +21,16 @@ if [[ $1 = "toggle-touchpad" ]]; then
 fi
 
 if [[ $1 = "random-wallpaper" ]]; then
-	wallpaper=$(find ~/wallpapers -not -name "*.sh" -and -not -name "\.*" -type f | shuf -n1)
+	wallpaper=$(find ~/Pictures/wallpapers -not -name "*.sh" -and -not -name "\.*" -type f | shuf -n1)
 	pgrep hyprpaper || (hyprctl keyword exec hyprpaper && sleep 0.5)
 	hyprctl hyprpaper preload $wallpaper
 	hyprctl hyprpaper wallpaper ,$wallpaper
 fi
 
 if [[ $1 = "choose-wallpaper" ]]; then
-	wallpaper=$(find ~/wallpapers -not -name "*.sh" -and -not -name "\.*" -type f -printf "%f\n" | fuzzel --dmenu)
+	wallpaper=$(find ~/Pictures/wallpapers -not -name "*.sh" -and -not -name "\.*" -type f -printf "%f\n" | fuzzel --dmenu)
 	[[ -z $wallpaper ]] && exit 1
-	wallpaper=~/wallpapers/$wallpaper
+	wallpaper=~/Pictures/wallpapers/$wallpaper
 	pgrep hyprpaper || (hyprctl keyword exec hyprpaper && sleep 0.5)
 	hyprctl hyprpaper preload $wallpaper
 	hyprctl hyprpaper wallpaper ,$wallpaper

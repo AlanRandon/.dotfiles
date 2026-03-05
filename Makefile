@@ -6,7 +6,7 @@ install:
 
 home:
 	./scripts/install-dotfiles
-	./scripts/setup-pass
+	# ./scripts/setup-pass
 
 clean:
 	sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +3
