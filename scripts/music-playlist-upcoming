@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+ipc_socket="${XDG_RUNTIME_DIR:=/run/user/$UID}/mpv-music-ipc-socket"
+
+current_pos=$(echo '{ "command": ["get_property", "playlist-pos"] }' | socat - "$ipc_socket" | jq .data)
+
+selected=$(echo '{ "command": ["get_property", "playlist"] }' \
+	| socat - "$ipc_socket" \
+	| jq --argjson pos "$current_pos" -r '.data | to_entries as $entries | range(20) | . + $pos | $entries[. % ($entries | length)] | "\(.key): \(.value.title // (.value.filename | sub(".*/"; "")))"' \
+	| fuzzel --dmenu)
+
+if [[ -z $selected ]]; then
+	exit 0
+fi
+
+echo "{ \"command\": [\"set_property\", \"playlist-pos\", $(echo "$selected" | cut -d: -f1)] }" \
+	| socat - "$ipc_socket"

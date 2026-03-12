@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 usage() {
-	echo "USAGE: $0 pull|push"
+	echo "USAGE: $0 pull|push|usage"
 	exit 1
 }
 

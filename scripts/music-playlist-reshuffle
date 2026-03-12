@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+ipc_socket="${XDG_RUNTIME_DIR:=/run/user/$UID}/mpv-music-ipc-socket"
+
+echo "{ \"command\": [\"playlist-shuffle\"] }" \
+	| socat - "$ipc_socket"
+
+~/scripts/music-playlist-upcoming

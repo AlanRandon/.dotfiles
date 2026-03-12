@@ -74,6 +74,10 @@ set searchurls.lsp https://mason-registry.dev/registry/list?search=%s
 " github
 set searchurls.gh https://github.com/search?q=%s
 
+" other
+set searchurls.tmbw https://tmbw.net/wiki/Special:Search?search=%s
+set searchurls.gw https://www.sitelevel.com/query?crid=20ab57a41d865572&B1=Search&slice_title=This+Site&query=%s
+
 set searchengine br
 
 colorscheme catppuccin
