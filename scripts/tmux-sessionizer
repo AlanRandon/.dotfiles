@@ -6,6 +6,7 @@ DIRS=(
 	'Documents'
 	'projects'
 	'projects/scratch'
+	'projects/physics'
 	''
 )
 
