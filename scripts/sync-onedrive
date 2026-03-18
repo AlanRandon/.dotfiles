@@ -24,7 +24,7 @@ if (( $# != 1 )); then
 fi
 
 if [[ "$1" = "pull" ]]; then
-	push
+	pull
 elif [[ "$1" = "push" ]]; then
 	push
 elif [[ "$1" = "usage" ]]; then

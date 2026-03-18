@@ -79,6 +79,10 @@
           system = "x86_64-linux";
           modules = [ ./machines/socrates ];
         };
+        aristotle = mkNixosSystem {
+          system = "x86_64-linux";
+          modules = [ ./machines/aristotle ];
+        };
       };
 
       formatter."x86_64-linux" = nixpkgs.legacyPackages."x86_64-linux".nixfmt-rfc-style;

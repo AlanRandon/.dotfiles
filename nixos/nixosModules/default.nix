@@ -19,6 +19,7 @@
     ./samba.nix
     ./virtManager.nix
     ./intel.nix
+    ./amd.nix
     ./email.nix
     ./mimeapps.nix
     ./bluetooth.nix
