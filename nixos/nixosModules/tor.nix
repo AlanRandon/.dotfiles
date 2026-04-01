@@ -4,11 +4,7 @@ let
   enabled = config.dotfiles.tor.enable;
 in
 {
-  options.dotfiles.tor.enable = lib.mkOption {
-    type = lib.types.bool;
-    default = true;
-    description = "Enable tor and proxychains";
-  };
+  options.dotfiles.tor.enable = lib.mkEnableOption "Enable tor and proxychains";
 
   config = lib.mkIf enabled {
     services.tor = {

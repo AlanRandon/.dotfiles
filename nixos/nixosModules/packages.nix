@@ -26,7 +26,7 @@ let
     units
     jq
     poppler-utils
-    onedrive
+    pdfcpu
     rclone
     websocat
     socat

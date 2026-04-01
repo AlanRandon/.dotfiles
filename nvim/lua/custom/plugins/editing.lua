@@ -1,6 +1,5 @@
 return {
 	{ "tpope/vim-repeat", event = "VeryLazy" },
-	{ "mbbill/undotree", cmd = "UndotreeToggle" },
 	"tpope/vim-commentary",
 	{
 		"kylechui/nvim-surround",

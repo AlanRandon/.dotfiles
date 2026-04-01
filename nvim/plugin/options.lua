@@ -25,3 +25,5 @@ end
 if vim.fn.exists("&winborder") == 1 then
 	o.winborder = "rounded"
 end
+
+vim.cmd.packadd("nvim.undotree")

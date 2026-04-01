@@ -76,6 +76,9 @@ local lsps = {
 	"clangd",
 	"ocamllsp",
 	"asm_lsp",
+	"vala_ls",
+	-- consider https://github.com/mfussenegger/nvim-jdtls
+	"jdtls",
 }
 
 for _, lsp in ipairs(lsps) do

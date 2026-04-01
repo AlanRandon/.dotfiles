@@ -31,6 +31,7 @@ return {
 				"vue",
 				"norg",
 				"sparql",
+				"vala",
 				-- required
 				"c",
 				"lua",

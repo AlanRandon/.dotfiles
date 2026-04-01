@@ -42,6 +42,7 @@ set searchurls.no https://search.nixos.org/options?query=%s
 set searchurls.nw https://nixos.wiki/index.php?search=%s&go=Go
 set searchurls.nf https://noogle.dev/q?term=%s
 set searchurls.ns https://searchix.ovh/?query=%s
+set searchurls.npr https://nixpk.gs/pr-tracker.html?pr=%s
 
 " language references
 set searchurls.z https://ziglang.org/documentation/master
