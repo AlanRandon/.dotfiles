@@ -47,6 +47,7 @@ let
     dust # `du`-like
     fd # `find`-like
     hyperfine
+    uni
   ];
 
   defaultExtraTuiPackages = with pkgs; [

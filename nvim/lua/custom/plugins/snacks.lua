@@ -68,6 +68,31 @@ return {
 			end,
 			desc = "LSP: [F]ind [W]orkspace Symbols",
 		},
+		{
+			"<leader>fD",
+			function()
+				local digraphs = vim.fn.digraph_getlist(true)
+				local names = vim.fn.systemlist(
+					"uni identify -cf '%(name t) %(aliases t h Q:[:])'",
+					vim.iter(digraphs)
+						:map(function(digraph)
+							return digraph[2]
+						end)
+						:join("")
+				)
+
+				Snacks.picker.select(
+					vim.iter(ipairs(digraphs))
+						:map(function(i, digraph)
+							return digraph[1] .. " " .. names[i] .. " " .. digraph[2]
+						end)
+						:totable(),
+					{},
+					function(_, _) end
+				)
+			end,
+			desc = "LSP: [F]ind [D]igraph",
+		},
 	},
 	---@type snacks.Config
 	opts = {
