@@ -9,10 +9,8 @@ let
   enabled = config.dotfiles.window-manager.enable;
 in
 {
-  options.dotfiles.window-manager.enable = lib.mkOption {
-    type = lib.types.bool;
+  options.dotfiles.window-manager.enable = lib.mkEnableOption "Enable window manager" // {
     default = true;
-    description = "Enable window manager";
   };
 
   config = lib.mkIf enabled {
@@ -27,10 +25,6 @@ in
       # Screenshots
       grim
       slurp
-
-      # Screen recording
-      pipewire
-      wireplumber
 
       # Wallpaper
       hyprpaper
@@ -131,20 +125,6 @@ in
       libinput.enable = true;
       dbus.enable = true;
       upower.enable = true;
-      greetd = {
-        enable = true;
-        settings = {
-          default_session = {
-            command = "${pkgs.tuigreet}/bin/tuigreet --remember --user-menu --time --cmd Hyprland";
-            user = "greeter";
-          };
-        };
-      };
-      pipewire = {
-        enable = true;
-        alsa.enable = true;
-        pulse.enable = true;
-      };
     };
   };
 }

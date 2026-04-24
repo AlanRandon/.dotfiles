@@ -31,5 +31,10 @@
     amd.enable = true;
   };
 
+  virtualisation.waydroid = {
+    enable = true;
+    package = pkgs.waydroid-nftables;
+  };
+
   system.stateVersion = "25.11";
 }

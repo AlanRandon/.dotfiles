@@ -2,7 +2,10 @@
 
 install:
 	git add .
-	sudo nixos-rebuild --flake ./nixos# switch
+	nixos-rebuild --flake ./nixos build
+	nvd diff /run/current-system result
+	sh -c 'echo -n "Update? [Y/N] " && read confirm && [ "$$confirm" = "Y" ] && sudo nixos-rebuild --flake ./nixos switch'
+	rm result
 
 home:
 	./scripts/install-dotfiles

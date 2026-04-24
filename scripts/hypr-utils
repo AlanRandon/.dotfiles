@@ -36,6 +36,12 @@ if [[ $1 = "choose-wallpaper" ]]; then
 	hyprctl hyprpaper wallpaper ,$wallpaper
 fi
 
+if [[ $1 = "set-lock-wallpaper" ]]; then
+	wallpaper=$(hyprctl hyprpaper listactive | grep '^ = ' | sed 's/^ = //')
+	[[ -z $wallpaper ]] && exit 1
+	cat <$wallpaper >/tmp/hyprlock-wallpaper
+fi
+
 if [[ $1 = "pick-emoji" ]]; then
 	if [[ $2 = "generate" ]]; then
 		curl -s https://raw.githubusercontent.com/muan/emojilib/refs/heads/main/dist/emoji-en-US.json \

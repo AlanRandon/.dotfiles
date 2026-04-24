@@ -16,6 +16,7 @@ let
     };
 
   defaultExtraCliPackages = with pkgs; [
+    nvd
     ffmpeg
     opustags
     imagemagick

@@ -11,6 +11,7 @@
     ./base.nix
     ./nixosSupport.nix
     ./packages.nix
+    ./displayManager.nix
     ./windowManager.nix
     ./firefox.nix
     ./ssh.nix
@@ -26,6 +27,7 @@
     ./printing.nix
     ./imobiledevice.nix
     ./powerManagement.nix
+    ./audio.nix
   ];
 
   security.pki.certificates = [
