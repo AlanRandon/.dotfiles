@@ -1,6 +1,9 @@
 return {
 	"neovim/nvim-lspconfig",
-	"nvimtools/none-ls.nvim",
+	{
+		"nvimtools/none-ls.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
 	{
 		"mrcjkb/rustaceanvim",
 		version = "^6",

@@ -31,6 +31,7 @@ in
       rm -rf /var/lib/sddm-wallpapers/*
       WALLPAPER=$(find /home/alan/Pictures/wallpapers -type f \
         \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" \) \
+        -and -not -name "\.*" \
         | shuf -n 1)
       cp "$WALLPAPER" /var/lib/sddm-wallpapers/current
     '';
@@ -43,6 +44,9 @@ in
       settings = {
         General = {
           GreeterEnvironment = "QT_SCALE_FACTOR=2.25";
+        };
+        Theme = {
+          CursorTheme = "catppuccin-frappe-light-cursors";
         };
       };
     };

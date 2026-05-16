@@ -102,6 +102,7 @@ return {
 		picker = {
 			enabled = true,
 			layout = { reverse = true },
+			icons = { files = { enabled = false } },
 		},
 		notifier = { enabled = true },
 		scope = { enabled = true }, -- adds ii and ai indent textobjects

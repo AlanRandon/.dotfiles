@@ -18,7 +18,6 @@ xdg_cfgs=(
 	mpv
 	waybar
 	mako
-	alacritty
 	zathura
 	newsboat
 	hypr

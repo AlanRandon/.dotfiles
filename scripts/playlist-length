@@ -8,10 +8,12 @@ fi
 if [ "$1" = "-" ]; then
 	playlist=/dev/stdin
 else
-	playlist="$1"
+	playlist="$(realpath $1)"
+	cd $(dirname $playlist)
+	playlist="$(basename $playlist)"
 fi
 
 xargs -d'\n' -I{} ffprobe -i {} -show_entries format=duration -v quiet -of csv='p=0' <$playlist \
 	| paste -sd+ \
 	| bc \
-	| xargs -I{} date -d@{} -u +%H:%M:%S
+	| xargs -I{} date -d@{} -u +"%H:%M:%S"

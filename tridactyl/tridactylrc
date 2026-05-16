@@ -52,7 +52,7 @@ set searchurls.c https://www.c-language.org
 " standard libraries
 set searchurls.py https://docs.python.org/3/search.html?q=%s
 set searchurls.rs https://doc.rust-lang.org/std/?search=%s
-set searchurls.zs https://ziglang.org/documentation/0.15.1/std/#std?%s
+set searchurls.zs https://ziglang.org/documentation/0.16.0/std/#std?%s
 set searchurls.mdn https://developer.mozilla.org/en-US/search?q=%s
 set searchurls.caniuse https://caniuse.com/?search=%s
 set searchurls.libc https://duckduckgo.com/?q=%s%20site:cppreference.com/w/c

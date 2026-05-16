@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+ipc_socket="${XDG_RUNTIME_DIR:=/run/user/$UID}/mpv-music-ipc-socket"
+
+selected=$(find ~/Music/playlists -name "*.m3u" \
+	| xargs -d"\n" -I{} realpath {} --relative-to ~/Music/playlists \
+	| fuzzel --dmenu)
+
+if [[ -z $selected ]]; then
+	exit 0
+fi
+
+echo "{ \"command\": [\"loadfile\", \"~/Music/playlists/$selected\"] }" \
+	| socat - "$ipc_socket"
