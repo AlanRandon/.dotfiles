@@ -114,9 +114,7 @@ in
       sessionVariables = {
         HYPR_PLUGIN_DIR = "${pkgs.symlinkJoin {
           name = "hyrpland-plugins";
-          paths = with pkgs; [
-            hyprlandPlugins.hyprscrolling
-          ];
+          paths = [ ];
         }}";
       };
     };

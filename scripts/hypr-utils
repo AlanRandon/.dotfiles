@@ -1,29 +1,8 @@
 #!/usr/bin/env sh
 
-if [[ $1 = "set-touchpad" ]]; then
-	device=$(hyprctl devices | grep touchpad | xargs)
-	status_file=${XDG_RUNTIME_DIR:-/run/user/$UID}/touchpad-status
-	echo $2 > $status_file
-	hyprctl keyword device\[$device\]:enabled $2
-fi
-
-if [[ $1 = "toggle-touchpad" ]]; then
-	device=$(hyprctl devices | grep touchpad | xargs)
-	status_file=${XDG_RUNTIME_DIR:-/run/user/$UID}/touchpad-status
-	touch $status_file
-	case $(<$status_file) in
-		true) status=false && notify-send "Touchpad Disabled" ;;
-		false) status=true && notify-send "Touchpad Enabled" ;;
-		*) status=false && notify-send "Touchpad Disabled" ;;
-	esac
-	echo $status > $status_file
-	hyprctl keyword device\[$device\]:enabled $status
-fi
-
 if [[ $1 = "random-wallpaper" ]]; then
 	wallpaper=$(find ~/Pictures/wallpapers -not -name "*.sh" -and -not -name "\.*" -type f | shuf -n1)
-	pgrep hyprpaper || (hyprctl keyword exec hyprpaper && sleep 0.5)
-	hyprctl hyprpaper preload $wallpaper
+	[[ -z $wallpaper ]] && exit 1
 	hyprctl hyprpaper wallpaper ,$wallpaper
 fi
 
@@ -31,15 +10,7 @@ if [[ $1 = "choose-wallpaper" ]]; then
 	wallpaper=$(find ~/Pictures/wallpapers -not -name "*.sh" -and -not -name "\.*" -type f -printf "%f\n" | fuzzel --dmenu)
 	[[ -z $wallpaper ]] && exit 1
 	wallpaper=~/Pictures/wallpapers/$wallpaper
-	pgrep hyprpaper || (hyprctl keyword exec hyprpaper && sleep 0.5)
-	hyprctl hyprpaper preload $wallpaper
 	hyprctl hyprpaper wallpaper ,$wallpaper
-fi
-
-if [[ $1 = "set-lock-wallpaper" ]]; then
-	wallpaper=$(hyprctl hyprpaper listactive | grep '^ = ' | sed 's/^ = //')
-	[[ -z $wallpaper ]] && exit 1
-	cat <$wallpaper >/tmp/hyprlock-wallpaper
 fi
 
 if [[ $1 = "pick-emoji" ]]; then
@@ -49,34 +20,18 @@ if [[ $1 = "pick-emoji" ]]; then
 		exit 0
 	fi
 
-	if [[ $2 = "internal" ]]; then
-		address=$3
-		line=$(fzf --no-hscroll <~/scripts/emoji-picker-data)
-		[[ -z $line ]] && exit 1
-		hyprctl dispatch focuswindow "address:$address"
-		sleep 0.1
-		wtype "$(echo $line | cut -d' ' -f1)"
-		exit 0
-	fi
-
 	address=$(hyprctl activewindow -j | jq .address -r)
-	[[ $address = 'null' ]] && exit 1
-	hyprctl dispatch exec \
-		'[float; size 400 300; bordersize 1; bordercolor rgb(737994)]' \
-		"ghostty --window-padding-x=10 --window-padding-y=10 -e '~/scripts/hypr-utils pick-emoji internal $address'"
-fi
-
-if [[ $1 = "toggle-scale" ]]; then
-	if [[ "$(hyprctl monitors -j | jq 'map(.scale == 1) | all' -r)" = 'true' ]]; then
-		hyprctl keyword monitor "desc:, preferred, auto, auto"
-	else
-		hyprctl keyword monitor "desc:, preferred, auto, 1.0"
-	fi
+	line=$(fuzzel --dmenu <~/scripts/emoji-picker-data)
+	[[ -z $line ]] && exit 1
+	hyprctl dispatch "hl.dsp.focus({ window = 'address:$address' })"
+	sleep 0.1
+	wtype "$(echo $line | cut -d' ' -f1)"
+	exit 0
 fi
 
 if [[ $1 = "find-window" ]]; then
 	window=$(hyprctl clients -j | jq -r '.[] | "\(.address): \(.title)"' | fuzzel -d)
 	[[ -z "$window" ]] && exit 1
 	address=$(echo "$window" | sed 's/\(.*\): .*/\1/')
-	hyprctl dispatch focuswindow "address:$address"
+	hyprctl dispatch "hl.dsp.focus({ window = 'address:$address' })"
 fi

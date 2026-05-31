@@ -10,12 +10,5 @@ return {
 			textobject_field_outer = { "af", mode = { "o", "x" } },
 		},
 	},
-	keys = {
-		{
-			"<leader><leader>",
-			"<cmd>CsvViewToggle<CR>",
-			desc = "Csv [V]iew Toggle",
-		},
-	},
 	cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
 }

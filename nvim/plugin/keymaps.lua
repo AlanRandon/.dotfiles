@@ -24,6 +24,13 @@ set("n", "N", "Nzz")
 
 set("x", " md", ":!prettier --parser markdown<CR>", { desc = "Format [M]ark[d]own Range" })
 
+set(
+	"n",
+	"<leader>F",
+	":r!find . -type f | xargs -d '\\n' realpath --relative-to %:h | rg ",
+	{ desc = "[F]ind File Path" }
+)
+
 -- compiler
 
 vim.keymap.set("n", "<leader>zt", function()

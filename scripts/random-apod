@@ -30,10 +30,6 @@ ext=$(echo $url | awk -F. '{print $NF}')
 [ -f /tmp/apod.$ext ] && rm /tmp/apod.$ext
 curl -Sso /tmp/apod.$ext $url
 
-hyprctl hyprpaper unload /tmp/apod.$ext
-hyprctl hyprpaper preload /tmp/apod.$ext
-hyprctl hyprpaper wallpaper ,/tmp/apod.$ext
-
 # IFS=, read w h < <(cat /sys/class/graphics/*/virtual_size)
 # padding=20
 # ffmpeg -y -pix_fmt rgba -i /tmp/apod.$ext \

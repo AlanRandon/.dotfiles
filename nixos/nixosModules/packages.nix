@@ -69,6 +69,7 @@ let
     alacritty
     gimp
     inkscape
+    gnome-clocks
     (mpv.override {
       scripts = with mpvScripts; [
         uosc
@@ -132,7 +133,7 @@ let
       lspPackages = with pkgs; [ pyright ];
     };
     nix = {
-      packages = with pkgs; [ nixfmt-rfc-style ];
+      packages = with pkgs; [ nixfmt ];
       lspPackages = with pkgs; [ nixd ];
     };
     lua = {
