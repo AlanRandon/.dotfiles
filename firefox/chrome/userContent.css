@@ -1,16 +1,81 @@
 * {
-  --emtpy: "";
+	--emtpy: "";
 }
 
 @-moz-document domain(www.youtube.com) {
-  :is(#comment, #replies) {
-    #header :is(#author-text, #name),
-    #author-thumbnail {
-      display: none !important;
-    }
-  }
+	:is(#comment, #replies) {
 
-  ytd-comments-header-renderer {
-    display: none !important;
-  }
+		#header :is(#author-text, #name),
+		#author-thumbnail {
+			display: none !important;
+		}
+	}
+
+	ytd-comments-header-renderer {
+		display: none !important;
+	}
+}
+
+@-moz-document domain(karmasearch.org) {
+	:root {
+		background-color: #414559;
+		color: #c6d0f5;
+	}
+
+	.bg-white,
+	.bg-coolgrey-100,
+	.bg-coolgrey-150 {
+		background-color: #414559 !important;
+	}
+
+	.border-grey-300,
+	.border-coolgrey-200,
+	.border-b-coolgrey-400,
+	.border-grey-200,
+	.border-coolgrey-100,
+	.divide-coolgrey-200> :not([hidden])~ :not([hidden]),
+	hr {
+		border: none !important;
+	}
+
+	#content>div:first-child span.bg-gradient-to-r {
+		background-image: none !important;
+	}
+
+	.text-base,
+	.text-truegrey-500,
+	.text-truegrey-700,
+	.text-truegrey-800,
+	.text-truegrey-900,
+	.text-grey-700,
+	nav div:has(.text-green-500)>ul>li>a {
+		color: #c6d0f5 !important;
+	}
+
+	#search,
+	#inputField {
+		background-color: #303446 !important;
+	}
+
+	:where(:has(a), a).text-blue-500 {
+		color: #a6d189 !important;
+	}
+
+	:where(:has(a), a).text-blue-500:visited {
+		color: #ea999c !important;
+	}
+
+	a.nuxt-link-active,
+	#content button {
+		color: #a6d189 !important;
+	}
+
+	a.nuxt-link-active {
+		color: #a6d189 !important;
+		border-color: #a6d189 !important;
+	}
+
+	iframe[data-s1search-id="mainline-bottom-ads-bing-bottom,annotation-bing"] {
+		display: none !important;
+	}
 }

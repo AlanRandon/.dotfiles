@@ -1,12 +1,5 @@
 local colors = require("themes.catppuccin-frappe")
 
-hl.monitor({
-	output = "eDP-1",
-	mode = "2880x1800@60.00",
-	position = "0x0",
-	scale = 2.25,
-})
-
 hl.config({
 	general = {
 		border_size = 4,
@@ -81,3 +74,6 @@ hl.window_rule({
 
 local PictureInPicture = require("hyprland.PictureInPicture")
 PictureInPicture:update()
+
+local Monitor = require("hyprland.Monitor")
+Monitor:setup()

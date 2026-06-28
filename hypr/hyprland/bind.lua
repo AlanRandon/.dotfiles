@@ -28,10 +28,32 @@ hl.bind(main_mod .. " + SHIFT + SPACE", hl.dsp.window.float())
 
 hl.bind(main_mod .. "+ R", hl.dsp.submap("<D-R>"))
 hl.define_submap("<D-R>", function()
-	hl.bind(direction_keys.up, hl.dsp.window.resize({ x = 0, y = -10, relative = true }), { repeating = true })
-	hl.bind(direction_keys.down, hl.dsp.window.resize({ x = 0, y = 10, relative = true }), { repeating = true })
-	hl.bind(direction_keys.left, hl.dsp.window.resize({ x = -10, y = 0, relative = true }), { repeating = true })
-	hl.bind(direction_keys.right, hl.dsp.window.resize({ x = 10, y = 0, relative = true }), { repeating = true })
+	hl.bind(direction_keys.up, hl.dsp.window.resize({ x = 0, y = -100, relative = true }), { repeating = true })
+	hl.bind(direction_keys.down, hl.dsp.window.resize({ x = 0, y = 100, relative = true }), { repeating = true })
+	hl.bind(direction_keys.left, hl.dsp.window.resize({ x = -100, y = 0, relative = true }), { repeating = true })
+	hl.bind(direction_keys.right, hl.dsp.window.resize({ x = 100, y = 0, relative = true }), { repeating = true })
+
+	hl.bind(
+		main_mod .. "+" .. direction_keys.up,
+		hl.dsp.window.resize({ x = 0, y = -10, relative = true }),
+		{ repeating = true }
+	)
+	hl.bind(
+		main_mod .. "+" .. direction_keys.down,
+		hl.dsp.window.resize({ x = 0, y = 10, relative = true }),
+		{ repeating = true }
+	)
+	hl.bind(
+		main_mod .. "+" .. direction_keys.left,
+		hl.dsp.window.resize({ x = -10, y = 0, relative = true }),
+		{ repeating = true }
+	)
+	hl.bind(
+		main_mod .. "+" .. direction_keys.right,
+		hl.dsp.window.resize({ x = 10, y = 0, relative = true }),
+		{ repeating = true }
+	)
+
 	hl.bind("catchall", hl.dsp.submap("reset"))
 end)
 
@@ -39,6 +61,7 @@ local Touchpad = require("hyprland.Touchpad")
 Touchpad:set(false)
 
 local PictureInPicture = require("hyprland.PictureInPicture")
+local Monitor = require("hyprland.Monitor")
 
 hl.bind(main_mod .. "+ SPACE", hl.dsp.submap("<D-space>"))
 hl.define_submap("<D-space>", "reset", function()
@@ -49,10 +72,14 @@ hl.define_submap("<D-space>", "reset", function()
 	hl.bind("T", function()
 		Touchpad:toggle()
 		if Touchpad.enabled then
-			hl.dispatch(hl.dsp.exec_cmd("notify-send 'Touchpad Enabled'"))
+			hl.exec_cmd("notify-send 'Touchpad Enabled'")
 		else
-			hl.dispatch(hl.dsp.exec_cmd("notify-send 'Touchpad Disabled'"))
+			hl.exec_cmd("notify-send 'Touchpad Disabled'")
 		end
+	end)
+
+	hl.bind("S", function()
+		Monitor:rotate_scale()
 	end)
 
 	hl.bind("E", hl.dsp.exec_cmd("~/scripts/hypr-utils pick-emoji"))
@@ -94,17 +121,17 @@ local round_sink = hl.dsp.exec_cmd(
 )
 
 hl.bind("XF86AudioRaiseVolume", function()
-	hl.dispatch(hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%"))
+	hl.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%")
 	hl.dispatch(round_sink)
 end, { submap_universal = true })
 
 hl.bind("XF86AudioLowerVolume", function()
-	hl.dispatch(hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%"))
+	hl.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%")
 	hl.dispatch(round_sink)
 end, { submap_universal = true })
 
 hl.bind("XF86AudioMute", function()
-	hl.dispatch(hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"))
+	hl.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle")
 end, { submap_universal = true })
 
 local round_source = hl.dsp.exec_cmd(
@@ -112,17 +139,17 @@ local round_source = hl.dsp.exec_cmd(
 )
 
 hl.bind(main_mod .. "+ XF86AudioRaiseVolume", function()
-	hl.dispatch(hl.dsp.exec_cmd("pactl set-source-volume @DEFAULT_SOURCE@ +5%"))
+	hl.exec_cmd("pactl set-source-volume @DEFAULT_SOURCE@ +5%")
 	hl.dispatch(round_source)
 end, { submap_universal = true })
 
 hl.bind(main_mod .. "+ XF86AudioLowerVolume", function()
-	hl.dispatch(hl.dsp.exec_cmd("pactl set-source-volume @DEFAULT_SOURCE@ -5%"))
+	hl.exec_cmd("pactl set-source-volume @DEFAULT_SOURCE@ -5%")
 	hl.dispatch(round_source)
 end, { submap_universal = true })
 
 hl.bind(main_mod .. "+ XF86AudioMute", function()
-	hl.dispatch(hl.dsp.exec_cmd("pactl set-source-mute @DEFAULT_SOURCE@ toggle"))
+	hl.exec_cmd("pactl set-source-mute @DEFAULT_SOURCE@ toggle")
 end, { submap_universal = true })
 
 hl.bind(main_mod .. "+ SHIFT + Q", hl.dsp.submap("<D-Q>"))
@@ -136,14 +163,14 @@ hl.define_submap("<D-Q>", "reset", function()
 	hl.bind("catchall", hl.dsp.submap("reset"))
 end)
 
-hl.bind(main_mod .. "+ Print", hl.dsp.submap("<Print>"))
+hl.bind("Print", hl.dsp.submap("<Print>"))
 hl.define_submap("<Print>", "reset", function()
-	hl.bind("Print", hl.dsp.exec_cmd("~/scripts/screenshot screen"))
+	hl.bind("A", hl.dsp.exec_cmd("~/scripts/screenshot screen"))
 	hl.bind("W", hl.dsp.exec_cmd("~/scripts/screenshot window"))
 	hl.bind("S", function()
 		Touchpad:set(true)
-		hl.dispatch(hl.dsp.exec_cmd("notify-send 'Touchpad Enabled'"))
-		hl.dispatch(hl.dsp.exec_cmd("~/scripts/screenshot select"))
+		hl.exec_cmd("notify-send 'Touchpad Enabled'")
+		hl.exec_cmd("~/scripts/screenshot select")
 	end)
 
 	hl.bind("catchall", hl.dsp.submap("reset"))

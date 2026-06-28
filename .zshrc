@@ -94,6 +94,7 @@ alias zbr="zig build run"
 alias zbt="zig build test --summary all"
 alias c="cargo"
 alias mkproj=". ~/scripts/mkproj"
+alias osi="setsid -f &>/dev/null </dev/null xdg-open"
 
 nd-gcroot() {
 	dir=$(git rev-parse --show-toplevel)

@@ -29,6 +29,7 @@ set searchurls.d https://duckduckgo.com/?q=%s
 set searchurls.mj https://www.mojeek.com/search?q=%s
 set searchurls.br https://search.brave.com/search?q=%s
 set searchurls.def https://search.brave.com/search?q=define%20%s
+set searchurls.karma https://karmasearch.org/search?q=%s
 
 " youtube
 set searchurls.yt https://www.youtube.com/results?search_query=%s
@@ -79,7 +80,7 @@ set searchurls.gh https://github.com/search?q=%s
 set searchurls.tmbw https://tmbw.net/wiki/Special:Search?search=%s
 set searchurls.gw https://www.sitelevel.com/query?crid=20ab57a41d865572&B1=Search&slice_title=This+Site&query=%s
 
-set searchengine br
+set searchengine karma
 
 colorscheme catppuccin
 

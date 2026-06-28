@@ -1,5 +1,6 @@
 hl.env("NIXOS_OZONE_WL", "true")
 hl.env("XCURSOR_SIZE", 24)
+hl.env("XCURSOR_THEME", "catppuccin-frappe-light-cursors")
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_THEME", "catppuccin-frappe-light-cursors")
 hl.env("QT_QPA_PLATFORMTHEME", "gtk3") -- hyprland-share-picker

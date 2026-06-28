@@ -10,10 +10,10 @@ hl.on("hyprland.start", function()
 		"blueman-applet",
 		"nm-applet",
 		"systemctl --user start hyprpolkitagent",
-		"~/scripts/hypr-utils random-wallpaper",
+		"sleep 1 && ~/scripts/hypr-utils random-wallpaper",
 	}
 
 	for _, cmd in ipairs(cmds) do
-		hl.dispatch(hl.dsp.exec_cmd(cmd))
+		hl.exec_cmd(cmd)
 	end
 end)

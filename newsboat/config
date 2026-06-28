@@ -32,6 +32,6 @@ bind-key j down
 bind-key k up
 bind-key l open
 
-browser "firefox %u"
+browser "setsid -f &>/dev/null </dev/null firefox %u"
 prepopulate-query-feeds yes
 show-keymap-hint no

@@ -25,3 +25,8 @@ require("hyprland.env")
 require("hyprland.exec")
 require("hyprland.bind")
 require("hyprland.style")
+
+-- waybar hyprland/submap does not appear to work at current
+hl.on("keybinds.submap", function(submap)
+	hl.exec_cmd(("echo '%s' >/tmp/hyprland-submap && pkill -RTMIN+1 waybar"):format(submap))
+end)

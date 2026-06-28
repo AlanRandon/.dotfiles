@@ -29,6 +29,9 @@ vim.g.rustaceanvim = {
 						enable = false,
 					},
 				},
+				check = {
+					command = "clippy",
+				},
 			},
 		},
 	},

@@ -74,6 +74,11 @@
     "interval": 5,
     "exec": "waydroid status | rg Session | grep -q RUNNING && echo '{\"text\":\"\",\"class\":\"custom-waydroid\"}'",
   },
+  "custom/hyprland-submap": {
+    "exec": "cat /tmp/hyprland-submap",
+    "signal": 1,
+    "escape": true,
+  },
   "cava": {
     "framerate": 60,
     "autosens": 1,

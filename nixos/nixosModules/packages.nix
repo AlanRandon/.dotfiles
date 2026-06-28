@@ -70,6 +70,7 @@ let
     gimp
     inkscape
     gnome-clocks
+    mcpelauncher-ui-qt
     (mpv.override {
       scripts = with mpvScripts; [
         uosc
