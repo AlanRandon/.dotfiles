@@ -23,10 +23,9 @@
     };
 
     mountui = {
-      url = "github:AlanRandon/mountui";
+      url = "github:AlanRandon/mountui-go";
       inputs = {
-        # nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
+        nixpkgs.follows = "nixpkgs-unstable";
       };
     };
   };

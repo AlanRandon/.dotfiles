@@ -7,14 +7,11 @@ selected=$(echo '{ "command": ["get_property", "playlist"] }' \
 	| jq -r '.data | to_entries[] | "\(.key): \(.value.title // (.value.filename | sub(".*/"; "")))"' \
 	| fuzzel --dmenu)
 
-current_pos=$(echo '{ "command": ["get_property", "playlist-pos"] }' | socat - "$ipc_socket" | jq .data)
-
 if [[ -z $selected ]]; then
 	exit 0
 fi
 
 selected=$(echo "$selected" | cut -d: -f1)
-next_pos=$(echo "$current_pos + 1" | bc)
 
-echo "{ \"command\": [\"playlist-move\", $selected, $next_pos] }" \
+echo "{ \"command\": [\"script-message\", \"queue-item\", \"$selected\"] }" \
 	| socat - "$ipc_socket"

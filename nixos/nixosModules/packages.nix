@@ -64,7 +64,6 @@ let
   ];
 
   defaultExtraGuiPackages = with pkgs; [
-    zathura
     pavucontrol
     alacritty
     gimp
@@ -80,6 +79,14 @@ let
       ];
     })
     google-chrome
+
+    # override required so that org.gtk.Settings.FileChooser is found
+    (sioyek.overrideAttrs (
+      { nativeBuildInputs, ... }:
+      {
+        nativeBuildInputs = nativeBuildInputs ++ [ wrapGAppsHook3 ];
+      }
+    ))
   ];
 
   defaultExtraDevPackages = with pkgs; [
@@ -228,5 +235,7 @@ in
       ));
 
     programs.bandwhich.enable = cfg.tui.extra.enable;
+
+    services.playerctld.enable = cfg.gui.extra.enable;
   };
 }

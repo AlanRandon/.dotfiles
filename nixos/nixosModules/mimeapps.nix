@@ -7,7 +7,7 @@ in
   # fd . ~ --type f --exec xdg-mime query filetype {} \; | sort | uniq
 
   xdg.mime.defaultApplications = {
-    "application/pdf" = "org.pwmt.zathura.desktop";
+    "application/pdf" = "sioyek.desktop";
     "inode/directory" = "nvim.desktop";
     "x-scheme-handler/mailto" = "neomutt.desktop";
     "image/svg+xml" = "inkview.desktop";

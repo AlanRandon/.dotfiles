@@ -82,6 +82,7 @@ local lsps = {
 	"vala_ls",
 	-- consider https://github.com/mfussenegger/nvim-jdtls
 	"jdtls",
+	"gopls",
 }
 
 for _, lsp in ipairs(lsps) do

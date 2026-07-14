@@ -68,6 +68,7 @@
     "status-icons": {
       "paused": "",
     },
+    "ignored-players": ["mpv.ignored"],
   },
   "custom/waydroid": {
     "return-type": "json",

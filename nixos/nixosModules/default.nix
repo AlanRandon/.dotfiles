@@ -28,6 +28,7 @@
     ./imobiledevice.nix
     ./powerManagement.nix
     ./audio.nix
+    ./dictionary.nix
   ];
 
   security.pki.certificates = [
