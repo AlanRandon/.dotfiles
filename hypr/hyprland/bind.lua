@@ -140,17 +140,17 @@ local round_source = hl.dsp.exec_cmd(
 	'pactl get-source-volume @DEFAULT_SOURCE@ | awk \'NR==1{print(sprintf("%.0f",$5/5)*5)"%"}\' | xargs pactl set-source-volume @DEFAULT_SOURCE@'
 )
 
-hl.bind(main_mod .. "+ XF86AudioRaiseVolume", function()
+hl.bind("SHIFT + XF86AudioRaiseVolume", function()
 	hl.exec_cmd("pactl set-source-volume @DEFAULT_SOURCE@ +5%")
 	hl.dispatch(round_source)
 end, { submap_universal = true })
 
-hl.bind(main_mod .. "+ XF86AudioLowerVolume", function()
+hl.bind("SHIFT + XF86AudioLowerVolume", function()
 	hl.exec_cmd("pactl set-source-volume @DEFAULT_SOURCE@ -5%")
 	hl.dispatch(round_source)
 end, { submap_universal = true })
 
-hl.bind(main_mod .. "+ XF86AudioMute", function()
+hl.bind("SHIFT + XF86AudioMute", function()
 	hl.exec_cmd("pactl set-source-mute @DEFAULT_SOURCE@ toggle")
 end, { submap_universal = true })
 

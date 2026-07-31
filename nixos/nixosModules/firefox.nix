@@ -51,6 +51,10 @@
           "browser.newtabpage.enabled" = value false;
           "toolkit.legacyUserProfileCustomizations.stylesheets" = value true;
           "browser.toolbars.bookmarks.visibility" = value "never";
+          "sidebar.revamp" = value true;
+          "sidebar.verticalTabs" = value true;
+          "sidebar.visibility" = value "expand-on-hover";
+          "sidebar.verticalTabs.dragToPinPromo.dismissed" = value true;
         };
     };
   };

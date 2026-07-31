@@ -1,77 +1,94 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
 :root {
-  /* Catppuccin Colors */
-  --catppuccin-rosewater: #f2d5cf;
-  --catppuccin-flamingo: #eebebe;
-  --catppuccin-pink: #f4b8e4;
-  --catppuccin-mauve: #ca9ee6;
-  --catppuccin-red: #e78284;
-  --catppuccin-maroon: #ea999c;
-  --catppuccin-peach: #ef9f76;
-  --catppuccin-green: #a6d189;
-  --catppuccin-teal: #81c8be;
-  --catppuccin-sky: #99d1db;
-  --catppuccin-sapphire: #85c1dc;
-  --catppuccin-blue: #8caaee;
-  --catppuccin-lavender: #babbf1;
-  --catppuccin-text: #c6d0f5;
-  --catppuccin-subtext1: #b5bfe2;
-  --catppuccin-subtext0: #a5adce;
-  --catppuccin-overlay2: #949cbb;
-  --catppuccin-overlay1: #838ba7;
-  --catppuccin-overlay0: #737994;
-  --catppuccin-surface2: #626880;
-  --catppuccin-surface1: #51576d;
-  --catppuccin-surface0: #414559;
-  --catppuccin-base: #303446;
-  --catppuccin-mantle: #292c3c;
-  --catppuccin-crust: #232634;
+	/* Catppuccin Colors */
+	--catppuccin-rosewater: #f2d5cf;
+	--catppuccin-flamingo: #eebebe;
+	--catppuccin-pink: #f4b8e4;
+	--catppuccin-mauve: #ca9ee6;
+	--catppuccin-red: #e78284;
+	--catppuccin-maroon: #ea999c;
+	--catppuccin-peach: #ef9f76;
+	--catppuccin-green: #a6d189;
+	--catppuccin-teal: #81c8be;
+	--catppuccin-sky: #99d1db;
+	--catppuccin-sapphire: #85c1dc;
+	--catppuccin-blue: #8caaee;
+	--catppuccin-lavender: #babbf1;
+	--catppuccin-text: #c6d0f5;
+	--catppuccin-subtext1: #b5bfe2;
+	--catppuccin-subtext0: #a5adce;
+	--catppuccin-overlay2: #949cbb;
+	--catppuccin-overlay1: #838ba7;
+	--catppuccin-overlay0: #737994;
+	--catppuccin-surface2: #626880;
+	--catppuccin-surface1: #51576d;
+	--catppuccin-surface0: #414559;
+	--catppuccin-base: #303446;
+	--catppuccin-mantle: #292c3c;
+	--catppuccin-crust: #232634;
 }
 
 #nav-bar {
-  background-color: var(--catppuccin-base, #303446) !important;
-  color: var(--catppuccin-text, #c6d0f5) !important;
-  border: none !important;
-  box-shadow: none !important;
-  height: min-content;
-  padding: 0.25em !important;
+	background-color: var(--catppuccin-base, #303446) !important;
+	color: var(--catppuccin-text, #c6d0f5) !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: min-content;
+	padding: 0.25em !important;
 }
 
 toolbarspring {
-  display: none;
+	display: none;
 }
 
 .toolbarbutton-icon,
 #page-action-buttons,
 #identity-icon,
 #tracking-protection-icon {
-  color: var(--catppuccin-green, #a6d189) !important;
+	color: var(--catppuccin-green, #a6d189) !important;
 }
 
 #nav-bar .urlbar-input-box * {
-  color: var(--catppuccin-text, #c6d0f5) !important;
+	color: var(--catppuccin-text, #c6d0f5) !important;
 }
 
 #star-button-box {
-  display: none;
+	display: none;
 }
 
 #urlbar-container #urlbar-background {
-  background-color: var(--catppuccin-base, #303446) !important;
-  border: none !important;
-  box-shadow: none !important;
+	background-color: var(--catppuccin-base, #303446) !important;
+	border: none !important;
+	box-shadow: none !important;
 }
 
 #navigator-toolbox {
-  border: none !important;
-  box-shadow: none !important;
+	border: none !important;
+	box-shadow: none !important;
 }
 
-#TabsToolbar {
-  visibility: collapse;
-}
+/* #TabsToolbar { */
+/* 	visibility: collapse; */
+/* } */
 
 #PanelUI-button {
-  display: none;
+	display: none;
+}
+
+#sidebar-main,
+hbox#browser {
+	background: var(--catppuccin-base, #303446) !important;
+}
+
+toolbarbutton.titlebar-close,
+toolbarbutton#firefox-view-button,
+toolbarbutton#new-tab-button,
+toolbarbutton#alltabs-button {
+	display: none;
+}
+
+vbox.browserContainer {
+	box-shadow: none !important;
+	border-radius: 0 !important;
 }

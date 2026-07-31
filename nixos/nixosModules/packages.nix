@@ -16,11 +16,12 @@ let
     };
 
   defaultExtraCliPackages = with pkgs; [
-    nvd
     ffmpeg
     opustags
+    exiftool
     imagemagick
     unstable.yt-dlp
+    nvd
     nix-search-cli
     nix-tree
     playerctl

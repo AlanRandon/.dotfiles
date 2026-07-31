@@ -13,6 +13,8 @@ if [[ -e ~/projects/$name ]]; then
 	exit 1
 fi
 
+current=$(pwd)
+
 mkdir -p ~/projects/$name
 
 selected=~/projects/$name
@@ -21,3 +23,5 @@ selected_name="$(echo "$name" | tr . _)"
 cd $selected
 
 nix flake init -t github:AlanRandon/nix-templates#$template
+
+cd $current

@@ -8,60 +8,60 @@
 @define-color crust #232634;
 
 * {
-  font-family: "FiraMono Nerd Font Propo";
+	font-family: "FiraMono Nerd Font Propo";
 }
 
 window#waybar {
-  color: @text;
-  background: @crust;
-  font-size: 12px;
+	color: @text;
+	background: @crust;
+	font-size: 12px;
 }
 
 window#waybar.overlay {
-  border-radius: 10px;
-  border: @overlay0 solid 1px;
+	border-radius: 10px;
+	border: @overlay0 solid 1px;
 }
 
 window#waybar.overlay #workspaces {
-  margin: 10px 2px;
+	margin: 10px 2px;
 }
 
 window#waybar label.module {
-  padding: 0.3em 0.5em;
+	padding: 0.3em 0.5em;
 }
 
 window#waybar label.module#clock {
-  margin-right: 2px;
+	margin-right: 2px;
 }
 
 #workspaces {
-  margin-left: 2px;
-  margin-top: 2px;
-  margin-bottom: 2px;
+	margin-left: 2px;
+	margin-top: 2px;
+	margin-bottom: 2px;
 }
 
 window#waybar label.module#battery.critical {
-  color: @base;
-  background: @red;
-  border: none;
+	color: @base;
+	background: @red;
+	border: none;
 }
 
 #workspaces button {
-  margin-right: 2px;
-  color: @text;
-  padding: 0 1px;
-  border: none;
-  box-shadow: none;
-  text-shadow: none;
-  transition: none;
-  border-radius: 5px;
-  border: @overlay0 solid 1px;
+	margin-right: 2px;
+	color: @text;
+	padding: 0 1px;
+	border: none;
+	box-shadow: none;
+	text-shadow: none;
+	transition: none;
+	border-radius: 5px;
+	border: @overlay0 solid 1px;
 }
 
 #workspaces button.active,
 #workspaces button.focused,
 #workspaces button:hover {
-  border-color: @green;
-  background: @green;
-  color: @base;
+	border-color: @green;
+	background: @green;
+	color: @base;
 }

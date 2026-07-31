@@ -83,6 +83,7 @@ local lsps = {
 	-- consider https://github.com/mfussenegger/nvim-jdtls
 	"jdtls",
 	"gopls",
+	"slangd",
 }
 
 for _, lsp in ipairs(lsps) do

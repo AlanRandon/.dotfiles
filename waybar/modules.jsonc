@@ -10,7 +10,7 @@
     "format-icons": ["󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
   },
   "clock": {
-    "format": "󰃰 {:%H:%M}",
+    "format": "󰃰 {:%Y-%m-%d %H:%M}",
   },
   "battery": {
     "states": {
@@ -61,7 +61,6 @@
     "format": "{player_icon} {position}/{length} {title}",
     "format-paused": "{status_icon} {position}/{length} {title}",
     "title-len": 30,
-    "interval": 5,
     "player-icons": {
       "default": "",
     },

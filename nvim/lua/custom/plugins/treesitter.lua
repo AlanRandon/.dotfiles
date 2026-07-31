@@ -32,6 +32,7 @@ return {
 				"norg",
 				"sparql",
 				"vala",
+				"slang",
 				-- required
 				"c",
 				"lua",
