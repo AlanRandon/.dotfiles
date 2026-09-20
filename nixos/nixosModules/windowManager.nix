@@ -7,6 +7,8 @@
 
 let
   enabled = config.dotfiles.window-manager.enable;
+  gtk-theme = "Catppuccin-GTK-Frappe-Green-Dark";
+  cursor-theme = "catppuccin-frappe-light-cursors";
 in
 {
   options.dotfiles.window-manager.enable = lib.mkEnableOption "Enable window manager" // {
@@ -72,10 +74,10 @@ in
           {
             settings = {
               "org/gnome/desktop/interface" = {
-                cursor-theme = "catppuccin-frappe-light-cursors";
+                inherit gtk-theme cursor-theme;
+
                 application-prefer-dark-theme = true;
                 color-scheme = "prefer-dark";
-                gtk-theme = "Catppuccin-GTK-Green-Dark-Frappe";
                 gtk-icon-theme = "Adwaita";
               };
             };
@@ -98,16 +100,16 @@ in
       etc = {
         "xdg/gtk-2.0/gtkrc".text = ''
           gtk-application-prefer-dark-theme = true
-          gtk-cursor-theme-name="catppuccin-frappe-light-cursors"
-          gtk-theme-name = "Catppuccin-GTK-Green-Dark-Frappe"
+          gtk-cursor-theme-name = "${cursor-theme}"
+          gtk-theme-name = "${gtk-theme}"
           gtk-icon-theme-name = "Adwaita"
         '';
 
         "xdg/gtk-3.0/settings.ini".text = ''
           [Settings]
           gtk-application-prefer-dark-theme = true
-          gtk-cursor-theme-name = catppuccin-frappe-light-cursors
-          gtk-theme-name = Catppuccin-GTK-Green-Dark-Frappe
+          gtk-cursor-theme-name = ${cursor-theme} 
+          gtk-theme-name = ${gtk-theme}
           gtk-icon-theme-name = Adwaita
         '';
       };

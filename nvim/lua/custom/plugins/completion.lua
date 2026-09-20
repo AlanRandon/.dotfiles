@@ -14,7 +14,24 @@ return {
 				menu = { auto_show = false, border = "rounded" },
 			},
 			keymap = {
-				["<C-y>"] = { "select_and_accept", "fallback" },
+				["<C-y>"] = {
+					function(cmp)
+						if cmp.is_menu_visible() then
+							return
+						end
+
+						local ls = require("luasnip")
+						if ls.expandable() then
+							vim.schedule(function()
+								ls.expand()
+							end)
+
+							return true
+						end
+					end,
+					"select_and_accept",
+					"fallback",
+				},
 				["<C-k>"] = false,
 				["<S-Tab>"] = false,
 				["<C-s>"] = {

@@ -2,7 +2,8 @@
 
 install:
 	git add .
-	nixos-rebuild --flake ./nixos build
+	# --option substituters "https://cache.nixos.org https://nix-community.cachix.org"
+	nixos-rebuild --flake ./nixos build 
 	nvd diff /run/current-system result
 	sh -c 'echo -n "Update? [Y/N] " && read confirm && [ "$$confirm" = "Y" ] && sudo nixos-rebuild --flake ./nixos switch'
 	rm result

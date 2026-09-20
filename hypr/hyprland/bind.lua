@@ -65,7 +65,7 @@ local Monitor = require("hyprland.Monitor")
 
 hl.bind(main_mod .. "+ SPACE", hl.dsp.submap("<D-space>"))
 hl.define_submap("<D-space>", "reset", function()
-	hl.bind("N", hl.dsp.exec_cmd("ghostty -e impala"))
+	hl.bind("N", hl.dsp.exec_cmd("ghostty -e wifitui"))
 	hl.bind("V", hl.dsp.exec_cmd("ghostty -e pulsemixer"))
 	hl.bind("B", hl.dsp.exec_cmd("ghostty -e ~/scripts/run-bluetui"))
 

@@ -106,6 +106,7 @@ return {
 		},
 		notifier = { enabled = true },
 		scope = { enabled = true }, -- adds ii and ai indent textobjects
+		image = { enabled = false },
 	},
 	init = function()
 		---@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>

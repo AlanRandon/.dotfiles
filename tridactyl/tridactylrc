@@ -28,8 +28,10 @@ set searchurls.g https://www.google.com/search?q=%s
 set searchurls.d https://duckduckgo.com/?q=%s
 set searchurls.mj https://www.mojeek.com/search?q=%s
 set searchurls.br https://search.brave.com/search?q=%s
-set searchurls.def https://search.brave.com/search?q=define%20%s
 set searchurls.karma https://karmasearch.org/search?q=%s
+
+set searchurls.dict https://chambers.co.uk/search/?query=%s&title=21st
+set searchurls.thes https://chambers.co.uk/search/?query=%s&title=thes
 
 " youtube
 set searchurls.yt https://www.youtube.com/results?search_query=%s

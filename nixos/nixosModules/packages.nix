@@ -16,6 +16,8 @@ let
     };
 
   defaultExtraCliPackages = with pkgs; [
+    geteduroam-cli
+    vagrant
     ffmpeg
     opustags
     exiftool
@@ -54,23 +56,25 @@ let
 
   defaultExtraTuiPackages = with pkgs; [
     pulsemixer
+    wifitui
     gdb
     custom.mountui
     unstable.newsboat
     powertop
     starship
     glow
-    impala
     htop-vim
   ];
 
   defaultExtraGuiPackages = with pkgs; [
+    geteduroam
     pavucontrol
     alacritty
     gimp
+    rawtherapee
     inkscape
     gnome-clocks
-    mcpelauncher-ui-qt
+    unstable.mcpelauncher-ui-qt
     (mpv.override {
       scripts = with mpvScripts; [
         uosc

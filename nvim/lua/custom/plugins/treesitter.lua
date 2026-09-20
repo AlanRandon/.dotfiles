@@ -7,9 +7,9 @@ return {
 		config = function()
 			require("nvim-treesitter").install({
 				"haskell",
-				"blueprint",
+				-- "blueprint",
 				"python",
-				"protobuf",
+				-- "protobuf",
 				"rust",
 				"toml",
 				"zig",
@@ -29,7 +29,7 @@ return {
 				"svelte",
 				"tsx",
 				"vue",
-				"norg",
+				-- "norg",
 				"sparql",
 				"vala",
 				"slang",

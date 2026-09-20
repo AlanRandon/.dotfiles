@@ -5,6 +5,7 @@
     pkg:
     builtins.elem (lib.getName pkg) [
       "google-chrome"
+      "vagrant"
     ];
 
   imports = [
@@ -29,10 +30,5 @@
     ./powerManagement.nix
     ./audio.nix
     ./dictionary.nix
-  ];
-
-  security.pki.certificates = [
-    (builtins.readFile ../../certificates/securly.pem)
-    (builtins.readFile ../../certificates/school.pem)
   ];
 }
