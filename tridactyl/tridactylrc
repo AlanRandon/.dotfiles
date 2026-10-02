@@ -64,6 +64,7 @@ set searchurls.libc https://duckduckgo.com/?q=%s%20site:cppreference.com/w/c
 set searchurls.cr https://crates.io/search?q=%s
 set searchurls.npm https://www.npmjs.com/search?q=%s
 set searchurls.typu https://typst.app/universe/search/?q=%s
+set searchurls.h https://hoogle.haskell.org/?hoogle=%s
 
 " libraries
 set searchurls.tw https://tailwindcss.com/docs

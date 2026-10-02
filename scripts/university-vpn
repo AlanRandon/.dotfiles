@@ -1,0 +1,67 @@
+#!/usr/bin/env sh
+# SEE: https://github.com/rvstry/cssbristol.co.uk/blob/dev/_tutorials/vpn-linux.md
+
+GATEWAY=https://uobnet2.bristol.ac.uk/
+COOKIE=
+
+obtain-cookie() {
+	OBTAIN_COOKIE_SCRIPT="document.cookie.match(/MRHSession=(.*?); /)[1]"
+
+	(	
+		echo "Please follow these steps to obtain a session cookie:"
+		echo "- Navigate to $GATEWAY in the browser (this should be opened automatically)"
+		echo "- Inspect the page and open the console"
+		echo "- Paste \`$OBTAIN_COOKIE_SCRIPT\` (this has been copied to the clipboard)"
+		echo "- Copy and paste the value returned back here"
+	) | glow -w 0
+
+	setsid -f xdg-open "$GATEWAY" 2>&1 >/dev/null
+	echo "$OBTAIN_COOKIE_SCRIPT" | wl-copy
+
+	echo -n "> "
+	read COOKIE
+}
+
+if [ \
+	\( "$#" -ne 1 \) \
+	-o \( \
+		\( "$1" != "create" \) \
+		-a \( "$1" != "update" \) \
+		-a \( "$1" != "clean" \) \
+		-a \( "$1" != "up" \) \
+		-a \( "$1" != "down" \) \
+	\) \
+]; then
+	echo "USAGE: $0 create|update|clean|up|down"
+	exit 1
+fi
+
+if [ "$1" = "create" ]; then
+	obtain-cookie
+	echo "COOKIE=$COOKIE"
+	nmcli connection add \
+		connection.id BristolUniversityVPN \
+		connection.type vpn \
+		vpn.service-type openconnect \
+		vpn.data "username-flags=4,password-flags=4,cookie-flags=0,gateway=$GATEWAY,protocol=f5" \
+		vpn.secrets "gwcert=,gateway=$GATEWAY,cookie=$COOKIE"
+fi
+
+if [ "$1" = "update" ]; then
+	obtain-cookie
+	echo "COOKIE=$COOKIE"
+	nmcli connection modify BristolUniversityVPN \
+		vpn.secrets "gwcert=,gateway=$GATEWAY,cookie=$COOKIE"
+fi
+
+if [ "$1" = "clean" ]; then
+	nmcli connection delete BristolUniversityVPN
+fi
+
+if [ "$1" = "up" ]; then
+	nmcli connection up BristolUniversityVPN --ask
+fi
+
+if [ "$1" = "down" ]; then
+	nmcli connection down BristolUniversityVPN
+fi

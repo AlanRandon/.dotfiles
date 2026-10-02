@@ -4,6 +4,7 @@
 
 DIRS=(
 	'Documents'
+	'Documents/lectures'
 	'projects'
 	'projects/scratch'
 	'projects/physics'

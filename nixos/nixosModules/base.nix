@@ -57,7 +57,10 @@
     defaultUserShell = pkgs.zsh;
   };
 
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    plugins = with pkgs; [ networkmanager-openconnect ];
+  };
 
   programs = {
     zsh = {
