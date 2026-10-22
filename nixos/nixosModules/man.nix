@@ -14,6 +14,7 @@ in
       pkgs.man-pages
       pkgs.man-pages-posix
       pkgs.tealdeer
+      pkgs.git-doc
     ];
 
     documentation = {

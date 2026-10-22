@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 usage() {
-	echo "USAGE: $0 pull|push|usage"
+	echo "USAGE: $0 pull|push|usage|backup"
 	exit 1
 }
 
@@ -19,6 +19,12 @@ pull() {
 	rclone sync google-drive:Music ~/Music -i
 }
 
+# backup files temporarily kept on this device, which will be moved to the server eventually
+backup() {
+	rclone sync ~/Pictures/2026-09-bristol google-drive:2026-09-bristol -i
+	rclone sync ~/Pictures/2026-10-bristol google-drive:2026-10-bristol -i
+}
+
 if (( $# != 1 )); then
 	usage
 fi
@@ -27,6 +33,8 @@ if [[ "$1" = "pull" ]]; then
 	pull
 elif [[ "$1" = "push" ]]; then
 	push
+elif [[ "$1" = "backup" ]]; then
+	backup
 elif [[ "$1" = "usage" ]]; then
 	echo "=== Onedrive ==="
 	rclone about onedrive:

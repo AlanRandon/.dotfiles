@@ -69,6 +69,13 @@ return {
 			desc = "LSP: [F]ind [W]orkspace Symbols",
 		},
 		{
+			"<leader>fk",
+			function()
+				Snacks.picker.keymaps()
+			end,
+			desc = "LSP: [F]ind [K]eymap",
+		},
+		{
 			"<leader>fD",
 			function()
 				local digraphs = vim.fn.digraph_getlist(true)

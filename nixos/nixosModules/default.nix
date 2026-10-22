@@ -19,7 +19,7 @@
     ./tor.nix
     ./man.nix
     ./samba.nix
-    ./virtManager.nix
+    ./virtualisation.nix
     ./intel.nix
     ./amd.nix
     ./email.nix

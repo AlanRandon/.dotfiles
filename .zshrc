@@ -97,8 +97,7 @@ alias mkproj=". ~/scripts/mkproj"
 alias osi="setsid -f &>/dev/null </dev/null xdg-open"
 
 nd-gcroot() {
-	dir=$(git rev-parse --show-toplevel)
-	nix build .#devShells.x86_64-linux.default --out-link "$dir/.nix-gcroot"
+	nix build .#devShells.x86_64-linux.default --out-link .nix-gcroot
 }
 
 gcme() { git clone https://github.com/AlanRandon/$@ }

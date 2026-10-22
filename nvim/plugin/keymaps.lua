@@ -1,7 +1,6 @@
 local set = vim.keymap.set
 
 set("n", "<ESC>", "<cmd>nohlsearch<CR>", { desc = "Hide Highlight" })
-set({ "n", "v" }, "<leader>d", [["_d]], { desc = "[D]elete Without Yank" })
 set("x", "<leader>p", [["_dP]], { desc = "[P]aste Without Yank" })
 set("t", "<ESC>", "<C-\\><C-n>", { desc = "Escape Terminal Mode" })
 
