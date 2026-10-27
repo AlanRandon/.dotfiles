@@ -20,7 +20,8 @@
 
   boot = {
     extraModulePackages = with config.boot.kernelPackages; [ yt6801 ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    # TODO: https://github.com/NixOS/nixpkgs/issues/576266
+    kernelPackages = pkgs.linuxPackages;
     loader = {
       limine = {
         enable = true;

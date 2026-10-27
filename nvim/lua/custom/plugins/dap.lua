@@ -3,7 +3,13 @@ return {
 		"mfussenegger/nvim-dap",
 		keys = {
 			{ "<leader>dr", "<cmd>DapContinue<CR>", desc = "[D]AP: [R]un" },
-
+			{
+				"<leader>dR",
+				function()
+					require("dap").run_to_cursor()
+				end,
+				desc = "[D]AP: [R]un To Cursor",
+			},
 			{ "<leader>b", "<cmd>DapToggleBreakpoint<CR>", desc = "DAP: Toggle [B]reakpoint" },
 			{
 				"<Plug>(DapStepOver)",
@@ -13,7 +19,16 @@ return {
 				end,
 				desc = "[D]AP: [S]tep (Repeatable)",
 			},
-			{ "<leader>ds", "<Plug>(DapStepOver)", desc = "[D]AP: [S]tep", remap = true },
+			{ "<leader>ds", "<Plug>(DapStepOver)", desc = "[D]AP: [S]tep Over", remap = true },
+			{
+				"<Plug>(DapStepInto)",
+				function()
+					vim.cmd("DapStepInto")
+					vim.fn["repeat#set"](vim.api.nvim_replace_termcodes("<Plug>(DapStepInto)", true, true, true))
+				end,
+				desc = "[D]AP: [S]tep Into (Repeatable)",
+			},
+			{ "<leader>dS", "<Plug>(DapStepInto)", desc = "[D]AP: [S]tep Into", remap = true },
 		},
 	},
 	{

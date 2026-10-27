@@ -52,6 +52,13 @@ let
     fd # `find`-like
     hyperfine
     uni
+    (perl.withPackages (
+      ps: with ps; [
+        WWWCurl
+        HTMLTree
+        XMLRSS
+      ]
+    ))
   ];
 
   defaultExtraTuiPackages = with pkgs; [

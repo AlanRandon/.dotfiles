@@ -5,3 +5,5 @@ view CONTACT = name, email, nick
 view ADDRESS = address_lines, city, zip, country
 view PHONE = phone, workphone, mobile
 view OTHER = url, birthday
+
+set index_format = {name:22} | {email:35} | {mobile:-16|phone|workphone} | {birthday:-10}
